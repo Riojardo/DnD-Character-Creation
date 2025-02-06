@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("D&D_CHaracter_Creation")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+27d40cd068445c823b61f91a52c5ed6aef2bc3b6")]
 [assembly: System.Reflection.AssemblyProductAttribute("D&D_CHaracter_Creation")]
 [assembly: System.Reflection.AssemblyTitleAttribute("D&D_CHaracter_Creation")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

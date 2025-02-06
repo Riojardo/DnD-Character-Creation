@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\D&amp;D_CHaracter_Creation.props" />
+</Project>
