@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\DnD_Character_Creation.props" />
+</Project>

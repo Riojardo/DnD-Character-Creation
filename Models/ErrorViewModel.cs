@@ -1,9 +1,10 @@
-namespace D_D_CHaracter_Creation.Models
+﻿namespace DnD_Character_Creation.Models
 {
-    public class ErrorViewModel
-    {
-        public string? RequestId { get; set; }
+        public class ErrorViewModel
+        {
+            public string RequestId { get; set; }
 
-        public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
-    }
+            public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
+        }
 }
+

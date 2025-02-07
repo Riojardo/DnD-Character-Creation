@@ -1,6 +1,9 @@
-using D_D_CHaracter_Creation.Models;
+
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using IdentityByExamples.Models;
+using static Character_Creation.Models.Character_Creation;
+using DnD_Character_Creation.Models;
 
 namespace D_D_CHaracter_Creation.Controllers
 {
@@ -17,16 +20,33 @@ namespace D_D_CHaracter_Creation.Controllers
         {
             return View();
         }
-
         public IActionResult Privacy()
         {
             return View();
+        }
+        public IActionResult CharCreation()
+        {
+            return View();
+        }
+        public IActionResult Login()
+        {
+            return View();
+        }
+
+        public IActionResult Register()
+        {
+            var model = new UserRegistrationModel();              return View(model);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            var model = new ErrorViewModel
+            {
+                RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier
+            };
+
+            return View(model);
         }
     }
 }
