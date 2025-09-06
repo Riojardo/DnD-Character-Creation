@@ -1,0 +1,96 @@
+﻿html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    background-image: url('../images/BackgroundAccount.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.account-container {
+    background-image: url('../images/BackgroundAccount.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 2rem 0;
+}
+.account-box {
+    background: rgba(245, 222, 179, 0.95); /* parchment-like beige */
+    padding: 40px;
+    border-radius: 15px;
+    max-width: 500px;
+    width: 100%;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.8), inset 0 0 10px rgba(0,0,0,0.4);
+    border: 3px solid #8b4513; /* dark wood-like */
+    font-family: "Cinzel Decorative", serif; /* exotic fantasy font (Google Fonts) */
+    color: #2c1810; /* deep brown text */
+    position: relative;
+    overflow: hidden;
+    opacity: .8;
+}
+
+    /* Ornate border glow */
+    .account-box::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border: 4px double #d4af37; /* gold ornate border */
+        border-radius: 12px;
+        pointer-events: none;
+        box-shadow: 0 0 15px rgba(212,175,55,0.8);
+    }
+
+    .account-box::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle, rgba(0,0,0,0) 70%, rgba(0,0,0,0.4) 100%);
+        border-radius: 12px;
+        pointer-events: none;
+    }
+
+    /* Fantasy styled heading */
+    .account-box h2 {
+        font-family: "Cinzel Decorative", serif;
+        font-size: 2rem;
+        text-align: center;
+        margin-bottom: 1.5rem;
+        color: #5c2e0f;
+        text-shadow: 1px 1px 5px #d4af37;
+    }
+
+    /* Buttons styled like magical runes */
+    .account-box .btn {
+        background: linear-gradient(135deg, #3c1e1e, #8b4513);
+        border: 2px solid #d4af37;
+        font-family: "Cinzel Decorative", serif;
+        font-size: 1.2rem;
+        color: #f5f5dc;
+        transition: all 0.3s ease;
+    }
+
+        .account-box .btn:hover {
+            background: linear-gradient(135deg, #8b4513, #d4af37);
+            color: #2c1810;
+            box-shadow: 0 0 15px #d4af37;
+        }
+
+    /* Links */
+    .account-box a {
+        color: #5c2e0f;
+        font-weight: bold;
+        text-decoration: none;
+        transition: color 0.3s ease, text-shadow 0.3s ease;
+    }
+
+        .account-box a:hover {
+            color: #d4af37;
+            text-shadow: 0 0 5px #d4af37;
+        }
