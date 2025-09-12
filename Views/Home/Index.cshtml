@@ -4,5 +4,16 @@
 
 <div class="text-center">
     <h1 class="display-4"> Welcome to your D&D character creator !</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <form asp-controller="Cars" asp-action="Submit" method="post">
+        <label for="cars">Choose a car:</label>
+        <select name="cars" id="cars">
+            <option value="volvo">Volvo</option>
+            <option value="saab">Saab</option>
+            <option value="opel">Opel</option>
+            <option value="audi">Audi</option>
+        </select>
+        <br><br>
+        <input type="submit" value="Submit">
+    </form>
+    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Wjhkjhhkjhkjhjeb apps with ASP.NET Core</a>.</p>
 </div>

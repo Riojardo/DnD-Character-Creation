@@ -21,6 +21,18 @@ body {
     min-height: 100vh;
     padding: 2rem 0;
 }
+
+.text-center {
+    background: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    position: static !important;
+    overflow: visible !important;
+}
+
 .account-box {
     background: rgba(245, 222, 179, 0.95); /* parchment-like beige */
     padding: 40px;
@@ -66,8 +78,8 @@ body {
         text-shadow: 1px 1px 5px #d4af37;
     }
 
-    /* Buttons styled like magical runes */
-    .account-box .btn {
+    /* Fantasy button (new class) */
+    .account-box .btn-fantasy {
         background: linear-gradient(135deg, #3c1e1e, #8b4513);
         border: 2px solid #d4af37;
         font-family: "Cinzel Decorative", serif;
@@ -76,10 +88,10 @@ body {
         transition: all 0.3s ease;
     }
 
-        .account-box .btn:hover {
+        .account-box .btn-fantasy:hover {
             background: linear-gradient(135deg, #8b4513, #d4af37);
             color: #2c1810;
-            box-shadow: 0 0 15px #d4af37;
+            box-shadow: 0 0 10px #d4af37;
         }
 
     /* Links */

@@ -2,7 +2,7 @@
   "Files": [
     {
       "Id": "C:\\Users\\Robin\\source\\repos\\DnD-Character-Creation\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\DnD_CharacterCreation.bundle.scp.css",
-      "PackagePath": "staticwebassets\\DnD_CharacterCreation.ms19cxemif.bundle.scp.css"
+      "PackagePath": "staticwebassets\\DnD_CharacterCreation.t1hnvnq6nq.bundle.scp.css"
     },
     {
       "Id": "C:\\Users\\Robin\\source\\repos\\DnD-Character-Creation\\wwwroot\\css\\account.css",
@@ -23,6 +23,10 @@
     {
       "Id": "C:\\Users\\Robin\\source\\repos\\DnD-Character-Creation\\wwwroot\\images\\BackgroundRegister.jpg",
       "PackagePath": "staticwebassets\\images\\BackgroundRegister.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Robin\\source\\repos\\DnD-Character-Creation\\wwwroot\\images\\Background_home.jpg",
+      "PackagePath": "staticwebassets\\images\\Background_home.jpg"
     },
     {
       "Id": "C:\\Users\\Robin\\source\\repos\\DnD-Character-Creation\\wwwroot\\images\\parchment.png",

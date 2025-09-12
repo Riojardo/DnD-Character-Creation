@@ -4,8 +4,7 @@ namespace DnD_CharacterCreation.Models
 {
     public class Users : IdentityUser
     {
-
-        public String FullName { get; set; }
+        public string FullName { get; set; } = string.Empty;
 
     }
 }
