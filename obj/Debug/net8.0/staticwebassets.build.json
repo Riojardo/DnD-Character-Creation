@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "/bDsl0WST0Morgls5UB0RFXSFNKTnUyOmlJ87tBJfOs=",
+  "Hash": "1LFtHIYStR8D202YZxRzVHrOVi9mNlWilBWLzExr46g=",
   "Source": "DnD_CharacterCreation",
   "BasePath": "_content/DnD_CharacterCreation",
   "Mode": "Default",
@@ -73,8 +73,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "muc5v7eb7q",
-      "Integrity": "spToy8lVZHSQo0+OosF+cVpe5tYKG4Jx142W8iC6yE0=",
+      "Fingerprint": "z7497a52nn",
+      "Integrity": "nxw/94OcOgU61n8rTPZFHBupBnXxdcqDOXr55ZyK3Gs=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\account.css"
@@ -94,8 +94,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "5npv3wu3qp",
-      "Integrity": "kZaUwg/1CHN64kWMWf2ZLfbNdO+mR5Fkct667ScmqtM=",
+      "Fingerprint": "rz22j3a9j5",
+      "Integrity": "WcUZJcGkR5GgxV+Pje2NXwFJ3VuwZ3/FieTgq/f2fCk=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\site.css"
@@ -183,6 +183,69 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\BackgroundRegister.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\Robin\\source\\repos\\DnD-Character-Creation\\wwwroot\\images\\banner_dice.png",
+      "SourceId": "DnD_CharacterCreation",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Robin\\source\\repos\\DnD-Character-Creation\\wwwroot\\",
+      "BasePath": "_content/DnD_CharacterCreation",
+      "RelativePath": "images/banner_dice#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "9nrvaqe5bx",
+      "Integrity": "S1C7ttE03qTwL0bM02HoyrKo1opNhYdzHanmwt4HrpU=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\banner_dice.png"
+    },
+    {
+      "Identity": "C:\\Users\\Robin\\source\\repos\\DnD-Character-Creation\\wwwroot\\images\\Dice20_button.png",
+      "SourceId": "DnD_CharacterCreation",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Robin\\source\\repos\\DnD-Character-Creation\\wwwroot\\",
+      "BasePath": "_content/DnD_CharacterCreation",
+      "RelativePath": "images/Dice20_button#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "eerndj9t6w",
+      "Integrity": "iuwsu42Xz/ruCDQPMEb1ccovV+NJ+ZfHTLsL+yrwBGE=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\Dice20_button.png"
+    },
+    {
+      "Identity": "C:\\Users\\Robin\\source\\repos\\DnD-Character-Creation\\wwwroot\\images\\image_Dice_blank.png",
+      "SourceId": "DnD_CharacterCreation",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Robin\\source\\repos\\DnD-Character-Creation\\wwwroot\\",
+      "BasePath": "_content/DnD_CharacterCreation",
+      "RelativePath": "images/image_Dice_blank#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "zx6jdcjbb1",
+      "Integrity": "53bUai+OSZVhDK0s3c1pmtJOGCmmw5pwF8P+FfqzMqE=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\image_Dice_blank.png"
     },
     {
       "Identity": "C:\\Users\\Robin\\source\\repos\\DnD-Character-Creation\\wwwroot\\images\\parchment.png",
@@ -1436,7 +1499,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "2985"
+          "Value": "2987"
         },
         {
           "Name": "Content-Type",
@@ -1444,11 +1507,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"spToy8lVZHSQo0+OosF+cVpe5tYKG4Jx142W8iC6yE0=\""
+          "Value": "\"nxw/94OcOgU61n8rTPZFHBupBnXxdcqDOXr55ZyK3Gs=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 07 Sep 2025 12:11:31 GMT"
+          "Value": "Tue, 16 Sep 2025 20:35:53 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1458,12 +1521,12 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-spToy8lVZHSQo0+OosF+cVpe5tYKG4Jx142W8iC6yE0="
+          "Value": "sha256-nxw/94OcOgU61n8rTPZFHBupBnXxdcqDOXr55ZyK3Gs="
         }
       ]
     },
     {
-      "Route": "css/account.muc5v7eb7q.css",
+      "Route": "css/account.z7497a52nn.css",
       "AssetFile": "C:\\Users\\Robin\\source\\repos\\DnD-Character-Creation\\wwwroot\\css\\account.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -1473,7 +1536,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "2985"
+          "Value": "2987"
         },
         {
           "Name": "Content-Type",
@@ -1481,11 +1544,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"spToy8lVZHSQo0+OosF+cVpe5tYKG4Jx142W8iC6yE0=\""
+          "Value": "\"nxw/94OcOgU61n8rTPZFHBupBnXxdcqDOXr55ZyK3Gs=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 07 Sep 2025 12:11:31 GMT"
+          "Value": "Tue, 16 Sep 2025 20:35:53 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1495,7 +1558,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "muc5v7eb7q"
+          "Value": "z7497a52nn"
         },
         {
           "Name": "label",
@@ -1503,52 +1566,7 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-spToy8lVZHSQo0+OosF+cVpe5tYKG4Jx142W8iC6yE0="
-        }
-      ]
-    },
-    {
-      "Route": "css/site.5npv3wu3qp.css",
-      "AssetFile": "C:\\Users\\Robin\\source\\repos\\DnD-Character-Creation\\wwwroot\\css\\site.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "3017"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"kZaUwg/1CHN64kWMWf2ZLfbNdO+mR5Fkct667ScmqtM=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sun, 07 Sep 2025 12:27:12 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "5npv3wu3qp"
-        },
-        {
-          "Name": "label",
-          "Value": "css/site.css"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-kZaUwg/1CHN64kWMWf2ZLfbNdO+mR5Fkct667ScmqtM="
+          "Value": "sha256-nxw/94OcOgU61n8rTPZFHBupBnXxdcqDOXr55ZyK3Gs="
         }
       ]
     },
@@ -1563,7 +1581,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "3017"
+          "Value": "6057"
         },
         {
           "Name": "Content-Type",
@@ -1571,11 +1589,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"kZaUwg/1CHN64kWMWf2ZLfbNdO+mR5Fkct667ScmqtM=\""
+          "Value": "\"WcUZJcGkR5GgxV+Pje2NXwFJ3VuwZ3/FieTgq/f2fCk=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 07 Sep 2025 12:27:12 GMT"
+          "Value": "Tue, 16 Sep 2025 20:42:44 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1585,7 +1603,52 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-kZaUwg/1CHN64kWMWf2ZLfbNdO+mR5Fkct667ScmqtM="
+          "Value": "sha256-WcUZJcGkR5GgxV+Pje2NXwFJ3VuwZ3/FieTgq/f2fCk="
+        }
+      ]
+    },
+    {
+      "Route": "css/site.rz22j3a9j5.css",
+      "AssetFile": "C:\\Users\\Robin\\source\\repos\\DnD-Character-Creation\\wwwroot\\css\\site.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "6057"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"WcUZJcGkR5GgxV+Pje2NXwFJ3VuwZ3/FieTgq/f2fCk=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 16 Sep 2025 20:42:44 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "rz22j3a9j5"
+        },
+        {
+          "Name": "label",
+          "Value": "css/site.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-WcUZJcGkR5GgxV+Pje2NXwFJ3VuwZ3/FieTgq/f2fCk="
         }
       ]
     },
@@ -2078,6 +2141,252 @@
         {
           "Name": "integrity",
           "Value": "sha256-LexuYfZyfT9a9v3htOEYcFBHNL9C5VxWRGZgccCwMdQ="
+        }
+      ]
+    },
+    {
+      "Route": "images/banner_dice.9nrvaqe5bx.png",
+      "AssetFile": "C:\\Users\\Robin\\source\\repos\\DnD-Character-Creation\\wwwroot\\images\\banner_dice.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "51660"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"S1C7ttE03qTwL0bM02HoyrKo1opNhYdzHanmwt4HrpU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 16 Sep 2025 19:44:19 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "9nrvaqe5bx"
+        },
+        {
+          "Name": "label",
+          "Value": "images/banner_dice.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-S1C7ttE03qTwL0bM02HoyrKo1opNhYdzHanmwt4HrpU="
+        }
+      ]
+    },
+    {
+      "Route": "images/banner_dice.png",
+      "AssetFile": "C:\\Users\\Robin\\source\\repos\\DnD-Character-Creation\\wwwroot\\images\\banner_dice.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "51660"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"S1C7ttE03qTwL0bM02HoyrKo1opNhYdzHanmwt4HrpU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 16 Sep 2025 19:44:19 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-S1C7ttE03qTwL0bM02HoyrKo1opNhYdzHanmwt4HrpU="
+        }
+      ]
+    },
+    {
+      "Route": "images/Dice20_button.eerndj9t6w.png",
+      "AssetFile": "C:\\Users\\Robin\\source\\repos\\DnD-Character-Creation\\wwwroot\\images\\Dice20_button.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "36025"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"iuwsu42Xz/ruCDQPMEb1ccovV+NJ+ZfHTLsL+yrwBGE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 16 Sep 2025 19:51:55 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "eerndj9t6w"
+        },
+        {
+          "Name": "label",
+          "Value": "images/Dice20_button.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-iuwsu42Xz/ruCDQPMEb1ccovV+NJ+ZfHTLsL+yrwBGE="
+        }
+      ]
+    },
+    {
+      "Route": "images/Dice20_button.png",
+      "AssetFile": "C:\\Users\\Robin\\source\\repos\\DnD-Character-Creation\\wwwroot\\images\\Dice20_button.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "36025"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"iuwsu42Xz/ruCDQPMEb1ccovV+NJ+ZfHTLsL+yrwBGE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 16 Sep 2025 19:51:55 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-iuwsu42Xz/ruCDQPMEb1ccovV+NJ+ZfHTLsL+yrwBGE="
+        }
+      ]
+    },
+    {
+      "Route": "images/image_Dice_blank.png",
+      "AssetFile": "C:\\Users\\Robin\\source\\repos\\DnD-Character-Creation\\wwwroot\\images\\image_Dice_blank.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "30361"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"53bUai+OSZVhDK0s3c1pmtJOGCmmw5pwF8P+FfqzMqE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 16 Sep 2025 19:36:07 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-53bUai+OSZVhDK0s3c1pmtJOGCmmw5pwF8P+FfqzMqE="
+        }
+      ]
+    },
+    {
+      "Route": "images/image_Dice_blank.zx6jdcjbb1.png",
+      "AssetFile": "C:\\Users\\Robin\\source\\repos\\DnD-Character-Creation\\wwwroot\\images\\image_Dice_blank.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "30361"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"53bUai+OSZVhDK0s3c1pmtJOGCmmw5pwF8P+FfqzMqE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 16 Sep 2025 19:36:07 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "zx6jdcjbb1"
+        },
+        {
+          "Name": "label",
+          "Value": "images/image_Dice_blank.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-53bUai+OSZVhDK0s3c1pmtJOGCmmw5pwF8P+FfqzMqE="
         }
       ]
     },

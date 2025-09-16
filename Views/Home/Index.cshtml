@@ -1,19 +1,251 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+@{
+    var abilities = new List<string> { "STR", "DEX", "CON", "INT", "WIS", "CHA" };
+}
+@model DnD_CharacterCreation.ViewModels.DnDLists
 
 <div class="text-center">
-    <h1 class="display-4"> Welcome to your D&D character creator !</h1>
-    <form asp-controller="Cars" asp-action="Submit" method="post">
-        <label for="cars">Choose a car:</label>
-        <select name="cars" id="cars">
-            <option value="volvo">Volvo</option>
-            <option value="saab">Saab</option>
-            <option value="opel">Opel</option>
-            <option value="audi">Audi</option>
-        </select>
-        <br><br>
-        <input type="submit" value="Submit">
-    </form>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Wjhkjhhkjhkjhjeb apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Welcome to your D&D character creator!</h1>
+    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building web apps with ASP.NET Core</a>.</p>
 </div>
+
+<div class="form-container">
+    <form asp-controller="Characters" asp-action="Submit" method="post">
+        <div class="form-row">
+            <!-- Left Box -->
+            <div class="form-box">
+                <!-- Character Name -->
+                <label for="Character_name">Character Name:</label>
+                <input type="text" name="first-name" />
+
+                <!-- Gender -->
+                <label for="gender">Gender:</label>
+                <select name="gender">
+                    <option value="">Please select one…</option>
+                    <option value="female">Female</option>
+                    <option value="male">Male</option>
+                    <option value="non-binary">Non-Binary</option>
+                    <option value="other">Other</option>
+                    <option value="Prefer not to answer">Prefer not to answer</option>
+                </select>
+
+                <!-- Classes -->
+                <label for="Classe">Choose your Class:</label>
+
+                <!-- First Class -->
+                <div class="class-row" id="row_first">
+                    <div class="select-group">
+                        <select id="classe_first" name="classe_first">
+                            @foreach (var name in Model.ClassesNames)
+                            {
+                                <option value="@name">@name</option>
+                            }
+                        </select>
+                        <select id="level_first" name="level_first">
+                            @for (int i = 1; i <= 20; i++)
+                            {
+                                <option value="@i">@i</option>
+                            }
+                        </select>
+                    </div>
+                    <button type="button" class="add-btn" id="classe2_button">➕ Add class</button>
+                </div>
+
+                <!-- Second Class -->
+                <div class="class-row" id="row_second">
+                    <div class="select-group">
+                        <select id="classe_second" name="classe_second">
+                            @foreach (var name in Model.ClassesNames)
+                            {
+                                <option value="@name">@name</option>
+                            }
+                        </select>
+                        <select id="level_second" name="level_second">
+                            @for (int i = 1; i <= 20; i++)
+                            {
+                                <option value="@i">@i</option>
+                            }
+                        </select>
+                    </div>
+                    <div style="display: flex; gap: 0.5rem;">
+                        <button type="button" class="add-btn" id="classe3_button">➕ Add class</button>
+                        <button type="button" class="remove-btn" id="remove_second">❌</button>
+                    </div>
+                </div>
+
+                <!-- Third Class -->
+                <div class="class-row" id="row_third">
+                    <div class="select-group">
+                        <select id="classe_third" name="classe_third">
+                            @foreach (var name in Model.ClassesNames)
+                            {
+                                <option value="@name">@name</option>
+                            }
+                        </select>
+                        <select id="level_third" name="level_third">
+                            @for (int i = 1; i <= 20; i++)
+                            {
+                                <option value="@i">@i</option>
+                            }
+                        </select>
+                    </div>
+                    <button type="button" class="remove-btn" id="remove_third">❌</button>
+                </div>
+
+                <!-- Species -->
+                <label for="species">Choose A Species:</label>
+                <select name="species" id="species">
+                    <option value="human">Human</option>
+                    <option value="elf">Elf</option>
+                    <option value="dwarf">Dwarf</option>
+                    <option value="halfling">Halfling</option>
+                </select>
+                <!-- Background -->
+                <label for="background">Choose A Background:</label>
+                <select name="background" id="background">
+                    <option value="acolyte">Acolyte</option>
+                    <option value="criminal">Criminal</option>
+                    <option value="folkhero">Folk Hero</option>
+                    <option value="noble">Noble</option>
+                </select>
+            </div>
+
+            <!-- Right Box -->
+            <div class="form-box">
+               
+                <!-- Feat -->
+                <label for="feat">Choose Your Feats:</label>
+                <select name="feat" id="feat">
+                    <option value="acolyte">Acolyte</option>
+                    <option value="criminal">Criminal</option>
+                    <option value="folkhero">Folk Hero</option>
+                    <option value="noble">Noble</option>
+                </select>
+
+
+                <div class="label-abilities_choice">
+                    <span>Click on the Dice to Determine your stats :</span>
+                    <button type="submit" class="dice-btn" aria-label="Roll stats">
+                        <img src="@Url.Content("~/images/Dice20_button.png")" alt="Roll Dice" />
+                    </button>
+                    <span> 0, 0, 0, 0, 0, 0</span>
+                </div>
+                
+
+                <!-- Abilities -->
+                @foreach (var ability in abilities)
+                {
+                    <div class="ability-row">
+                        <label for="@ability">@ability:</label>
+                        <select id="@ability" name="@ability">
+                            <option value="">-- Choose --</option>
+                        </select>
+                    </div>
+                }
+
+                <!-- Alignment -->
+                <label for="alignment">Choose an alignment:</label>
+                <select name="alignment" id="alignment">
+                    <option value="LG">Lawful Good</option>
+                    <option value="NG">Neutral Good</option>
+                    <option value="CG">Chaotic Good</option>
+                    <option value="LN">Lawful Neutral</option>
+                    <option value="N">True Neutral</option>
+                    <option value="CN">Chaotic Neutral</option>
+                    <option value="LE">Lawful Evil</option>
+                    <option value="NE">Neutral Evil</option>
+                    <option value="CE">Chaotic Evil</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Submit button below both boxes -->
+        <input type="submit" value="Submit !">
+    </form>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const maxLevel = 20;
+
+        const rows = [
+            { classe: "classe_first", level: "level_first", row: "row_first" },
+            { classe: "classe_second", level: "level_second", row: "row_second" },
+            { classe: "classe_third", level: "level_third", row: "row_third" }
+        ];
+
+        function populateLevels() {
+            // Calculate total selected levels
+            const selectedLevels = rows.map(r => parseInt(document.getElementById(r.level).value) || 0);
+            const totalSelected = selectedLevels.reduce((a,b)=>a+b, 0);
+
+            rows.forEach(r => {
+                const sel = document.getElementById(r.level);
+                const currentValue = parseInt(sel.value) || 0;
+                sel.innerHTML = "";
+                const remaining = maxLevel - (totalSelected - currentValue);
+                for (let i = 1; i <= remaining; i++) {
+                    const opt = document.createElement("option");
+                    opt.value = i;
+                    opt.textContent = i;
+                    if (i === currentValue) opt.selected = true;
+                    sel.appendChild(opt);
+                }
+            });
+        }
+
+        function updateAvailableClasses() {
+            // Collect selected classes
+            const selected = rows.map(r => document.getElementById(r.classe).value).filter(v => v);
+
+            // Update each select
+            rows.forEach(r => {
+                const sel = document.getElementById(r.classe);
+                const options = sel.querySelectorAll("option");
+                options.forEach(opt => {
+                    if (selected.includes(opt.value) && opt.value !== sel.value) {
+                        opt.disabled = true;
+                    } else {
+                        opt.disabled = false;
+                    }
+                });
+            });
+        }
+
+        function removeRow(rowId) {
+            const row = document.getElementById(rowId);
+            const selects = row.querySelectorAll("select");
+            selects.forEach(s => s.value = ""); // reset select values
+            row.hidden = true;
+            updateAvailableClasses();
+            populateLevels();
+        }
+
+        // Initial population
+        populateLevels();
+        updateAvailableClasses();
+
+        // Add event listeners
+        rows.forEach(r => {
+            const classeSel = document.getElementById(r.classe);
+            const levelSel = document.getElementById(r.level);
+
+            classeSel.addEventListener("change", updateAvailableClasses);
+            levelSel.addEventListener("change", populateLevels);
+        });
+
+        document.getElementById("classe2_button").addEventListener("click", () => {
+            document.getElementById("row_second").hidden = false;
+            populateLevels();
+        });
+        document.getElementById("classe3_button").addEventListener("click", () => {
+            document.getElementById("row_third").hidden = false;
+            populateLevels();
+        });
+
+        document.getElementById("remove_second").addEventListener("click", () => removeRow("row_second"));
+        document.getElementById("remove_third").addEventListener("click", () => removeRow("row_third"));
+    });
+</script>

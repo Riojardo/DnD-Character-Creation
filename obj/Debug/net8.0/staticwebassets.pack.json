@@ -29,6 +29,18 @@
       "PackagePath": "staticwebassets\\images\\Background_home.jpg"
     },
     {
+      "Id": "C:\\Users\\Robin\\source\\repos\\DnD-Character-Creation\\wwwroot\\images\\Dice20_button.png",
+      "PackagePath": "staticwebassets\\images\\Dice20_button.png"
+    },
+    {
+      "Id": "C:\\Users\\Robin\\source\\repos\\DnD-Character-Creation\\wwwroot\\images\\banner_dice.png",
+      "PackagePath": "staticwebassets\\images\\banner_dice.png"
+    },
+    {
+      "Id": "C:\\Users\\Robin\\source\\repos\\DnD-Character-Creation\\wwwroot\\images\\image_Dice_blank.png",
+      "PackagePath": "staticwebassets\\images\\image_Dice_blank.png"
+    },
+    {
       "Id": "C:\\Users\\Robin\\source\\repos\\DnD-Character-Creation\\wwwroot\\images\\parchment.png",
       "PackagePath": "staticwebassets\\images\\parchment.png"
     },

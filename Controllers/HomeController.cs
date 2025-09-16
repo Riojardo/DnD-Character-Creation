@@ -1,5 +1,7 @@
 using System.Diagnostics;
+using System.Text.Json;
 using DnD_CharacterCreation.Models;
+using DnD_CharacterCreation.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,9 +16,37 @@ namespace DnD_CharacterCreation.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var model = new DnDLists();
+
+            using var client = new HttpClient();
+            
+            var getClasses = await client.GetStringAsync("https://www.dnd5eapi.co/api/2014/classes");
+            using var jsonDocClasses = JsonDocument.Parse(getClasses);
+
+            foreach (var classe in jsonDocClasses.RootElement.GetProperty("results").EnumerateArray())
+            {
+                model.ClassesNames.Add(classe.GetProperty("name").GetString());
+            }
+
+            var getRaces= await client.GetStringAsync("https://www.dnd5eapi.co/api/2014/classes");
+            using var jsonDocRace = JsonDocument.Parse(getRaces);
+
+            foreach (var Race in jsonDocRace.RootElement.GetProperty("results").EnumerateArray())
+            {
+                model.RacesNames.Add(Race.GetProperty("name").GetString());
+            }
+
+            var getBackground = await client.GetStringAsync("https://www.dnd5eapi.co/api/2014/races");
+            using var jsonDocbackgroud = JsonDocument.Parse(getBackground);
+
+            foreach (var background in jsonDocbackgroud.RootElement.GetProperty("results").EnumerateArray())
+            {
+                model.BackgroundNames.Add(background.GetProperty("name").GetString());
+            }
+
+            return View(model);
         }
 
         [Authorize]

@@ -1,5 +1,8 @@
 using DnD_CharacterCreation.Data;
 using DnD_CharacterCreation.Models;
+using iText.Forms;
+using iText.Forms.Fields;
+using iText.Kernel.Pdf;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -47,7 +50,42 @@ namespace DnD_CharacterCreation
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
+            /*
+                        using var pdf = new PdfDocument(new PdfReader("C:\\Users\\Robin\\source\\repos\\DnD-Character-Creation\\content\\pdf\\5E_CharacterSheet_Fillable.pdf"));
+                        var form = PdfAcroForm.GetAcroForm(pdf, false);
 
+                        var fields = form.GetFormFields(); // maintenant disponible
+                        foreach (var field in fields)
+                        {
+                            Console.WriteLine(field.Key); // Nom interne du champ
+                        }*/
+
+                       /* string templatePath = "C:\\Users\\Robin\\source\\repos\\DnD-Character-Creation\\content\\pdf\\5E_CharacterSheet_Fillable.pdf";
+                        string outputPath = "Content/Gimli_Sheet.pdf";
+
+                        var character = new
+                        {
+                            Name = "Gimli",
+                            ClassLevel = "Fighter 3",
+                            Race = "Dwarf",
+                            Strength = 16
+                        };
+
+                        using var reader = new PdfReader(templatePath);
+                        using var writer = new PdfWriter(outputPath);
+                        using var pdf = new PdfDocument(reader, writer);
+
+                        var form = PdfAcroForm.GetAcroForm(pdf, true);
+
+                        form.GetField("CharacterName").SetValue(character.Name);
+                        form.GetField("ClassLevel").SetValue(character.ClassLevel);
+                        form.GetField("Race").SetValue(character.Race);
+                        form.GetField("STR").SetValue(character.Strength.ToString());
+
+                        form.FlattenFields(); 
+
+                        pdf.Close();
+            */
             app.Run();
 
             async Task SeedRolesAsync(WebApplication app)
