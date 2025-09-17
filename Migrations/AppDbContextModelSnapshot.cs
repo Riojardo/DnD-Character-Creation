@@ -22,6 +22,370 @@ namespace DnD_CharacterCreation.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("DnD_CharacterCreation.Models.Background", b =>
+                {
+                    b.Property<int?>("BackgroundId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("BackgroundId"));
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PrimarySkill")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SecondarySkill")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("BackgroundId");
+
+                    b.ToTable("Background");
+                });
+
+            modelBuilder.Entity("DnD_CharacterCreation.Models.Character", b =>
+                {
+                    b.Property<int>("CharacterId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CharacterId"));
+
+                    b.Property<string>("Alignment")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("ArmorClass")
+                        .HasColumnType("int");
+
+                    b.Property<string>("BackgroundId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("BackgroundId1")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CharacterName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("HitPoints")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("LevelTotal")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("RaceId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("SubRaceId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("CharacterId");
+
+                    b.HasIndex("BackgroundId1");
+
+                    b.HasIndex("RaceId");
+
+                    b.HasIndex("SubRaceId");
+
+                    b.ToTable("Characters");
+                });
+
+            modelBuilder.Entity("DnD_CharacterCreation.Models.CharacterAbility", b =>
+                {
+                    b.Property<int>("CharacterAbilityId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CharacterAbilityId"));
+
+                    b.Property<int>("CharacterId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("Charisma")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("Constitution")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("Dexterity")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("Intelligence")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("Strength")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("Wisdom")
+                        .HasColumnType("int");
+
+                    b.HasKey("CharacterAbilityId");
+
+                    b.HasIndex("CharacterId");
+
+                    b.ToTable("CharacterAbility");
+                });
+
+            modelBuilder.Entity("DnD_CharacterCreation.Models.CharacterClass", b =>
+                {
+                    b.Property<int>("CharacterClassId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CharacterClassId"));
+
+                    b.Property<int>("CharacterId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ClassId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Level")
+                        .HasColumnType("int");
+
+                    b.HasKey("CharacterClassId");
+
+                    b.HasIndex("CharacterId");
+
+                    b.HasIndex("ClassId");
+
+                    b.ToTable("CharacterClass");
+                });
+
+            modelBuilder.Entity("DnD_CharacterCreation.Models.CharacterFeat", b =>
+                {
+                    b.Property<int>("CharacterFeatId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CharacterFeatId"));
+
+                    b.Property<int>("CharacterId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("FeatId")
+                        .HasColumnType("int");
+
+                    b.HasKey("CharacterFeatId");
+
+                    b.HasIndex("CharacterId");
+
+                    b.HasIndex("FeatId");
+
+                    b.ToTable("CharacterFeat");
+                });
+
+            modelBuilder.Entity("DnD_CharacterCreation.Models.CharacterSkill", b =>
+                {
+                    b.Property<int>("CharacterSkillId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CharacterSkillId"));
+
+                    b.Property<bool>("Acrobatics")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("AnimalHandling")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("Arcana")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("Athletics")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("CharacterId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Deception")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("History")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("Insight")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("Intimidation")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("Investigation")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("Medicine")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("Nature")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("Perception")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("Performance")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("Persuasion")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("Religion")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("SleightOfHand")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("Stealth")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("Survival")
+                        .HasColumnType("bit");
+
+                    b.HasKey("CharacterSkillId");
+
+                    b.HasIndex("CharacterId");
+
+                    b.ToTable("CharacterSkill");
+                });
+
+            modelBuilder.Entity("DnD_CharacterCreation.Models.CharacterSpell", b =>
+                {
+                    b.Property<int>("CharacterSpellId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CharacterSpellId"));
+
+                    b.Property<int>("CharacterId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsPrepared")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("SpellId")
+                        .HasColumnType("int");
+
+                    b.HasKey("CharacterSpellId");
+
+                    b.HasIndex("CharacterId");
+
+                    b.HasIndex("SpellId");
+
+                    b.ToTable("CharacterSpell");
+                });
+
+            modelBuilder.Entity("DnD_CharacterCreation.Models.Class", b =>
+                {
+                    b.Property<int?>("ClassId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("ClassId"));
+
+                    b.Property<int?>("HitDice")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PrimaryAbility")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SecondaryAbility")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ClassId");
+
+                    b.ToTable("Class");
+                });
+
+            modelBuilder.Entity("DnD_CharacterCreation.Models.Feat", b =>
+                {
+                    b.Property<int>("FeatId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("FeatId"));
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("FeatId");
+
+                    b.ToTable("Feat");
+                });
+
+            modelBuilder.Entity("DnD_CharacterCreation.Models.Race", b =>
+                {
+                    b.Property<int>("RaceId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RaceId"));
+
+                    b.Property<string>("RaceName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("RaceId");
+
+                    b.ToTable("Race");
+                });
+
+            modelBuilder.Entity("DnD_CharacterCreation.Models.Spell", b =>
+                {
+                    b.Property<int>("SpellId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SpellId"));
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("SpellLevel")
+                        .HasColumnType("int");
+
+                    b.Property<string>("SpellSchool")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("SpellId");
+
+                    b.ToTable("Spell");
+                });
+
+            modelBuilder.Entity("DnD_CharacterCreation.Models.SubRace", b =>
+                {
+                    b.Property<int>("SubRaceId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SubRaceId"));
+
+                    b.Property<int>("RaceId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("SubRaceName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("SubRaceId");
+
+                    b.HasIndex("RaceId");
+
+                    b.ToTable("SubRace");
+                });
+
             modelBuilder.Entity("DnD_CharacterCreation.Models.Users", b =>
                 {
                     b.Property<string>("Id")
@@ -42,7 +406,6 @@ namespace DnD_CharacterCreation.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("FullName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("LockoutEnabled")
@@ -67,10 +430,6 @@ namespace DnD_CharacterCreation.Migrations
 
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
-
-                    b.Property<string>("Role")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
@@ -228,6 +587,117 @@ namespace DnD_CharacterCreation.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("DnD_CharacterCreation.Models.Character", b =>
+                {
+                    b.HasOne("DnD_CharacterCreation.Models.Background", "Background")
+                        .WithMany()
+                        .HasForeignKey("BackgroundId1");
+
+                    b.HasOne("DnD_CharacterCreation.Models.Race", "Race")
+                        .WithMany()
+                        .HasForeignKey("RaceId");
+
+                    b.HasOne("DnD_CharacterCreation.Models.SubRace", "SubRace")
+                        .WithMany("Characters")
+                        .HasForeignKey("SubRaceId");
+
+                    b.Navigation("Background");
+
+                    b.Navigation("Race");
+
+                    b.Navigation("SubRace");
+                });
+
+            modelBuilder.Entity("DnD_CharacterCreation.Models.CharacterAbility", b =>
+                {
+                    b.HasOne("DnD_CharacterCreation.Models.Character", "Character")
+                        .WithMany()
+                        .HasForeignKey("CharacterId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Character");
+                });
+
+            modelBuilder.Entity("DnD_CharacterCreation.Models.CharacterClass", b =>
+                {
+                    b.HasOne("DnD_CharacterCreation.Models.Character", "Character")
+                        .WithMany("CharacterClasses")
+                        .HasForeignKey("CharacterId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("DnD_CharacterCreation.Models.Class", "Class")
+                        .WithMany()
+                        .HasForeignKey("ClassId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Character");
+
+                    b.Navigation("Class");
+                });
+
+            modelBuilder.Entity("DnD_CharacterCreation.Models.CharacterFeat", b =>
+                {
+                    b.HasOne("DnD_CharacterCreation.Models.Character", "Character")
+                        .WithMany("CharacterFeats")
+                        .HasForeignKey("CharacterId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("DnD_CharacterCreation.Models.Feat", "Feat")
+                        .WithMany()
+                        .HasForeignKey("FeatId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Character");
+
+                    b.Navigation("Feat");
+                });
+
+            modelBuilder.Entity("DnD_CharacterCreation.Models.CharacterSkill", b =>
+                {
+                    b.HasOne("DnD_CharacterCreation.Models.Character", "Character")
+                        .WithMany()
+                        .HasForeignKey("CharacterId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Character");
+                });
+
+            modelBuilder.Entity("DnD_CharacterCreation.Models.CharacterSpell", b =>
+                {
+                    b.HasOne("DnD_CharacterCreation.Models.Character", "Character")
+                        .WithMany("CharacterSpells")
+                        .HasForeignKey("CharacterId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("DnD_CharacterCreation.Models.Spell", "Spell")
+                        .WithMany()
+                        .HasForeignKey("SpellId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Character");
+
+                    b.Navigation("Spell");
+                });
+
+            modelBuilder.Entity("DnD_CharacterCreation.Models.SubRace", b =>
+                {
+                    b.HasOne("DnD_CharacterCreation.Models.Race", "Race")
+                        .WithMany("SubRaces")
+                        .HasForeignKey("RaceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Race");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -277,6 +747,25 @@ namespace DnD_CharacterCreation.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("DnD_CharacterCreation.Models.Character", b =>
+                {
+                    b.Navigation("CharacterClasses");
+
+                    b.Navigation("CharacterFeats");
+
+                    b.Navigation("CharacterSpells");
+                });
+
+            modelBuilder.Entity("DnD_CharacterCreation.Models.Race", b =>
+                {
+                    b.Navigation("SubRaces");
+                });
+
+            modelBuilder.Entity("DnD_CharacterCreation.Models.SubRace", b =>
+                {
+                    b.Navigation("Characters");
                 });
 #pragma warning restore 612, 618
         }

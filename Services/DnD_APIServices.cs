@@ -1,7 +1,7 @@
-﻿using Azure.Core;
+﻿using System.Net.Http;
+using System.Net.Http.Json;
+using System.Threading.Tasks;
 using DnD_CharacterCreation.Models;
-using System.Diagnostics;
-using System.Net.Http;
 
 namespace DnD_CharacterCreation.Services
 {
@@ -14,19 +14,36 @@ namespace DnD_CharacterCreation.Services
             _httpClient = httpClient;
         }
 
-        public async Task<characterClasse> GetClasseAsync(string classeName)
+        /// <summary>
+        /// Fetch a class from the D&D API by its name.
+        /// </summary>
+        /// <param name="classeName">The class name, e.g., "fighter"</param>
+        /// <returns>A CharacterClass object populated with API data</returns>
+        public async Task<CharacterClass> GetClasseAsync(string classeName)
         {
-            var response = await _httpClient.GetFromJsonAsync<characterClasse>($"https://www.dnd5eapi.co/api/classes/{classeName}");
-            return response;
+            // Make the HTTP GET request to the API
+            var response = await _httpClient.GetFromJsonAsync<ApiClassResponse>($"https://www.dnd5eapi.co/api/classes/{classeName}");
+
+            if (response == null)
+                return null;
+
+            // Map API response to your CharacterClass model
+            var characterClass = new CharacterClass
+            {
+                ClassId = 0,
+                
+            };
+
+            return characterClass;
         }
+    }
 
-/*      var client = new HttpClient();
-        var request = new HttpRequestMessage(HttpMethod.Get, "https://www.dnd5eapi.co/api/2014/classes/fighter");
-        request.Headers.Add("Accept", "application/json");
-        var response = await client.SendAsync(request);
-        response.EnsureSuccessStatusCode();
-        Console.WriteLine(await response.Content.ReadAsStringAsync());*/
-
-
+    // Minimal class to match D&D API JSON
+    public class ApiClassResponse
+    {
+        public string index { get; set; }
+        public string name { get; set; }
+        public int hit_die { get; set; }
+        // Add more fields if needed
     }
 }

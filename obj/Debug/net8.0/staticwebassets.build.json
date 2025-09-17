@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "1LFtHIYStR8D202YZxRzVHrOVi9mNlWilBWLzExr46g=",
+  "Hash": "Z5+Ab3VNjfWGEGXz6YAKayN5+ZuTsPn2m41kZTNgEc4=",
   "Source": "DnD_CharacterCreation",
   "BasePath": "_content/DnD_CharacterCreation",
   "Mode": "Default",
@@ -94,8 +94,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "rz22j3a9j5",
-      "Integrity": "WcUZJcGkR5GgxV+Pje2NXwFJ3VuwZ3/FieTgq/f2fCk=",
+      "Fingerprint": "c6i7ijwrnz",
+      "Integrity": "PGr91KIO/w+RD2JPuuaNReu3maUdi/HITmECyNmze88=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\site.css"
@@ -227,6 +227,27 @@
       "OriginalItemSpec": "wwwroot\\images\\Dice20_button.png"
     },
     {
+      "Identity": "C:\\Users\\Robin\\source\\repos\\DnD-Character-Creation\\wwwroot\\images\\dragon_footer.png",
+      "SourceId": "DnD_CharacterCreation",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Robin\\source\\repos\\DnD-Character-Creation\\wwwroot\\",
+      "BasePath": "_content/DnD_CharacterCreation",
+      "RelativePath": "images/dragon_footer#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "8nbv8m0wwg",
+      "Integrity": "TJPaIwq4YsrZzrd1ZTOjZqqfdyP3h/5Saz5vGrHdprQ=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\dragon_footer.png"
+    },
+    {
       "Identity": "C:\\Users\\Robin\\source\\repos\\DnD-Character-Creation\\wwwroot\\images\\image_Dice_blank.png",
       "SourceId": "DnD_CharacterCreation",
       "SourceType": "Discovered",
@@ -267,6 +288,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\parchment.png"
+    },
+    {
+      "Identity": "C:\\Users\\Robin\\source\\repos\\DnD-Character-Creation\\wwwroot\\images\\triangle-blancsur-fond-noir.png",
+      "SourceId": "DnD_CharacterCreation",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Robin\\source\\repos\\DnD-Character-Creation\\wwwroot\\",
+      "BasePath": "_content/DnD_CharacterCreation",
+      "RelativePath": "images/triangle-blancsur-fond-noir#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "1z2de13lv4",
+      "Integrity": "s80d1kOE2kHukWdh08IiyS42FgErscn3H1529IK/ZGw=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\triangle-blancsur-fond-noir.png"
     },
     {
       "Identity": "C:\\Users\\Robin\\source\\repos\\DnD-Character-Creation\\wwwroot\\js\\site.js",
@@ -1571,6 +1613,51 @@
       ]
     },
     {
+      "Route": "css/site.c6i7ijwrnz.css",
+      "AssetFile": "C:\\Users\\Robin\\source\\repos\\DnD-Character-Creation\\wwwroot\\css\\site.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "9701"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"PGr91KIO/w+RD2JPuuaNReu3maUdi/HITmECyNmze88=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 17 Sep 2025 20:14:30 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "c6i7ijwrnz"
+        },
+        {
+          "Name": "label",
+          "Value": "css/site.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-PGr91KIO/w+RD2JPuuaNReu3maUdi/HITmECyNmze88="
+        }
+      ]
+    },
+    {
       "Route": "css/site.css",
       "AssetFile": "C:\\Users\\Robin\\source\\repos\\DnD-Character-Creation\\wwwroot\\css\\site.css",
       "Selectors": [],
@@ -1581,7 +1668,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "6057"
+          "Value": "9701"
         },
         {
           "Name": "Content-Type",
@@ -1589,11 +1676,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"WcUZJcGkR5GgxV+Pje2NXwFJ3VuwZ3/FieTgq/f2fCk=\""
+          "Value": "\"PGr91KIO/w+RD2JPuuaNReu3maUdi/HITmECyNmze88=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 16 Sep 2025 20:42:44 GMT"
+          "Value": "Wed, 17 Sep 2025 20:14:30 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1603,52 +1690,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-WcUZJcGkR5GgxV+Pje2NXwFJ3VuwZ3/FieTgq/f2fCk="
-        }
-      ]
-    },
-    {
-      "Route": "css/site.rz22j3a9j5.css",
-      "AssetFile": "C:\\Users\\Robin\\source\\repos\\DnD-Character-Creation\\wwwroot\\css\\site.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "6057"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"WcUZJcGkR5GgxV+Pje2NXwFJ3VuwZ3/FieTgq/f2fCk=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Tue, 16 Sep 2025 20:42:44 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "rz22j3a9j5"
-        },
-        {
-          "Name": "label",
-          "Value": "css/site.css"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-WcUZJcGkR5GgxV+Pje2NXwFJ3VuwZ3/FieTgq/f2fCk="
+          "Value": "sha256-PGr91KIO/w+RD2JPuuaNReu3maUdi/HITmECyNmze88="
         }
       ]
     },
@@ -2309,6 +2351,88 @@
       ]
     },
     {
+      "Route": "images/dragon_footer.8nbv8m0wwg.png",
+      "AssetFile": "C:\\Users\\Robin\\source\\repos\\DnD-Character-Creation\\wwwroot\\images\\dragon_footer.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "80204"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"TJPaIwq4YsrZzrd1ZTOjZqqfdyP3h/5Saz5vGrHdprQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 17 Sep 2025 18:58:29 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "8nbv8m0wwg"
+        },
+        {
+          "Name": "label",
+          "Value": "images/dragon_footer.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-TJPaIwq4YsrZzrd1ZTOjZqqfdyP3h/5Saz5vGrHdprQ="
+        }
+      ]
+    },
+    {
+      "Route": "images/dragon_footer.png",
+      "AssetFile": "C:\\Users\\Robin\\source\\repos\\DnD-Character-Creation\\wwwroot\\images\\dragon_footer.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "80204"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"TJPaIwq4YsrZzrd1ZTOjZqqfdyP3h/5Saz5vGrHdprQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 17 Sep 2025 18:58:29 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-TJPaIwq4YsrZzrd1ZTOjZqqfdyP3h/5Saz5vGrHdprQ="
+        }
+      ]
+    },
+    {
       "Route": "images/image_Dice_blank.png",
       "AssetFile": "C:\\Users\\Robin\\source\\repos\\DnD-Character-Creation\\wwwroot\\images\\image_Dice_blank.png",
       "Selectors": [],
@@ -2469,6 +2593,88 @@
         {
           "Name": "integrity",
           "Value": "sha256-euw3hE+gM8vbWG76oZVdxvQ9VnB8Cxv5HoteMjhtjWk="
+        }
+      ]
+    },
+    {
+      "Route": "images/triangle-blancsur-fond-noir.1z2de13lv4.png",
+      "AssetFile": "C:\\Users\\Robin\\source\\repos\\DnD-Character-Creation\\wwwroot\\images\\triangle-blancsur-fond-noir.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "534"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"s80d1kOE2kHukWdh08IiyS42FgErscn3H1529IK/ZGw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 17 Sep 2025 19:52:13 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "1z2de13lv4"
+        },
+        {
+          "Name": "label",
+          "Value": "images/triangle-blancsur-fond-noir.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-s80d1kOE2kHukWdh08IiyS42FgErscn3H1529IK/ZGw="
+        }
+      ]
+    },
+    {
+      "Route": "images/triangle-blancsur-fond-noir.png",
+      "AssetFile": "C:\\Users\\Robin\\source\\repos\\DnD-Character-Creation\\wwwroot\\images\\triangle-blancsur-fond-noir.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "534"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"s80d1kOE2kHukWdh08IiyS42FgErscn3H1529IK/ZGw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 17 Sep 2025 19:52:13 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-s80d1kOE2kHukWdh08IiyS42FgErscn3H1529IK/ZGw="
         }
       ]
     },

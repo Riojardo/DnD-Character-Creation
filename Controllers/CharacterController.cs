@@ -1,24 +1,28 @@
 ﻿using DnD_CharacterCreation.Services;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Security.Policy;
 
 namespace DnD_CharacterCreation.Controllers
 {
     public class CharacterController : Controller
     {
-        private readonly DnD_APIServices _dnd_APIServices;
+        private readonly DnD_APIServices _dndApiServices;
 
-        public CharacterController(DnD_APIServices dnd_APIServices)
+        public CharacterController(DnD_APIServices dndApiServices)
         {
-            _dnd_APIServices = dnd_APIServices;
+            _dndApiServices = dndApiServices;
         }
 
-        public async Task<IActionResult> CreateClasse()
+        public async Task<IActionResult> CreateCharacterClass(string className)
         {
-            var fighter = await _dnd_APIServices.GetClasseAsync("fighter");
-            Console.WriteLine($"Class: {fighter.Name}, Hit Die: {fighter.hit_die}");
-            return Content($"Check your terminal: {fighter.Name}");
+            var characterClass = await _dndApiServices.GetClasseAsync(className);
+            if (characterClass == null)
+                return NotFound();
 
+            return View(characterClass);
         }
     }
 }
+
+

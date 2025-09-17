@@ -37,12 +37,20 @@
       "PackagePath": "staticwebassets\\images\\banner_dice.png"
     },
     {
+      "Id": "C:\\Users\\Robin\\source\\repos\\DnD-Character-Creation\\wwwroot\\images\\dragon_footer.png",
+      "PackagePath": "staticwebassets\\images\\dragon_footer.png"
+    },
+    {
       "Id": "C:\\Users\\Robin\\source\\repos\\DnD-Character-Creation\\wwwroot\\images\\image_Dice_blank.png",
       "PackagePath": "staticwebassets\\images\\image_Dice_blank.png"
     },
     {
       "Id": "C:\\Users\\Robin\\source\\repos\\DnD-Character-Creation\\wwwroot\\images\\parchment.png",
       "PackagePath": "staticwebassets\\images\\parchment.png"
+    },
+    {
+      "Id": "C:\\Users\\Robin\\source\\repos\\DnD-Character-Creation\\wwwroot\\images\\triangle-blancsur-fond-noir.png",
+      "PackagePath": "staticwebassets\\images\\triangle-blancsur-fond-noir.png"
     },
     {
       "Id": "C:\\Users\\Robin\\source\\repos\\DnD-Character-Creation\\wwwroot\\js\\site.js",

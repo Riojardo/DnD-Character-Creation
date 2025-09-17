@@ -29,17 +29,17 @@ body {
     padding: 3rem;
     margin: 1rem auto 1.5rem auto;
     border-radius: 12px; /* same rounded corners */
-    max-width: 800px;
-    max-height: 200px;
+    max-width: 1050px;
+    max-height: 150px;
     box-shadow: 0 0 20px rgba(0,0,0,0.6), inset 0 0 10px rgba(0,0,0,0.3); /* same shadow */
     border: 3px solid #8b4513; /* same outer border */
     position: relative;
     text-align: center;
     font-size: 14px;
+    opacity: .8;
 }
     .text-center h1 {
-        font-size: 2.5rem; 
-        margin-bottom: 1rem;
+        font-size: 2rem; 
         color: #5c2e0f;
         text-shadow: 1px 1px 5px #d4af37;
     }
@@ -80,6 +80,7 @@ body {
 
     /* Both form-boxes fixed width */
     .form-row .form-box {
+        opacity: .9;
         flex: 0 0 720px; /* fixed width */
         max-width: 720px;
         min-width: 720px;
@@ -185,8 +186,6 @@ body {
     .remove-btn:hover {
         background-color: #ff4d4d;
     }
-
-/* Ability row */
 .ability-row {
     display: flex;
     align-items: center;
@@ -207,8 +206,37 @@ body {
         text-align: center;
         background-color: black;
         color: white;
+        margin-right: 4.5rem; /* espace entre select et checkboxes */
     }
 
+    .ability-row .scales {
+        margin-right: 0.2rem; /* réduit l'espace entre checkbox et label */
+        margin-left: 0; /* supprime le grand décalage à gauche */
+    }
+
+        .ability-row .scales + label {
+            margin-right: 1rem; /* espace après le label de la checkbox */
+        }
+
+    .ability-row span {
+        margin-left: 4.5rem; /* distance par rapport aux checkboxes */
+        padding-left: 0.5rem; /* espace avant la ligne verticale */
+        border-left: 2px solid #8b4513; /* ligne verticale */
+        font-weight: bold;
+        min-width: 25px;
+        text-align: center;
+    }
+.label-abilities_choice {
+
+    font-weight: bold;
+}
+
+.label-abilities_description {
+    display: flex;
+    justify-content: space-between;
+    text-decoration: underline;
+
+}
 /* Submit button */
 .form-box input[type="submit"] {
     display: block;
@@ -264,7 +292,100 @@ body {
 }
 
     .navbar-logo-container img {
-        height: 50px; /* fixed size */
+        height: 53px; /* fixed size */
         width: auto;
         display: block;
+    }
+.submit_All-button {
+    position: fixed;
+    bottom: 50px; /* closer to the bottom */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+}
+
+.fancy-submit {
+    padding: 0.8rem 2rem; /* smaller size */
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: white;
+    background-color: #222; /* dark background */
+    border: 3px solid #f39c12; /* initial border color */
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+    /* Shiny animated border effect */
+    .fancy-submit::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: linear-gradient(120deg, transparent, rgba(255,255,255,0.6), transparent);
+        transform: rotate(45deg);
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .fancy-submit:hover::before {
+        opacity: 1;
+        animation: shine 1s linear infinite;
+    }
+
+@keyframes shine {
+    0% {
+        transform: rotate(45deg) translate(-200%, 0);
+    }
+
+    100% {
+        transform: rotate(45deg) translate(200%, 0);
+    }
+}
+
+.fancy-submit:hover {
+    border-color: #ffd700; /* bright gold */
+    box-shadow: 0 0 15px #ffd700, 0 0 30px #fff8dc; 
+}
+footer.footer {
+    border-top: 2px solid #8b4513; /* dark brown line */
+    background-color: #111; /* dark footer background */
+    color: #f5f5dc; /* light text */
+    font-size: 0.85rem; /* smaller text */
+    height: 2rem;
+    display: flex; /* enable flexbox */
+    align-items: center; /* vertical centering */
+    justify-content: flex-start; /* align to left horizontally */
+    padding-left: 1rem; /* space from extreme left */
+}
+.slide-left-btn {
+    position: absolute;
+    right: -32px; /* distance outside the right edge of form-box */
+    top: 50%; /* vertical center */
+    transform: translateY(-50%) rotate(90deg); /* rotate 90° */
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: transform 0.2s ease, filter 0.2s ease; /* smooth hover effect */
+    filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5)); /* shadow */
+}
+
+    .slide-left-btn img {
+        border-radius: 5px;
+        height: 33px; /* image height */
+        width: auto; /* maintain aspect ratio */
+        display: block;
+        transition: transform 0.2s ease, filter 0.2s ease;
+    }
+
+    .slide-left-btn:hover img {
+        transform: scale(1.2); /* enlarge while keeping rotation */
+        filter: drop-shadow(4px 4px 6px rgba(0,0,0,0.7)); /* stronger shadow on hover */
     }

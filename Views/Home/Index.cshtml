@@ -8,7 +8,7 @@
 
 <div class="text-center">
     <h1 class="display-4">Welcome to your D&D character creator!</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building web apps with ASP.NET Core</a>.</p>
+    <p>Learn all you need about D&D here : <a href="https://dnd5e.wikidot.com/" target="_blank" rel="noopener noreferrer">Wikidot.com</a>.</p>
 </div>
 
 <div class="form-container">
@@ -16,6 +16,9 @@
         <div class="form-row">
             <!-- Left Box -->
             <div class="form-box">
+                <button class="slide-left-btn" type="button">
+                    <img src="@Url.Content("~/images/triangle-blancsur-fond-noir.png")" alt="Slide Left">
+                </button>
                 <!-- Character Name -->
                 <label for="Character_name">Character Name:</label>
                 <input type="text" name="first-name" />
@@ -94,58 +97,7 @@
                     <button type="button" class="remove-btn" id="remove_third">❌</button>
                 </div>
 
-                <!-- Species -->
-                <label for="species">Choose A Species:</label>
-                <select name="species" id="species">
-                    <option value="human">Human</option>
-                    <option value="elf">Elf</option>
-                    <option value="dwarf">Dwarf</option>
-                    <option value="halfling">Halfling</option>
-                </select>
-                <!-- Background -->
-                <label for="background">Choose A Background:</label>
-                <select name="background" id="background">
-                    <option value="acolyte">Acolyte</option>
-                    <option value="criminal">Criminal</option>
-                    <option value="folkhero">Folk Hero</option>
-                    <option value="noble">Noble</option>
-                </select>
-            </div>
-
-            <!-- Right Box -->
-            <div class="form-box">
-               
-                <!-- Feat -->
-                <label for="feat">Choose Your Feats:</label>
-                <select name="feat" id="feat">
-                    <option value="acolyte">Acolyte</option>
-                    <option value="criminal">Criminal</option>
-                    <option value="folkhero">Folk Hero</option>
-                    <option value="noble">Noble</option>
-                </select>
-
-
-                <div class="label-abilities_choice">
-                    <span>Click on the Dice to Determine your stats :</span>
-                    <button type="submit" class="dice-btn" aria-label="Roll stats">
-                        <img src="@Url.Content("~/images/Dice20_button.png")" alt="Roll Dice" />
-                    </button>
-                    <span> 0, 0, 0, 0, 0, 0</span>
-                </div>
-                
-
-                <!-- Abilities -->
-                @foreach (var ability in abilities)
-                {
-                    <div class="ability-row">
-                        <label for="@ability">@ability:</label>
-                        <select id="@ability" name="@ability">
-                            <option value="">-- Choose --</option>
-                        </select>
-                    </div>
-                }
-
-                <!-- Alignment -->
+                <!-- Alignement -->
                 <label for="alignment">Choose an alignment:</label>
                 <select name="alignment" id="alignment">
                     <option value="LG">Lawful Good</option>
@@ -158,11 +110,74 @@
                     <option value="NE">Neutral Evil</option>
                     <option value="CE">Chaotic Evil</option>
                 </select>
+          
+                <!-- Background -->
+                <label for="background">Choose A Background:</label>
+                <select name="background" id="background">
+                    <option value="acolyte">Acolyte</option>
+                    <option value="criminal">Criminal</option>
+                    <option value="folkhero">Folk Hero</option>
+                    <option value="noble">Noble</option>
+                </select>
+            </div>
+
+            <!-- Right Box -->
+            <div class="form-box">
+
+                <!-- Species -->
+                <label for="species">Choose A Species:</label>
+                <select name="species" id="species">
+                    <option value="human">Human</option>
+                    <option value="elf">Elf</option>
+                    <option value="dwarf">Dwarf</option>
+                    <option value="halfling">Halfling</option>
+                </select>
+
+
+                <!-- Abilities -->
+                <div class="label-abilities_choice">
+                    <span>Click on the Dice to Determine your stats :</span>
+                    <button type="button" class="dice-btn" aria-label="Roll stats" id="button-stats">
+                        <img src="@Url.Content("~/images/Dice20_button.png")" alt="Roll Dice" />
+                    </button>
+                    <span id="stats-display">0, 0, 0, 0, 0, 0</span>
+                </div>
+                <div class="label-abilities_description">
+                    <span>Stats :</span>
+                    <span>Bonus :</span>
+                    <span>Total :</span>
+                </div>
+                <div class="abilities-canvas">
+                @foreach (var ability in abilities)
+                {
+                    <div class="ability-row">
+                        <label for="@ability">@ability:</label>
+                        <select id="@ability" name="@ability">
+                            <option value=""></option>
+                        </select>
+                        <input type="checkbox" class="scales" id="scales-1-@ability" />
+                        <label for="scales-1-@ability">+1</label>
+                        <input type="checkbox" class="scales" id="scales-2-@ability" />
+                        <label for="scales-2-@ability">+2</label>
+                        <span for="total-@ability" id="total-@ability"></span>                       
+                    </div>
+                }
+                </div>
+                <!-- Feat -->
+                <label for="feat">Choose Your Feats:</label>
+                <select name="feat" id="feat">
+                    <option value="acolyte">Acolyte</option>
+                    <option value="criminal">Criminal</option>
+                    <option value="folkhero">Folk Hero</option>
+                    <option value="noble">Noble</option>
+                </select>
             </div>
         </div>
 
         <!-- Submit button below both boxes -->
-        <input type="submit" value="Submit !">
+        <div class="submit_All-button">
+            <input type="submit" value="Submit !" class="fancy-submit">
+        </div>
     </form>
 </div>
 
@@ -176,8 +191,8 @@
             { classe: "classe_third", level: "level_third", row: "row_third" }
         ];
 
+        // --- Populate level selects based on maxLevel ---
         function populateLevels() {
-            // Calculate total selected levels
             const selectedLevels = rows.map(r => parseInt(document.getElementById(r.level).value) || 0);
             const totalSelected = selectedLevels.reduce((a,b)=>a+b, 0);
 
@@ -186,6 +201,7 @@
                 const currentValue = parseInt(sel.value) || 0;
                 sel.innerHTML = "";
                 const remaining = maxLevel - (totalSelected - currentValue);
+
                 for (let i = 1; i <= remaining; i++) {
                     const opt = document.createElement("option");
                     opt.value = i;
@@ -196,11 +212,10 @@
             });
         }
 
+        // --- Disable already chosen classes in other selects ---
         function updateAvailableClasses() {
-            // Collect selected classes
             const selected = rows.map(r => document.getElementById(r.classe).value).filter(v => v);
 
-            // Update each select
             rows.forEach(r => {
                 const sel = document.getElementById(r.classe);
                 const options = sel.querySelectorAll("option");
@@ -214,6 +229,7 @@
             });
         }
 
+        // --- Remove a row ---
         function removeRow(rowId) {
             const row = document.getElementById(rowId);
             const selects = row.querySelectorAll("select");
@@ -223,11 +239,142 @@
             populateLevels();
         }
 
-        // Initial population
+        // --- Roll stats ---
+        function createStats() {
+            const totalArray = [];
+            for (let i = 0; i < 6; i++) {
+                const inputArray = [];
+                for (let j = 0; j < 4; j++) {
+                    inputArray.push(Math.floor(Math.random() * 6) + 1);
+                }
+                inputArray.sort((a,b) => a - b);
+                const sum = inputArray.slice(1).reduce((acc, curr) => acc + curr, 0);
+                totalArray[i] = sum;
+            }
+            return totalArray;
+        }
+
+        const buttonStats = document.getElementById('button-stats');
+        const displayStats = document.getElementById('stats-display');
+
+        buttonStats.addEventListener('click', () => {
+            const totalArray = createStats();
+            displayStats.textContent = totalArray.join(', ');
+
+            document.querySelectorAll(".ability-row select").forEach((select, index) => {
+                select.innerHTML = "<option value=''></option>";
+                totalArray.forEach(value => {
+                    const option = document.createElement("option");
+                    option.value = value;
+                    option.textContent = value;
+                    select.appendChild(option);
+                });
+                select.addEventListener("change", updateAvailableStats);
+            });          
+            updateAvailableStats();
+
+        });
+
+        // --- Prevent duplicate stats in selects ---
+        function updateAvailableStats() {
+            const selects = document.querySelectorAll(".ability-row select");
+            if (selects.length === 0) return;
+
+            const rolledValues = Array.from(selects[0].options)
+                .map(opt => opt.value)
+                .filter(v => v !== "");
+
+            const rolledCount = {};
+            rolledValues.forEach(v => {
+                if (!rolledCount[v]) rolledCount[v] = 0;
+                rolledCount[v]++;
+            });
+
+            const chosenCount = {};
+            selects.forEach(select => {
+                if (select.value !== "") {
+                    if (!chosenCount[select.value]) chosenCount[select.value] = 0;
+                    chosenCount[select.value]++;
+                }
+            });
+
+            selects.forEach(select => {
+                const currentValue = select.value;
+                Array.from(select.options).forEach(opt => {
+                    if (opt.value === "") {
+                        opt.disabled = false;
+                        return;
+                    }
+                    const totalAvailable = rolledCount[opt.value] || 0;
+                    const alreadyChosen = chosenCount[opt.value] || 0;
+                    opt.disabled = !(opt.value === currentValue || alreadyChosen < totalAvailable);
+                });
+            });
+             updateTotalStats();
+        }
+
+        // --- Checkboxes +1/+2 per row ---
+        const abilityRows = document.querySelectorAll('.ability-row');
+        abilityRows.forEach(row => {
+            const checkboxes = row.querySelectorAll('.scales');
+            checkboxes.forEach(cb => {
+                cb.addEventListener('change', () => {
+                    if (cb.checked) {
+                        checkboxes.forEach(other => {
+                            if (other !== cb) other.checked = false;
+                        });
+                    }
+                    updateTotalStats();
+                });
+            });
+        });
+         const checkboxes = document.querySelectorAll('.scales');
+        checkboxes.forEach(cb => {
+            cb.addEventListener('change', () => {
+                if (cb.checked) {
+                    const type = cb.id.split('-')[1]; // "1" or "2"
+                    checkboxes.forEach(other => {
+                        if (other !== cb && other.id.includes(`scales-${type}-`)) {
+                            other.checked = false;
+                        }
+                    });
+                }
+                updateTotalStats();
+            });
+        });
+
+               function updateTotalStats() {
+        const rows = document.querySelectorAll('.ability-row');
+
+        rows.forEach(row => {
+            const select = row.querySelector('select');
+            const checkboxes = row.querySelectorAll('input[type="checkbox"]');
+            const span = row.querySelector('span');
+
+            let totalValue = 0;
+
+            if (select.value !== "") {
+                totalValue += parseInt(select.value);
+            }
+
+            checkboxes.forEach(cb => {
+                if (cb.checked) {
+                    if (cb.id.includes('-1-')) totalValue += 1;
+                    else if (cb.id.includes('-2-')) totalValue += 2;
+                }
+            });
+
+            // Only display if totalValue >= 3
+            span.textContent = totalValue >= 3 ? totalValue : "";
+        });
+    }
+
+        // --- Initial population ---
         populateLevels();
         updateAvailableClasses();
+        updateAvailableStats();
 
-        // Add event listeners
+        // --- Event listeners for class & level selects ---
         rows.forEach(r => {
             const classeSel = document.getElementById(r.classe);
             const levelSel = document.getElementById(r.level);
@@ -236,6 +383,7 @@
             levelSel.addEventListener("change", populateLevels);
         });
 
+        // --- Show extra rows ---
         document.getElementById("classe2_button").addEventListener("click", () => {
             document.getElementById("row_second").hidden = false;
             populateLevels();
@@ -245,6 +393,7 @@
             populateLevels();
         });
 
+        // --- Remove rows ---
         document.getElementById("remove_second").addEventListener("click", () => removeRow("row_second"));
         document.getElementById("remove_third").addEventListener("click", () => removeRow("row_third"));
     });
