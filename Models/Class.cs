@@ -12,6 +12,8 @@ namespace DnD_CharacterCreation.Models
         public int? HitDice { get; set; }
         public string? PrimaryAbility { get; set; }
         public string? SecondaryAbility { get; set; }
-        private bool Spellcasting { get; set; } = false;
+       public bool Spellcasting { get; set; } = false;
+
+        public ICollection<Subclass> Subclasses { get; set; } = new List<Subclass>();
     }
 }

@@ -1,0 +1,66 @@
+﻿
+
+.parchment-box {
+    position: relative;
+    margin: 2rem auto;
+    width: 900px;
+    max-width: 95%;
+    max-height: 75vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background: radial-gradient(circle at top left, #fffbe8, #f5deb3 70%);
+    border: 3px solid #8b4513;
+    border-radius: 12px;
+    box-shadow: 0 0 25px rgba(0,0,0,0.5), inset 0 0 15px rgba(0,0,0,0.3), inset 0 0 0 3px black;
+    opacity: 0.9;
+}
+
+.parchment-border {
+    border: 3px double #d4af37;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(212,175,55,0.6);
+    padding: 2rem 2.5rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Golden ornate border */
+.parchment-box::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 3px double #d4af37;
+    border-radius: 12px;
+    pointer-events: none;
+    box-shadow: 0 0 15px rgba(212,175,55,0.6);
+}
+
+/* ✅ Responsive behavior */
+@media (max-width: 992px) {
+    .parchment-box {
+        width: 95%;
+        max-height: 70vh;
+        padding: 1.5rem;
+    }
+}
+
+.character_list {
+    list-style: none; /* remove default bullets */
+    padding-left: 1.5rem; /* spacing for arrows */
+}
+
+    .character_list li::before {
+        content: "";
+        display: inline-block;
+        width: 52px; /* arrow width */
+        height: 33px; /* arrow height */
+        margin-right: 8px;
+        background: url("/images/arrow_icon.png") no-repeat center/contain;
+        transform: rotate(180deg);
+        vertical-align: middle; /* ✅ aligns arrow with text */
+    }
+
+

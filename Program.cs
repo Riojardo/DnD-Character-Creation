@@ -1,5 +1,6 @@
 using DnD_CharacterCreation.Data;
 using DnD_CharacterCreation.Models;
+using DnD_CharacterCreation.Services;
 using iText.Forms;
 using iText.Forms.Fields;
 using iText.Kernel.Pdf;
@@ -14,8 +15,9 @@ namespace DnD_CharacterCreation
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services
+            builder.Services.AddControllers();
             builder.Services.AddControllersWithViews();
+            builder.Services.AddHttpClient<DnD_APIServices>();
 
             builder.Services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("Default")));

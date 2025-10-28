@@ -72,5 +72,16 @@ namespace DnD_CharacterCreation.Controllers
             await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
         }
+
+        [HttpGet]
+        public IActionResult VerifyEmail()
+        {
+            return View(new VerifyEmailViewModel());
+        }
+
+        public IActionResult ChangePassword()
+        {
+            return View(new ChangePasswordViewModel());
+        }
     }
 }

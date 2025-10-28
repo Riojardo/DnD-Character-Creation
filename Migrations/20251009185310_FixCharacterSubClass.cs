@@ -1,26 +1,55 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
 namespace DnD_CharacterCreation.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class FixCharacterSubClass : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropColumn(
-                name: "Role",
-                table: "AspNetUsers");
+            migrationBuilder.CreateTable(
+                name: "AspNetRoles",
+                columns: table => new
+                {
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    NormalizedName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    ConcurrencyStamp = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetRoles", x => x.Id);
+                });
 
-            migrationBuilder.AlterColumn<string>(
-                name: "FullName",
-                table: "AspNetUsers",
-                type: "nvarchar(max)",
-                nullable: true,
-                oldClrType: typeof(string),
-                oldType: "nvarchar(max)");
+            migrationBuilder.CreateTable(
+                name: "AspNetUsers",
+                columns: table => new
+                {
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    FullName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    NormalizedEmail = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    EmailConfirmed = table.Column<bool>(type: "bit", nullable: false),
+                    PasswordHash = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SecurityStamp = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ConcurrencyStamp = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PhoneNumberConfirmed = table.Column<bool>(type: "bit", nullable: false),
+                    TwoFactorEnabled = table.Column<bool>(type: "bit", nullable: false),
+                    LockoutEnd = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
+                    LockoutEnabled = table.Column<bool>(type: "bit", nullable: false),
+                    AccessFailedCount = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
 
             migrationBuilder.CreateTable(
                 name: "Background",
@@ -46,7 +75,8 @@ namespace DnD_CharacterCreation.Migrations
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     HitDice = table.Column<int>(type: "int", nullable: true),
                     PrimaryAbility = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    SecondaryAbility = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    SecondaryAbility = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Spellcasting = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -97,6 +127,135 @@ namespace DnD_CharacterCreation.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "AspNetRoleClaims",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    RoleId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ClaimType = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ClaimValue = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetRoleClaims", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_AspNetRoleClaims_AspNetRoles_RoleId",
+                        column: x => x.RoleId,
+                        principalTable: "AspNetRoles",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AspNetUserClaims",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ClaimType = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ClaimValue = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUserClaims", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_AspNetUserClaims_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AspNetUserLogins",
+                columns: table => new
+                {
+                    LoginProvider = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ProviderKey = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ProviderDisplayName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUserLogins", x => new { x.LoginProvider, x.ProviderKey });
+                    table.ForeignKey(
+                        name: "FK_AspNetUserLogins_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AspNetUserRoles",
+                columns: table => new
+                {
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    RoleId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUserRoles", x => new { x.UserId, x.RoleId });
+                    table.ForeignKey(
+                        name: "FK_AspNetUserRoles_AspNetRoles_RoleId",
+                        column: x => x.RoleId,
+                        principalTable: "AspNetRoles",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_AspNetUserRoles_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AspNetUserTokens",
+                columns: table => new
+                {
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    LoginProvider = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Value = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUserTokens", x => new { x.UserId, x.LoginProvider, x.Name });
+                    table.ForeignKey(
+                        name: "FK_AspNetUserTokens_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "SubClass",
+                columns: table => new
+                {
+                    SubclassId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LevelToStart = table.Column<int>(type: "int", nullable: false),
+                    ClassId = table.Column<int>(type: "int", nullable: false),
+                    Spellcasting = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SubClass", x => x.SubclassId);
+                    table.ForeignKey(
+                        name: "FK_SubClass_Class_ClassId",
+                        column: x => x.ClassId,
+                        principalTable: "Class",
+                        principalColumn: "ClassId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "SubRace",
                 columns: table => new
                 {
@@ -122,23 +281,28 @@ namespace DnD_CharacterCreation.Migrations
                 {
                     CharacterId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     CharacterName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Alignment = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    BackgroundId = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    BackgroundId1 = table.Column<int>(type: "int", nullable: true),
+                    BackgroundId = table.Column<int>(type: "int", nullable: true),
                     RaceId = table.Column<int>(type: "int", nullable: true),
                     SubRaceId = table.Column<int>(type: "int", nullable: true),
                     LevelTotal = table.Column<int>(type: "int", nullable: true),
                     HitPoints = table.Column<int>(type: "int", nullable: true),
-                    ArmorClass = table.Column<int>(type: "int", nullable: true)
+                    ArmorClass = table.Column<int>(type: "int", nullable: true),
+                    CreationTime = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Characters", x => x.CharacterId);
                     table.ForeignKey(
-                        name: "FK_Characters_Background_BackgroundId1",
-                        column: x => x.BackgroundId1,
+                        name: "FK_Characters_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Characters_Background_BackgroundId",
+                        column: x => x.BackgroundId,
                         principalTable: "Background",
                         principalColumn: "BackgroundId");
                     table.ForeignKey(
@@ -295,6 +459,79 @@ namespace DnD_CharacterCreation.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "CharacterSubClass",
+                columns: table => new
+                {
+                    CharacterSubClassId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CharacterId = table.Column<int>(type: "int", nullable: true),
+                    ClassId = table.Column<int>(type: "int", nullable: true),
+                    SubclassId = table.Column<int>(type: "int", nullable: true),
+                    SubClassName = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CharacterSubClass", x => x.CharacterSubClassId);
+                    table.ForeignKey(
+                        name: "FK_CharacterSubClass_Characters_CharacterId",
+                        column: x => x.CharacterId,
+                        principalTable: "Characters",
+                        principalColumn: "CharacterId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_CharacterSubClass_Class_ClassId",
+                        column: x => x.ClassId,
+                        principalTable: "Class",
+                        principalColumn: "ClassId",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_CharacterSubClass_SubClass_SubclassId",
+                        column: x => x.SubclassId,
+                        principalTable: "SubClass",
+                        principalColumn: "SubclassId",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AspNetRoleClaims_RoleId",
+                table: "AspNetRoleClaims",
+                column: "RoleId");
+
+            migrationBuilder.CreateIndex(
+                name: "RoleNameIndex",
+                table: "AspNetRoles",
+                column: "NormalizedName",
+                unique: true,
+                filter: "[NormalizedName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AspNetUserClaims_UserId",
+                table: "AspNetUserClaims",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AspNetUserLogins_UserId",
+                table: "AspNetUserLogins",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AspNetUserRoles_RoleId",
+                table: "AspNetUserRoles",
+                column: "RoleId");
+
+            migrationBuilder.CreateIndex(
+                name: "EmailIndex",
+                table: "AspNetUsers",
+                column: "NormalizedEmail");
+
+            migrationBuilder.CreateIndex(
+                name: "UserNameIndex",
+                table: "AspNetUsers",
+                column: "NormalizedUserName",
+                unique: true,
+                filter: "[NormalizedUserName] IS NOT NULL");
+
             migrationBuilder.CreateIndex(
                 name: "IX_CharacterAbility_CharacterId",
                 table: "CharacterAbility",
@@ -321,9 +558,9 @@ namespace DnD_CharacterCreation.Migrations
                 column: "FeatId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Characters_BackgroundId1",
+                name: "IX_Characters_BackgroundId",
                 table: "Characters",
-                column: "BackgroundId1");
+                column: "BackgroundId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Characters_RaceId",
@@ -334,6 +571,11 @@ namespace DnD_CharacterCreation.Migrations
                 name: "IX_Characters_SubRaceId",
                 table: "Characters",
                 column: "SubRaceId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Characters_UserId",
+                table: "Characters",
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_CharacterSkill_CharacterId",
@@ -351,6 +593,26 @@ namespace DnD_CharacterCreation.Migrations
                 column: "SpellId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_CharacterSubClass_CharacterId",
+                table: "CharacterSubClass",
+                column: "CharacterId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CharacterSubClass_ClassId",
+                table: "CharacterSubClass",
+                column: "ClassId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CharacterSubClass_SubclassId",
+                table: "CharacterSubClass",
+                column: "SubclassId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SubClass_ClassId",
+                table: "SubClass",
+                column: "ClassId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_SubRace_RaceId",
                 table: "SubRace",
                 column: "RaceId");
@@ -359,6 +621,21 @@ namespace DnD_CharacterCreation.Migrations
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "AspNetRoleClaims");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUserClaims");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUserLogins");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUserRoles");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUserTokens");
+
             migrationBuilder.DropTable(
                 name: "CharacterAbility");
 
@@ -375,16 +652,25 @@ namespace DnD_CharacterCreation.Migrations
                 name: "CharacterSpell");
 
             migrationBuilder.DropTable(
-                name: "Class");
+                name: "CharacterSubClass");
+
+            migrationBuilder.DropTable(
+                name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "Feat");
 
             migrationBuilder.DropTable(
+                name: "Spell");
+
+            migrationBuilder.DropTable(
                 name: "Characters");
 
             migrationBuilder.DropTable(
-                name: "Spell");
+                name: "SubClass");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUsers");
 
             migrationBuilder.DropTable(
                 name: "Background");
@@ -393,24 +679,10 @@ namespace DnD_CharacterCreation.Migrations
                 name: "SubRace");
 
             migrationBuilder.DropTable(
+                name: "Class");
+
+            migrationBuilder.DropTable(
                 name: "Race");
-
-            migrationBuilder.AlterColumn<string>(
-                name: "FullName",
-                table: "AspNetUsers",
-                type: "nvarchar(max)",
-                nullable: false,
-                defaultValue: "",
-                oldClrType: typeof(string),
-                oldType: "nvarchar(max)",
-                oldNullable: true);
-
-            migrationBuilder.AddColumn<string>(
-                name: "Role",
-                table: "AspNetUsers",
-                type: "nvarchar(max)",
-                nullable: false,
-                defaultValue: "");
         }
     }
 }

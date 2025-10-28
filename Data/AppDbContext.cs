@@ -10,39 +10,45 @@ namespace DnD_CharacterCreation.Data
         public DbSet<Class> Class { get; set; }      
         public DbSet<Race> Race { get; set; }
         public DbSet<SubRace> SubRace { get; set; }
+        public DbSet<Subclass> SubClass { get; set; }
         public DbSet<Feat> Feat { get; set; }
         public DbSet<Spell> Spell { get; set; }
         public DbSet<Background> Background { get; set; }
         public DbSet<CharacterClass> CharacterClass { get; set; }
+        public DbSet<CharacterSubClass> CharacterSubClass { get; set; }
         public DbSet<CharacterFeat> CharacterFeat { get; set; }      
         public DbSet<CharacterSpell> CharacterSpell { get; set; }
         public DbSet<CharacterAbility> CharacterAbility { get; set; }
         public DbSet<CharacterSkill> CharacterSkill { get; set; }
-  
 
-        public AppDbContext(DbContextOptions options) : base(options)
+
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         { 
         
         }
 
-       /* protected override void OnModelCreating(ModelBuilder builder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(builder);
+            base.OnModelCreating(modelBuilder);
 
-            builder.Entity<UserRole>(entity =>
-            {
-                entity.HasKey(ur => new { ur.UserId, ur.RoleId });
+            modelBuilder.Entity<CharacterSubClass>()
+    .HasOne(cs => cs.Character)
+    .WithMany(c => c.CharacterSubClasses)
+    .HasForeignKey(cs => cs.CharacterId)
+    .OnDelete(DeleteBehavior.Cascade);
 
-                entity.HasOne(ur => ur.User)
-                      .WithMany()
-                      .HasForeignKey(ur => ur.UserId)
-                      .IsRequired();
+            modelBuilder.Entity<CharacterSubClass>()
+                .HasOne(cs => cs.Class)
+                .WithMany()
+                .HasForeignKey(cs => cs.ClassId)
+                .OnDelete(DeleteBehavior.Restrict);
 
-                entity.HasOne(ur => ur.Role)
-                      .WithMany()
-                      .HasForeignKey(ur => ur.RoleId)
-                      .IsRequired();
-            });
-        }*/
+            modelBuilder.Entity<CharacterSubClass>()
+                .HasOne(cs => cs.SubClass)
+                .WithMany()
+                .HasForeignKey(cs => cs.SubclassId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+        }
     }
 }

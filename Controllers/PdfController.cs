@@ -2,7 +2,11 @@
 using iText.Forms.Fields;
 using iText.Kernel.Pdf;
 using Microsoft.AspNetCore.Mvc;
-
+using Microsoft.EntityFrameworkCore;
+using System.IO;
+using System.Threading.Tasks;
+using DnD_CharacterCreation.Data;
+using Microsoft.AspNetCore.Routing.Template;
 
 namespace DnD_CharacterCreation.Controllers
 {
@@ -10,37 +14,45 @@ namespace DnD_CharacterCreation.Controllers
     [ApiController]
     public class PdfController : ControllerBase
     {
-        [HttpPost("fill")]
-        public IActionResult FillCharacterSheet([FromBody] CharacterDto character)
+        private readonly AppDbContext _context;
+
+        public PdfController(AppDbContext context)
         {
-            // Load template
-            using var reader = new PdfReader("Content/5E_CharacterSheet_Fillable.pdf");
-            using var ms = new MemoryStream();
-            using var pdf = new PdfDocument(reader, new PdfWriter(ms));
-
-            var form = PdfAcroForm.GetAcroForm(pdf, true);
-
-            // Fill fields
-            form.GetField("CharacterName").SetValue(character.Name);
-            form.GetField("ClassLevel").SetValue(character.ClassLevel);
-            form.GetField("Race").SetValue(character.Race);
-            form.GetField("STR").SetValue(character.Strength.ToString());
-
-            form.FlattenFields(); // makes fields uneditable
-            pdf.Close();
-
-            // Return PDF to browser
-            return File(ms.ToArray(), "application/pdf", $"{character.Name}_Sheet.pdf");
+            _context = context;
         }
-    }
-    public class CharacterDto
-    {
-        public string Name { get; set; } = "Toby";
-        public string ClassLevel { get; set; } = "18";
-        public string Race { get; set; } = "orc";
-        public int Strength { get; set; } = 12;
+
+        [HttpGet("fill/{characterId}")]
+        public async Task<IActionResult> FillCharacterSheet(int characterId)
+        {
+            var character = await _context.Characters.FirstOrDefaultAsync(c => c.CharacterId == characterId);
+            var background = _context.Background.SingleOrDefault(b => b.BackgroundId == character.BackgroundId);
+            if (character == null)
+                return NotFound();
+
+            var templatePath = "Content/pdf/5E_CharacterSheet_Fillable.pdf";
+
+            using var tempStream = new MemoryStream();
+            using (var reader = new PdfReader(templatePath))
+            using (var writer = new PdfWriter(tempStream))
+            using (var pdf = new PdfDocument(reader, writer))
+            {
+                var form = PdfAcroForm.GetAcroForm(pdf, true);
+                form.GetField("CharacterName")?.SetValue(character.CharacterName);
+                form.GetField("Alignment")?.SetValue(character.Alignment);
+                form.GetField("ProfBonus")?.SetValue(character.ProficiencyBonus.ToString());
+                form.GetField("Background")?.SetValue(background.Name);
+
+
+
+                pdf.GetDocumentInfo().SetTitle(character.CharacterName);
+            }
+
+            var outputStream = new MemoryStream(tempStream.ToArray());
+            outputStream.Position = 0;
+
+            return File(outputStream, "application/pdf");
+        }
+
     }
 }
-
-
 

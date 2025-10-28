@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Character>
+@{
+    var UrlBase = $"{Context.Request.Scheme}://{Context.Request.Host}";
+}
+@{
+    ViewData["Title"] = "User's Caracters";
+}
+<!--<h1>@ViewData["Title"]</h1>-->
+<head>
+    <link rel="stylesheet" href="~/css/usercharacter.css" />
+</head>
+<div class="parchment-box">
+    <div class="parchment-border">
+    <h1>Your Character(s) :</h1>
+    <p>
+      
+    </p>
+    <ul class="character_list">
+            @foreach (var perso in Model)
+            {
+                <br>
+                <li>
+                    <a href="@($"{UrlBase }/api/pdf/fill/{perso.CharacterId}")" target="_blank">
+                        @perso.CharacterName (@perso.CreationTime.ToString("dd-MM-yyyy HH:mm"))
+                    </a>
+                </li>
+            }            
+    </ul>
+    </div>
+</div>
+

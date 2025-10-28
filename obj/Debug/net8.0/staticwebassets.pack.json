@@ -5,6 +5,14 @@
       "PackagePath": "staticwebassets\\DnD_CharacterCreation.t1hnvnq6nq.bundle.scp.css"
     },
     {
+      "Id": "C:\\Users\\Robin\\source\\repos\\DnD-Character-Creation\\wwwroot\\css\\Layout.css",
+      "PackagePath": "staticwebassets\\css\\Layout.css"
+    },
+    {
+      "Id": "C:\\Users\\Robin\\source\\repos\\DnD-Character-Creation\\wwwroot\\css\\UserCharacter.css",
+      "PackagePath": "staticwebassets\\css\\UserCharacter.css"
+    },
+    {
       "Id": "C:\\Users\\Robin\\source\\repos\\DnD-Character-Creation\\wwwroot\\css\\account.css",
       "PackagePath": "staticwebassets\\css\\account.css"
     },
@@ -33,12 +41,16 @@
       "PackagePath": "staticwebassets\\images\\Dice20_button.png"
     },
     {
+      "Id": "C:\\Users\\Robin\\source\\repos\\DnD-Character-Creation\\wwwroot\\images\\arrow_icon.png",
+      "PackagePath": "staticwebassets\\images\\arrow_icon.png"
+    },
+    {
       "Id": "C:\\Users\\Robin\\source\\repos\\DnD-Character-Creation\\wwwroot\\images\\banner_dice.png",
       "PackagePath": "staticwebassets\\images\\banner_dice.png"
     },
     {
-      "Id": "C:\\Users\\Robin\\source\\repos\\DnD-Character-Creation\\wwwroot\\images\\dragon_footer.png",
-      "PackagePath": "staticwebassets\\images\\dragon_footer.png"
+      "Id": "C:\\Users\\Robin\\source\\repos\\DnD-Character-Creation\\wwwroot\\images\\dragonhead_footer.png",
+      "PackagePath": "staticwebassets\\images\\dragonhead_footer.png"
     },
     {
       "Id": "C:\\Users\\Robin\\source\\repos\\DnD-Character-Creation\\wwwroot\\images\\image_Dice_blank.png",
@@ -283,6 +295,10 @@
     {
       "Id": "C:\\Users\\Robin\\source\\repos\\DnD-Character-Creation\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Id": "C:\\Users\\Robin\\source\\repos\\DnD-Character-Creation\\wwwroot\\sound\\Main_theme.mp3",
+      "PackagePath": "staticwebassets\\sound\\Main_theme.mp3"
     },
     {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.DnD_CharacterCreation.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",

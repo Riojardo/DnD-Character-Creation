@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Z5+Ab3VNjfWGEGXz6YAKayN5+ZuTsPn2m41kZTNgEc4=",
+  "Hash": "HbetHlkZTycQScEfkA5LpAomMF7rPds0TCxr4DUWiM0=",
   "Source": "DnD_CharacterCreation",
   "BasePath": "_content/DnD_CharacterCreation",
   "Mode": "Default",
@@ -73,11 +73,32 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "z7497a52nn",
-      "Integrity": "nxw/94OcOgU61n8rTPZFHBupBnXxdcqDOXr55ZyK3Gs=",
+      "Fingerprint": "2ir1w2yvp8",
+      "Integrity": "hnZigQseX1DepPV77LGi9mEaUxR6wSrYpCq33f/bWaM=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\account.css"
+    },
+    {
+      "Identity": "C:\\Users\\Robin\\source\\repos\\DnD-Character-Creation\\wwwroot\\css\\Layout.css",
+      "SourceId": "DnD_CharacterCreation",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Robin\\source\\repos\\DnD-Character-Creation\\wwwroot\\",
+      "BasePath": "_content/DnD_CharacterCreation",
+      "RelativePath": "css/Layout#[.{fingerprint}]?.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "hf421hbhny",
+      "Integrity": "7ffm/owOVVpwYRy4lnycJuNrCXU7awUZAZ+Y3f0rhFE=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\Layout.css"
     },
     {
       "Identity": "C:\\Users\\Robin\\source\\repos\\DnD-Character-Creation\\wwwroot\\css\\site.css",
@@ -94,11 +115,32 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "c6i7ijwrnz",
-      "Integrity": "PGr91KIO/w+RD2JPuuaNReu3maUdi/HITmECyNmze88=",
+      "Fingerprint": "4r22k3lo7r",
+      "Integrity": "cEoXJ190OTUCU5wpr7/HiY81BsimIi3gOZXTwEp7nVA=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\site.css"
+    },
+    {
+      "Identity": "C:\\Users\\Robin\\source\\repos\\DnD-Character-Creation\\wwwroot\\css\\UserCharacter.css",
+      "SourceId": "DnD_CharacterCreation",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Robin\\source\\repos\\DnD-Character-Creation\\wwwroot\\",
+      "BasePath": "_content/DnD_CharacterCreation",
+      "RelativePath": "css/UserCharacter#[.{fingerprint}]?.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "570h024n4a",
+      "Integrity": "QWPRXtqL3Tdv8NMMbiPTMdbryb6mVLN1fgvc13XmzzA=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\UserCharacter.css"
     },
     {
       "Identity": "C:\\Users\\Robin\\source\\repos\\DnD-Character-Creation\\wwwroot\\favicon.ico",
@@ -120,6 +162,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "C:\\Users\\Robin\\source\\repos\\DnD-Character-Creation\\wwwroot\\images\\arrow_icon.png",
+      "SourceId": "DnD_CharacterCreation",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Robin\\source\\repos\\DnD-Character-Creation\\wwwroot\\",
+      "BasePath": "_content/DnD_CharacterCreation",
+      "RelativePath": "images/arrow_icon#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "7ns5zkf9nq",
+      "Integrity": "QyPbrWNyymkrpDgfrcyJGlpOf9wF1eRwCh0h4G67vRs=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\arrow_icon.png"
     },
     {
       "Identity": "C:\\Users\\Robin\\source\\repos\\DnD-Character-Creation\\wwwroot\\images\\Background_home.jpg",
@@ -227,12 +290,12 @@
       "OriginalItemSpec": "wwwroot\\images\\Dice20_button.png"
     },
     {
-      "Identity": "C:\\Users\\Robin\\source\\repos\\DnD-Character-Creation\\wwwroot\\images\\dragon_footer.png",
+      "Identity": "C:\\Users\\Robin\\source\\repos\\DnD-Character-Creation\\wwwroot\\images\\dragonhead_footer.png",
       "SourceId": "DnD_CharacterCreation",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\Robin\\source\\repos\\DnD-Character-Creation\\wwwroot\\",
       "BasePath": "_content/DnD_CharacterCreation",
-      "RelativePath": "images/dragon_footer#[.{fingerprint}]?.png",
+      "RelativePath": "images/dragonhead_footer#[.{fingerprint}]?.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -241,11 +304,11 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "8nbv8m0wwg",
-      "Integrity": "TJPaIwq4YsrZzrd1ZTOjZqqfdyP3h/5Saz5vGrHdprQ=",
+      "Fingerprint": "11058zw8na",
+      "Integrity": "m/xnCZ/xCaf/wBuytYIrWZw+jKuQfExEfaeUMgPLdmI=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\images\\dragon_footer.png"
+      "OriginalItemSpec": "wwwroot\\images\\dragonhead_footer.png"
     },
     {
       "Identity": "C:\\Users\\Robin\\source\\repos\\DnD-Character-Creation\\wwwroot\\images\\image_Dice_blank.png",
@@ -325,8 +388,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "xtxxf3hu2r",
-      "Integrity": "hRQyftXiu1lLX2P9Ly9xa4gHJgLeR1uGN5qegUobtGo=",
+      "Fingerprint": "5muetxt4bt",
+      "Integrity": "fcNtdoPICqN/st0HIsN7rKUIY6kII6KGIOGYqnu42s8=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\site.js"
@@ -346,8 +409,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "mpyigms19s",
-      "Integrity": "xlexqj9/k3uobVwGfciZcj/eDdooaNgcf4OFLtLUygM=",
+      "Fingerprint": "tkioimewcq",
+      "Integrity": "Db5HQDiQtTkq0McXpA1H4QAxlyTHIHMce+3Lu2UVxmU=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css"
@@ -1527,9 +1590,75 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Identity": "C:\\Users\\Robin\\source\\repos\\DnD-Character-Creation\\wwwroot\\sound\\Main_theme.mp3",
+      "SourceId": "DnD_CharacterCreation",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Robin\\source\\repos\\DnD-Character-Creation\\wwwroot\\",
+      "BasePath": "_content/DnD_CharacterCreation",
+      "RelativePath": "sound/Main_theme#[.{fingerprint}]?.mp3",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "11m3kx2n3u",
+      "Integrity": "RSoD8h7PNnE/dm9HtRiBlqWWVTzQY/LXKMA0CWjTWTs=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\sound\\Main_theme.mp3"
     }
   ],
   "Endpoints": [
+    {
+      "Route": "css/account.2ir1w2yvp8.css",
+      "AssetFile": "C:\\Users\\Robin\\source\\repos\\DnD-Character-Creation\\wwwroot\\css\\account.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "4196"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"hnZigQseX1DepPV77LGi9mEaUxR6wSrYpCq33f/bWaM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 07 Oct 2025 18:07:41 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "2ir1w2yvp8"
+        },
+        {
+          "Name": "label",
+          "Value": "css/account.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-hnZigQseX1DepPV77LGi9mEaUxR6wSrYpCq33f/bWaM="
+        }
+      ]
+    },
     {
       "Route": "css/account.css",
       "AssetFile": "C:\\Users\\Robin\\source\\repos\\DnD-Character-Creation\\wwwroot\\css\\account.css",
@@ -1541,7 +1670,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "2987"
+          "Value": "4196"
         },
         {
           "Name": "Content-Type",
@@ -1549,11 +1678,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"nxw/94OcOgU61n8rTPZFHBupBnXxdcqDOXr55ZyK3Gs=\""
+          "Value": "\"hnZigQseX1DepPV77LGi9mEaUxR6wSrYpCq33f/bWaM=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 16 Sep 2025 20:35:53 GMT"
+          "Value": "Tue, 07 Oct 2025 18:07:41 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1563,13 +1692,13 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-nxw/94OcOgU61n8rTPZFHBupBnXxdcqDOXr55ZyK3Gs="
+          "Value": "sha256-hnZigQseX1DepPV77LGi9mEaUxR6wSrYpCq33f/bWaM="
         }
       ]
     },
     {
-      "Route": "css/account.z7497a52nn.css",
-      "AssetFile": "C:\\Users\\Robin\\source\\repos\\DnD-Character-Creation\\wwwroot\\css\\account.css",
+      "Route": "css/Layout.css",
+      "AssetFile": "C:\\Users\\Robin\\source\\repos\\DnD-Character-Creation\\wwwroot\\css\\Layout.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1578,7 +1707,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "2987"
+          "Value": "3001"
         },
         {
           "Name": "Content-Type",
@@ -1586,11 +1715,48 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"nxw/94OcOgU61n8rTPZFHBupBnXxdcqDOXr55ZyK3Gs=\""
+          "Value": "\"7ffm/owOVVpwYRy4lnycJuNrCXU7awUZAZ+Y3f0rhFE=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 16 Sep 2025 20:35:53 GMT"
+          "Value": "Mon, 22 Sep 2025 10:15:12 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-7ffm/owOVVpwYRy4lnycJuNrCXU7awUZAZ+Y3f0rhFE="
+        }
+      ]
+    },
+    {
+      "Route": "css/Layout.hf421hbhny.css",
+      "AssetFile": "C:\\Users\\Robin\\source\\repos\\DnD-Character-Creation\\wwwroot\\css\\Layout.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "3001"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"7ffm/owOVVpwYRy4lnycJuNrCXU7awUZAZ+Y3f0rhFE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 22 Sep 2025 10:15:12 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1600,20 +1766,20 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "z7497a52nn"
+          "Value": "hf421hbhny"
         },
         {
           "Name": "label",
-          "Value": "css/account.css"
+          "Value": "css/Layout.css"
         },
         {
           "Name": "integrity",
-          "Value": "sha256-nxw/94OcOgU61n8rTPZFHBupBnXxdcqDOXr55ZyK3Gs="
+          "Value": "sha256-7ffm/owOVVpwYRy4lnycJuNrCXU7awUZAZ+Y3f0rhFE="
         }
       ]
     },
     {
-      "Route": "css/site.c6i7ijwrnz.css",
+      "Route": "css/site.4r22k3lo7r.css",
       "AssetFile": "C:\\Users\\Robin\\source\\repos\\DnD-Character-Creation\\wwwroot\\css\\site.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -1623,7 +1789,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "9701"
+          "Value": "11218"
         },
         {
           "Name": "Content-Type",
@@ -1631,11 +1797,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"PGr91KIO/w+RD2JPuuaNReu3maUdi/HITmECyNmze88=\""
+          "Value": "\"cEoXJ190OTUCU5wpr7/HiY81BsimIi3gOZXTwEp7nVA=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 17 Sep 2025 20:14:30 GMT"
+          "Value": "Tue, 28 Oct 2025 12:17:00 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1645,7 +1811,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "c6i7ijwrnz"
+          "Value": "4r22k3lo7r"
         },
         {
           "Name": "label",
@@ -1653,7 +1819,7 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-PGr91KIO/w+RD2JPuuaNReu3maUdi/HITmECyNmze88="
+          "Value": "sha256-cEoXJ190OTUCU5wpr7/HiY81BsimIi3gOZXTwEp7nVA="
         }
       ]
     },
@@ -1668,7 +1834,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "9701"
+          "Value": "11218"
         },
         {
           "Name": "Content-Type",
@@ -1676,11 +1842,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"PGr91KIO/w+RD2JPuuaNReu3maUdi/HITmECyNmze88=\""
+          "Value": "\"cEoXJ190OTUCU5wpr7/HiY81BsimIi3gOZXTwEp7nVA=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 17 Sep 2025 20:14:30 GMT"
+          "Value": "Tue, 28 Oct 2025 12:17:00 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1690,7 +1856,89 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-PGr91KIO/w+RD2JPuuaNReu3maUdi/HITmECyNmze88="
+          "Value": "sha256-cEoXJ190OTUCU5wpr7/HiY81BsimIi3gOZXTwEp7nVA="
+        }
+      ]
+    },
+    {
+      "Route": "css/UserCharacter.570h024n4a.css",
+      "AssetFile": "C:\\Users\\Robin\\source\\repos\\DnD-Character-Creation\\wwwroot\\css\\UserCharacter.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1626"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"QWPRXtqL3Tdv8NMMbiPTMdbryb6mVLN1fgvc13XmzzA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 20 Sep 2025 09:13:28 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "570h024n4a"
+        },
+        {
+          "Name": "label",
+          "Value": "css/UserCharacter.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-QWPRXtqL3Tdv8NMMbiPTMdbryb6mVLN1fgvc13XmzzA="
+        }
+      ]
+    },
+    {
+      "Route": "css/UserCharacter.css",
+      "AssetFile": "C:\\Users\\Robin\\source\\repos\\DnD-Character-Creation\\wwwroot\\css\\UserCharacter.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1626"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"QWPRXtqL3Tdv8NMMbiPTMdbryb6mVLN1fgvc13XmzzA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 20 Sep 2025 09:13:28 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-QWPRXtqL3Tdv8NMMbiPTMdbryb6mVLN1fgvc13XmzzA="
         }
       ]
     },
@@ -1717,7 +1965,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 12 Sep 2025 17:56:29 GMT"
+          "Value": "Thu, 09 Oct 2025 17:36:09 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1754,7 +2002,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 12 Sep 2025 17:56:29 GMT"
+          "Value": "Thu, 09 Oct 2025 17:36:09 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1791,7 +2039,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 12 Sep 2025 17:56:29 GMT"
+          "Value": "Thu, 09 Oct 2025 17:36:09 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1836,7 +2084,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 12 Sep 2025 17:56:29 GMT"
+          "Value": "Thu, 09 Oct 2025 17:36:09 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1937,6 +2185,88 @@
         {
           "Name": "integrity",
           "Value": "sha256-Jtxf9L+5ITKRc1gIRl4VbUpGkRNfOBXjYTdhJD4facM="
+        }
+      ]
+    },
+    {
+      "Route": "images/arrow_icon.7ns5zkf9nq.png",
+      "AssetFile": "C:\\Users\\Robin\\source\\repos\\DnD-Character-Creation\\wwwroot\\images\\arrow_icon.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2102632"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"QyPbrWNyymkrpDgfrcyJGlpOf9wF1eRwCh0h4G67vRs=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 19 Sep 2025 18:36:36 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "7ns5zkf9nq"
+        },
+        {
+          "Name": "label",
+          "Value": "images/arrow_icon.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-QyPbrWNyymkrpDgfrcyJGlpOf9wF1eRwCh0h4G67vRs="
+        }
+      ]
+    },
+    {
+      "Route": "images/arrow_icon.png",
+      "AssetFile": "C:\\Users\\Robin\\source\\repos\\DnD-Character-Creation\\wwwroot\\images\\arrow_icon.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2102632"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"QyPbrWNyymkrpDgfrcyJGlpOf9wF1eRwCh0h4G67vRs=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 19 Sep 2025 18:36:36 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-QyPbrWNyymkrpDgfrcyJGlpOf9wF1eRwCh0h4G67vRs="
         }
       ]
     },
@@ -2351,8 +2681,8 @@
       ]
     },
     {
-      "Route": "images/dragon_footer.8nbv8m0wwg.png",
-      "AssetFile": "C:\\Users\\Robin\\source\\repos\\DnD-Character-Creation\\wwwroot\\images\\dragon_footer.png",
+      "Route": "images/dragonhead_footer.11058zw8na.png",
+      "AssetFile": "C:\\Users\\Robin\\source\\repos\\DnD-Character-Creation\\wwwroot\\images\\dragonhead_footer.png",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -2361,7 +2691,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "80204"
+          "Value": "1361090"
         },
         {
           "Name": "Content-Type",
@@ -2369,11 +2699,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"TJPaIwq4YsrZzrd1ZTOjZqqfdyP3h/5Saz5vGrHdprQ=\""
+          "Value": "\"m/xnCZ/xCaf/wBuytYIrWZw+jKuQfExEfaeUMgPLdmI=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 17 Sep 2025 18:58:29 GMT"
+          "Value": "Mon, 22 Sep 2025 10:03:06 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2383,21 +2713,21 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "8nbv8m0wwg"
+          "Value": "11058zw8na"
         },
         {
           "Name": "label",
-          "Value": "images/dragon_footer.png"
+          "Value": "images/dragonhead_footer.png"
         },
         {
           "Name": "integrity",
-          "Value": "sha256-TJPaIwq4YsrZzrd1ZTOjZqqfdyP3h/5Saz5vGrHdprQ="
+          "Value": "sha256-m/xnCZ/xCaf/wBuytYIrWZw+jKuQfExEfaeUMgPLdmI="
         }
       ]
     },
     {
-      "Route": "images/dragon_footer.png",
-      "AssetFile": "C:\\Users\\Robin\\source\\repos\\DnD-Character-Creation\\wwwroot\\images\\dragon_footer.png",
+      "Route": "images/dragonhead_footer.png",
+      "AssetFile": "C:\\Users\\Robin\\source\\repos\\DnD-Character-Creation\\wwwroot\\images\\dragonhead_footer.png",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -2406,7 +2736,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "80204"
+          "Value": "1361090"
         },
         {
           "Name": "Content-Type",
@@ -2414,11 +2744,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"TJPaIwq4YsrZzrd1ZTOjZqqfdyP3h/5Saz5vGrHdprQ=\""
+          "Value": "\"m/xnCZ/xCaf/wBuytYIrWZw+jKuQfExEfaeUMgPLdmI=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 17 Sep 2025 18:58:29 GMT"
+          "Value": "Mon, 22 Sep 2025 10:03:06 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2428,7 +2758,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-TJPaIwq4YsrZzrd1ZTOjZqqfdyP3h/5Saz5vGrHdprQ="
+          "Value": "sha256-m/xnCZ/xCaf/wBuytYIrWZw+jKuQfExEfaeUMgPLdmI="
         }
       ]
     },
@@ -2679,6 +3009,51 @@
       ]
     },
     {
+      "Route": "js/site.5muetxt4bt.js",
+      "AssetFile": "C:\\Users\\Robin\\source\\repos\\DnD-Character-Creation\\wwwroot\\js\\site.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "10840"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"fcNtdoPICqN/st0HIsN7rKUIY6kII6KGIOGYqnu42s8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 28 Oct 2025 12:26:06 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "5muetxt4bt"
+        },
+        {
+          "Name": "label",
+          "Value": "js/site.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-fcNtdoPICqN/st0HIsN7rKUIY6kII6KGIOGYqnu42s8="
+        }
+      ]
+    },
+    {
       "Route": "js/site.js",
       "AssetFile": "C:\\Users\\Robin\\source\\repos\\DnD-Character-Creation\\wwwroot\\js\\site.js",
       "Selectors": [],
@@ -2689,7 +3064,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "231"
+          "Value": "10840"
         },
         {
           "Name": "Content-Type",
@@ -2697,11 +3072,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"hRQyftXiu1lLX2P9Ly9xa4gHJgLeR1uGN5qegUobtGo=\""
+          "Value": "\"fcNtdoPICqN/st0HIsN7rKUIY6kII6KGIOGYqnu42s8=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 06 Sep 2025 10:56:31 GMT"
+          "Value": "Tue, 28 Oct 2025 12:26:06 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2711,52 +3086,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-hRQyftXiu1lLX2P9Ly9xa4gHJgLeR1uGN5qegUobtGo="
-        }
-      ]
-    },
-    {
-      "Route": "js/site.xtxxf3hu2r.js",
-      "AssetFile": "C:\\Users\\Robin\\source\\repos\\DnD-Character-Creation\\wwwroot\\js\\site.js",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "231"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/javascript"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"hRQyftXiu1lLX2P9Ly9xa4gHJgLeR1uGN5qegUobtGo=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sat, 06 Sep 2025 10:56:31 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "xtxxf3hu2r"
-        },
-        {
-          "Name": "label",
-          "Value": "js/site.js"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-hRQyftXiu1lLX2P9Ly9xa4gHJgLeR1uGN5qegUobtGo="
+          "Value": "sha256-fcNtdoPICqN/st0HIsN7rKUIY6kII6KGIOGYqnu42s8="
         }
       ]
     },
@@ -2771,7 +3101,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "204136"
+          "Value": "204137"
         },
         {
           "Name": "Content-Type",
@@ -2779,11 +3109,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"xlexqj9/k3uobVwGfciZcj/eDdooaNgcf4OFLtLUygM=\""
+          "Value": "\"Db5HQDiQtTkq0McXpA1H4QAxlyTHIHMce+3Lu2UVxmU=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 06 Sep 2025 10:56:31 GMT"
+          "Value": "Sat, 20 Sep 2025 00:58:17 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2793,7 +3123,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-xlexqj9/k3uobVwGfciZcj/eDdooaNgcf4OFLtLUygM="
+          "Value": "sha256-Db5HQDiQtTkq0McXpA1H4QAxlyTHIHMce+3Lu2UVxmU="
         }
       ]
     },
@@ -3040,51 +3370,6 @@
         {
           "Name": "integrity",
           "Value": "sha256-gBwg2tmA0Ci2u54gMF1jNCVku6vznarkLS6D76htNNQ="
-        }
-      ]
-    },
-    {
-      "Route": "lib/bootstrap/dist/css/bootstrap.mpyigms19s.css",
-      "AssetFile": "C:\\Users\\Robin\\source\\repos\\DnD-Character-Creation\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "204136"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"xlexqj9/k3uobVwGfciZcj/eDdooaNgcf4OFLtLUygM=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sat, 06 Sep 2025 10:56:31 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "mpyigms19s"
-        },
-        {
-          "Name": "label",
-          "Value": "lib/bootstrap/dist/css/bootstrap.css"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-xlexqj9/k3uobVwGfciZcj/eDdooaNgcf4OFLtLUygM="
         }
       ]
     },
@@ -3413,6 +3698,51 @@
         {
           "Name": "integrity",
           "Value": "sha256-SZ2mKaD4A+b+HIvttwl+TvLFnVy8o8/X40j+EKVwyvY="
+        }
+      ]
+    },
+    {
+      "Route": "lib/bootstrap/dist/css/bootstrap.tkioimewcq.css",
+      "AssetFile": "C:\\Users\\Robin\\source\\repos\\DnD-Character-Creation\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "204137"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Db5HQDiQtTkq0McXpA1H4QAxlyTHIHMce+3Lu2UVxmU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 20 Sep 2025 00:58:17 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "tkioimewcq"
+        },
+        {
+          "Name": "label",
+          "Value": "lib/bootstrap/dist/css/bootstrap.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-Db5HQDiQtTkq0McXpA1H4QAxlyTHIHMce+3Lu2UVxmU="
         }
       ]
     },
@@ -7431,6 +7761,88 @@
         {
           "Name": "integrity",
           "Value": "sha256-16aFlqtpsG9RyieKZUUUjkJpqTgcJtWXwT312I4Iz1s="
+        }
+      ]
+    },
+    {
+      "Route": "sound/Main_theme.11m3kx2n3u.mp3",
+      "AssetFile": "C:\\Users\\Robin\\source\\repos\\DnD-Character-Creation\\wwwroot\\sound\\Main_theme.mp3",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "8209100"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "audio/mpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"RSoD8h7PNnE/dm9HtRiBlqWWVTzQY/LXKMA0CWjTWTs=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 25 Oct 2025 17:25:03 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "11m3kx2n3u"
+        },
+        {
+          "Name": "label",
+          "Value": "sound/Main_theme.mp3"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-RSoD8h7PNnE/dm9HtRiBlqWWVTzQY/LXKMA0CWjTWTs="
+        }
+      ]
+    },
+    {
+      "Route": "sound/Main_theme.mp3",
+      "AssetFile": "C:\\Users\\Robin\\source\\repos\\DnD-Character-Creation\\wwwroot\\sound\\Main_theme.mp3",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "8209100"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "audio/mpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"RSoD8h7PNnE/dm9HtRiBlqWWVTzQY/LXKMA0CWjTWTs=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 25 Oct 2025 17:25:03 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-RSoD8h7PNnE/dm9HtRiBlqWWVTzQY/LXKMA0CWjTWTs="
         }
       ]
     }
