@@ -1,6 +1,7 @@
 using DnD_CharacterCreation.Data;
 using DnD_CharacterCreation.Models;
 using DnD_CharacterCreation.Services;
+using DnD_CharacterCreation.ViewModels;
 using iText.Forms;
 using iText.Forms.Fields;
 using iText.Kernel.Pdf;
@@ -103,6 +104,7 @@ namespace DnD_CharacterCreation
                         await roleManager.CreateAsync(new IdentityRole(role));
                 }
             }
+          
         }
     }
 }

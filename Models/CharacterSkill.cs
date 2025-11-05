@@ -7,7 +7,7 @@ namespace DnD_CharacterCreation.Models
         [Key]
         public int CharacterSkillId { get; set; }
         public int CharacterId { get; set; }
-        public Character Character { get; set; }
+        public Character? Character { get; set; }
         public bool Acrobatics { get; set; } = false;
         public bool AnimalHandling { get; set; } = false;
         public bool Arcana { get; set; } = false;

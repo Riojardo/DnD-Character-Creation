@@ -30,22 +30,6 @@ namespace DnD_CharacterCreation.Controllers
             using var client = new HttpClient();
             model.ListsAPI = new DnDLists(_context);
 
-
-            /*      var getClasses = await client.GetStringAsync("https://www.dnd5eapi.co/api/2014/classes");
-                  using var jsonDocClasses = JsonDocument.Parse(getClasses);
-                  foreach (var classe in jsonDocClasses.RootElement.GetProperty("results").EnumerateArray())
-                  {
-                      model.ListsAPI.ClassesNames.Add(classe.GetProperty("name").GetString());
-                  }
-
-
-                  var getRaces = await client.GetStringAsync("https://www.dnd5eapi.co/api/2014/races");
-                  using var jsonDocRaces = JsonDocument.Parse(getRaces);
-                  foreach (var race in jsonDocRaces.RootElement.GetProperty("results").EnumerateArray())
-                  {
-                      model.ListsAPI.RacesNames.Add(race.GetProperty("name").GetString());
-                  }
-      */
             return View(model);
         }
 
@@ -66,12 +50,11 @@ namespace DnD_CharacterCreation.Controllers
         {
             var userId = _userManager.GetUserId(User);
 
-            // On charge tous les personnages pour cet utilisateur, sans tri
             var characters = _context.Characters
                 .Where(c => c.UserId == userId)
                 .ToList();
 
-            // On passe le modèle à la vue
+
             return View(characters);
         }
     }

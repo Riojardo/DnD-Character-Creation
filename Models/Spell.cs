@@ -9,7 +9,7 @@ namespace DnD_CharacterCreation.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int SpellId { get; set; }
         [Required]
-        public string Name { get; set; }
+        public string? Name { get; set; }
         public int? SpellLevel { get; set; }
         public string? SpellSchool { get; set; }
         public string? Description { get; set; }

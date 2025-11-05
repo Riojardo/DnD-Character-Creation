@@ -10,9 +10,9 @@ document.addEventListener("DOMContentLoaded", () => {   // 🟢 ← START main D
     const maxLevel = 20;
 
     const rows = [
-        { classe: "classe_first", level: "level_first", row: "row_first" },
-        { classe: "classe_second", level: "level_second", row: "row_second" },
-        { classe: "classe_third", level: "level_third", row: "row_third" }
+        { classe: "classe_first", level: "level_first", subclasse: "subclasse_first" , row: "row_first" },
+        { classe: "classe_second", level: "level_second", subclasse: "subclasse_second", row: "row_second" },
+        { classe: "classe_third", level: "level_third", subclasse: "subclasse_third", row: "row_third" }
     ];
 
     // =============================
@@ -21,20 +21,33 @@ document.addEventListener("DOMContentLoaded", () => {   // 🟢 ← START main D
 
     // --- Populate level selects based on maxLevel ---
     function populateLevels() {
-        const selectedLevels = rows.map(r => parseInt(document.getElementById(r.level).value) || 0);
+        const visibleRows = rows.filter(r => {
+            const rowEl = document.getElementById(r.row);
+            return rowEl && rowEl.classList.contains("visible");
+        });
+
+        const selectedLevels = visibleRows.map(r => parseInt(document.getElementById(r.level).value) || 0);
         const totalSelected = selectedLevels.reduce((a, b) => a + b, 0);
 
         rows.forEach(r => {
             const sel = document.getElementById(r.level);
-            const currentValue = parseInt(sel.value) || 0;
+            const rowEl = document.getElementById(r.row);
+
+            if (!rowEl.classList.contains("visible")) {
+                sel.innerHTML = '<option value=""></option>';
+                return;
+            }
+
+            const currentValue = parseInt(sel.value);
             sel.innerHTML = "";
-            const remaining = maxLevel - (totalSelected - currentValue);
+            const remaining = maxLevel - (totalSelected - (currentValue || 0));
 
             for (let i = 1; i <= remaining; i++) {
                 const opt = document.createElement("option");
                 opt.value = i;
                 opt.textContent = i;
-                if (i === currentValue) opt.selected = true;
+               
+                if (currentValue && i === currentValue) opt.selected = true;
                 sel.appendChild(opt);
             }
         });
@@ -56,19 +69,40 @@ document.addEventListener("DOMContentLoaded", () => {   // 🟢 ← START main D
             });
         });
     }
+    function updateAvailableSubClasses(row) {
+        const classSelect = document.getElementById(row.classe);
+        const levelSelect = document.getElementById(row.level);
+        const subSelect = document.getElementById(row.subclasse);
 
+        subSelect.innerHTML = '';
+
+        const classId = classSelect.value;
+        const level = parseInt(levelSelect.value) || 0;
+
+        if (classId && subClassesDict[classId]) {
+            subClassesDict[classId].forEach(sub => {
+                if (level >= sub.LevelToStart) {
+                    const opt = document.createElement("option");
+                    opt.value = sub.SubclassId;
+                    opt.textContent = sub.SubName;
+                    subSelect.appendChild(opt);
+                }
+            });
+        }
+    }
     // --- Remove a row ---
     function removeRow(rowId) {
         const row = document.getElementById(rowId);
         const selects = row.querySelectorAll("select");
         selects.forEach(s => s.value = ""); // reset select values
-        row.hidden = true;
         updateAvailableClasses();
-        populateLevels();
+        //
+        //populateLevels();
     }
 
     // --- Roll stats ---
     function createStats() {
+
         const totalArray = [];
         for (let i = 0; i < 6; i++) {
             const inputArray = [];
@@ -79,6 +113,7 @@ document.addEventListener("DOMContentLoaded", () => {   // 🟢 ← START main D
             const sum = inputArray.slice(1).reduce((acc, curr) => acc + curr, 0);
             totalArray[i] = sum;
         }
+        
         return totalArray;
     }
 
@@ -139,9 +174,12 @@ document.addEventListener("DOMContentLoaded", () => {   // 🟢 ← START main D
                     if (cb.id.includes('-1-')) totalValue += 1;
                     else if (cb.id.includes('-2-')) totalValue += 2;
                 }
-            });
-
-            span.textContent = totalValue >= 3 ? totalValue : "";
+            })
+            if (totalValue >= 3) {
+                span.textContent = totalValue < 10 ? "0" + totalValue : String(totalValue);
+            } else {
+                span.textContent = "";
+            }
         });
     }
 
@@ -154,6 +192,7 @@ document.addEventListener("DOMContentLoaded", () => {   // 🟢 ← START main D
     const displayStats = document.getElementById('stats-display');
 
     buttonStats.addEventListener('click', () => {
+
         const totalArray = createStats();
         displayStats.textContent = totalArray.join(', ');
 
@@ -190,7 +229,7 @@ document.addEventListener("DOMContentLoaded", () => {   // 🟢 ← START main D
     checkboxes.forEach(cb => {
         cb.addEventListener('change', () => {
             if (cb.checked) {
-                const type = cb.id.split('-')[1]; // "1" or "2"
+                const type = cb.id.split('-')[1]; 
                 checkboxes.forEach(other => {
                     if (other !== cb && other.id.includes(`scales-${type}-`)) {
                         other.checked = false;
@@ -201,44 +240,76 @@ document.addEventListener("DOMContentLoaded", () => {   // 🟢 ← START main D
         });
     });
 
+    function pickRandomClass(selectId) {
+        const selectElem = document.getElementById(selectId);
+        selectElem.value = "";
+
+        let options = selectElem.dataset.options.split("|").map(o => {
+            const [value, text] = o.split(":");
+            return { value, text };
+        });
+        const selected = rows
+            .filter(r => r.classe !== selectId) 
+            .map(r => document.getElementById(r.classe).value)
+            .filter(v => v);
+        let availableOptions = options.filter(o => !selected.includes(o.value));
+
+        if (availableOptions.length === 0) return;
+        const randomIndex = Math.floor(Math.random() * availableOptions.length);
+        selectElem.value = availableOptions[randomIndex].value;
+    }
+
+
     // --- Class & level event listeners ---
     rows.forEach(r => {
         const classeSel = document.getElementById(r.classe);
         const levelSel = document.getElementById(r.level);
-        classeSel.addEventListener("change", updateAvailableClasses);
-        levelSel.addEventListener("change", populateLevels);
+
+        // When class changes
+        classeSel.addEventListener("change", () => {
+            updateAvailableClasses(); 
+            updateAvailableSubClasses(r);
+            populateLevels();
+        });
+
+        // When level changes
+        levelSel.addEventListener("change", () => {
+            populateLevels();
+            updateAvailableSubClasses(r); 
+        });
     });
 
     // --- Show extra rows ---
-    document.getElementById("classe2_button").addEventListener("click", () => {
-        //alert("hgfhgfg");
+      document.getElementById("classe2_button").addEventListener("click", () => {
         const rowSecond = document.getElementById("row_second");
-        rowSecond.classList.toggle("visible");
+        rowSecond.classList.add("visible");
+        pickRandomClass("classe_second");
+    });
+
+    document.getElementById("remove_second").addEventListener("click", () => {
+        const rowSecond = document.getElementById("row_second");
+        rowSecond.classList.remove("visible"); 
+        removeRow("row_second");
         populateLevels();
     });
 
     document.getElementById("classe3_button").addEventListener("click", () => {
         const rowThird = document.getElementById("row_third");
-        rowThird.classList.toggle("visible");
-        populateLevels();
-    });
-
-    // --- Remove rows ---
-    document.getElementById("remove_second").addEventListener("click", () => {
-        document.getElementById("row_second").classList.remove("visible");
-        populateLevels();
+        rowThird.classList.add("visible");
+        pickRandomClass("classe_third");
     });
 
     document.getElementById("remove_third").addEventListener("click", () => {
-        document.getElementById("row_third").classList.remove("visible");
+        const rowThird = document.getElementById("row_third");
+        rowThird.classList.remove("visible");
+        removeRow("row_third");
         populateLevels();
     });
 
     // --- Initial setup ---
-    populateLevels();
+    //populateLevels();
     updateAvailableClasses();
     updateAvailableStats();
-
 
     // =============================
     // SLIDE JS CODE (moved inside same DOMContentLoaded)
@@ -272,7 +343,7 @@ document.addEventListener("DOMContentLoaded", () => {   // 🟢 ← START main D
             if (next) {
                 slider.scrollTo({
                     left: next.offsetLeft,
-                    behavior: "smooth" // 🔹 animation
+                    behavior: "smooth" 
                 });
             }
         });
@@ -295,5 +366,4 @@ document.addEventListener("DOMContentLoaded", () => {   // 🟢 ← START main D
     slider.addEventListener("scroll", updateButtonFlip);
     window.addEventListener("resize", updateButtonFlip);
     updateButtonFlip();
-
 });   

@@ -9,10 +9,14 @@ namespace DnD_CharacterCreation.Models
         [Key]
         public int CharacterClassId { get; set; }
         public int Level { get; set; }
-        public int CharacterId { get; set; }     
-        public Character Character { get; set; }  
-        public int ClassId { get; set; }          
-        public Class Class { get; set; }         
-           
+
+        public int CharacterId { get; set; }
+        public Character? Character { get; set; }
+
+        public int ClassId { get; set; }
+        public Class? Class { get; set; }
+
+        public ICollection<CharacterSubClass> CharacterSubClasses { get; set; } = new List<CharacterSubClass>();
+
     }
 }

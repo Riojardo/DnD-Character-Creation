@@ -6,6 +6,6 @@ namespace DnD_CharacterCreation.ViewModels
     {
         [Required(ErrorMessage = "Email is required.")]
         [EmailAddress]
-        public string Email { get; set; }
+        public string? Email { get; set; }
     }
 }

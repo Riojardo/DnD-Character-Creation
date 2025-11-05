@@ -10,7 +10,6 @@ namespace DnD_CharacterCreation.Models
             [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
             public int SubclassId { get; set; }
             public string? Name { get; set; }
-            public string? Description { get; set; }
             public int LevelToStart { get; set; }
             public int ClassId { get; set; }
             public Class? Class { get; set; }

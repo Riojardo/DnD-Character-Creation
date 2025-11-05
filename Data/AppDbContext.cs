@@ -14,8 +14,8 @@ namespace DnD_CharacterCreation.Data
         public DbSet<Feat> Feat { get; set; }
         public DbSet<Spell> Spell { get; set; }
         public DbSet<Background> Background { get; set; }
-        public DbSet<CharacterClass> CharacterClass { get; set; }
         public DbSet<CharacterSubClass> CharacterSubClass { get; set; }
+        public DbSet<CharacterClass> CharacterClass { get; set; }
         public DbSet<CharacterFeat> CharacterFeat { get; set; }      
         public DbSet<CharacterSpell> CharacterSpell { get; set; }
         public DbSet<CharacterAbility> CharacterAbility { get; set; }
@@ -31,24 +31,28 @@ namespace DnD_CharacterCreation.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<CharacterSubClass>()
-    .HasOne(cs => cs.Character)
-    .WithMany(c => c.CharacterSubClasses)
-    .HasForeignKey(cs => cs.CharacterId)
-    .OnDelete(DeleteBehavior.Cascade);
+            modelBuilder.Entity<CharacterSubClass>(entity =>
+            {
+                entity.HasOne(cs => cs.Character)
+                    .WithMany(c => c.CharacterSubClasses) 
+                    .HasForeignKey(cs => cs.CharacterId)
+                    .OnDelete(DeleteBehavior.Cascade); 
 
-            modelBuilder.Entity<CharacterSubClass>()
-                .HasOne(cs => cs.Class)
-                .WithMany()
-                .HasForeignKey(cs => cs.ClassId)
-                .OnDelete(DeleteBehavior.Restrict);
+                entity.HasOne(cs => cs.Class)
+                      .WithMany()
+                      .HasForeignKey(cs => cs.ClassId)
+                      .OnDelete(DeleteBehavior.Restrict);
 
-            modelBuilder.Entity<CharacterSubClass>()
-                .HasOne(cs => cs.SubClass)
-                .WithMany()
-                .HasForeignKey(cs => cs.SubclassId)
-                .OnDelete(DeleteBehavior.Restrict);
+                entity.HasOne(cs => cs.SubClass)
+                      .WithMany()
+                      .HasForeignKey(cs => cs.SubclassId)
+                      .OnDelete(DeleteBehavior.Restrict);
 
+                entity.HasOne(cs => cs.CharacterClass)
+                    .WithMany(cc => cc.CharacterSubClasses)
+                    .HasForeignKey(cs => cs.CharacterClassId)
+                    .OnDelete(DeleteBehavior.Restrict);
+            });
         }
     }
 }
