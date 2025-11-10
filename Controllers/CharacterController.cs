@@ -40,6 +40,8 @@ namespace DnD_CharacterCreation.Controllers
                 CharacterName = string.Empty,
                 Alignment = string.Empty,
                 BackgroundId = 0,
+                Species = 0,
+                Subspecies = 0,
             };
 
             return View(model);
@@ -54,51 +56,14 @@ namespace DnD_CharacterCreation.Controllers
                 CharacterName = model.CharacterName,
                 Alignment = model.Alignment,
                 BackgroundId = model.BackgroundId,
+                RaceId = model.Species,
+                SubRaceId = model.Subspecies,
                 UserId = userId
             };
 
             _context.Characters.Add(character);
             _context.SaveChanges();
-            /*
-                        var newClasses = new List<(int? classId, int? level, int? subclassId)>
-                              {
-                                  (1, 5, 1), // First class: ClassId=1, Level=5, SubclassId=2
-                                  (2, 3, 4), // Second class: ClassId=2, Level=3, no subclass
-                                  //(null, null, null) // Third class: no class selected
-                              };
-
-                        foreach (var (classId, level, subclassId) in newClasses)
-                        {
-                            if (classId.HasValue)
-                            {
-                                var characterClass = new CharacterClass
-                                {
-                                    CharacterId = character.CharacterId,
-                                    ClassId = classId.Value,
-                                    Level = level ?? 1
-                                };
-
-                                _context.CharacterClass.Add(characterClass);
-                                _context.SaveChanges();
-
-                                if (subclassId.HasValue)
-                                {
-                                    var sub = new CharacterSubClass
-                                    {
-                                        CharacterId = character.CharacterId,
-                                        ClassId = classId.Value,
-                                        SubclassId = subclassId.Value,
-                                        CharacterClassId = characterClass.CharacterClassId
-                                    };
-
-                                    _context.CharacterSubClass.Add(sub);
-                                    _context.SaveChanges();
-                                }
-                            }
-                        }
-
-                        _context.SaveChanges();*/
-
+          
             var newClasses = new List<(int? classId, int? level, int? subclassId)>
                      {
                          (model.Classe_First, model.Levelclasss_First, model.Subclasse_First),
@@ -108,9 +73,10 @@ namespace DnD_CharacterCreation.Controllers
 
             foreach (var (classId, level, subclassId) in newClasses)
             {
-                if (classId.HasValue)
-                {
-                    var characterClass = new CharacterClass
+                if (!classId.HasValue)
+                { continue; }
+
+                var characterClass = new CharacterClass
                     {
                         CharacterId = character.CharacterId,
                         ClassId = classId.Value,
@@ -119,9 +85,9 @@ namespace DnD_CharacterCreation.Controllers
                     _context.CharacterClass.Add(characterClass);
                     _context.SaveChanges();
 
-                    if (subclassId.HasValue)
-                    {
-                        var sub = new CharacterSubClass
+                    if (!subclassId.HasValue)
+                    { continue; }
+                    var sub = new CharacterSubClass
                         {
                             CharacterId = character.CharacterId,
                             ClassId = classId.Value,
@@ -130,12 +96,9 @@ namespace DnD_CharacterCreation.Controllers
                         };
                         _context.CharacterSubClass.Add(sub);
                         _context.SaveChanges();
-                    }
-                }
+                                
             }
-
-            Console.WriteLine($"{model.Levelclasss_First}, {model.Levelclasss_Second}, {model.Levelclasss_Third}");
-            return RedirectToAction("UserCharacter", "Home");
+                       return RedirectToAction("UserCharacter", "Home");
 
         }
         public IActionResult UserCharacter()

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "akwo28gYs2gC6+5PSLLoiWeML3/L5lbpHb+dhSrpk9o=",
+  "Hash": "K4BppP4lsaiLhr7LfoIbbtZnfRwYiAKNqReJz8vNBtY=",
   "Source": "DnD_CharacterCreation",
   "BasePath": "_content/DnD_CharacterCreation",
   "Mode": "Default",
@@ -388,8 +388,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "d1z8txvbyv",
-      "Integrity": "YXRK7OLYSjt83z3JbPgPH96OuDfqWa684x0S0JV+13Q=",
+      "Fingerprint": "d33w3gxph5",
+      "Integrity": "qUroMuj5azUL2HTtPRD5YxJ2yEveptFwHel9wrUcQwM=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\site.js"
@@ -3009,7 +3009,7 @@
       ]
     },
     {
-      "Route": "js/site.d1z8txvbyv.js",
+      "Route": "js/site.d33w3gxph5.js",
       "AssetFile": "C:\\Users\\Robin\\source\\repos\\DnD-Character-Creation\\wwwroot\\js\\site.js",
       "Selectors": [],
       "ResponseHeaders": [
@@ -3019,7 +3019,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "13446"
+          "Value": "14558"
         },
         {
           "Name": "Content-Type",
@@ -3027,11 +3027,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"YXRK7OLYSjt83z3JbPgPH96OuDfqWa684x0S0JV+13Q=\""
+          "Value": "\"qUroMuj5azUL2HTtPRD5YxJ2yEveptFwHel9wrUcQwM=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 05 Nov 2025 14:33:40 GMT"
+          "Value": "Mon, 10 Nov 2025 12:22:09 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3041,7 +3041,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "d1z8txvbyv"
+          "Value": "d33w3gxph5"
         },
         {
           "Name": "label",
@@ -3049,7 +3049,7 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-YXRK7OLYSjt83z3JbPgPH96OuDfqWa684x0S0JV+13Q="
+          "Value": "sha256-qUroMuj5azUL2HTtPRD5YxJ2yEveptFwHel9wrUcQwM="
         }
       ]
     },
@@ -3064,7 +3064,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "13446"
+          "Value": "14558"
         },
         {
           "Name": "Content-Type",
@@ -3072,11 +3072,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"YXRK7OLYSjt83z3JbPgPH96OuDfqWa684x0S0JV+13Q=\""
+          "Value": "\"qUroMuj5azUL2HTtPRD5YxJ2yEveptFwHel9wrUcQwM=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 05 Nov 2025 14:33:40 GMT"
+          "Value": "Mon, 10 Nov 2025 12:22:09 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3086,7 +3086,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-YXRK7OLYSjt83z3JbPgPH96OuDfqWa684x0S0JV+13Q="
+          "Value": "sha256-qUroMuj5azUL2HTtPRD5YxJ2yEveptFwHel9wrUcQwM="
         }
       ]
     },

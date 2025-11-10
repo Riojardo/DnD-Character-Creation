@@ -27,29 +27,24 @@ namespace DnD_CharacterCreation.Controllers
         {
             var character = await _context.Characters.FirstOrDefaultAsync(c => c.CharacterId == characterId);
             var background = _context.Background.SingleOrDefault(b => b.BackgroundId == character.BackgroundId);
-            
-            var classFirst = await _context.CharacterClass
-                            .Where(cc => cc.CharacterId == characterId)
-                            .OrderBy(cc => cc.CharacterClassId)   
-                            .FirstOrDefaultAsync();
-            var classNameFirst = await _context.Class.FirstOrDefaultAsync(c => c.ClassId == classFirst.ClassId);
+            var specie = _context.Race.SingleOrDefault(b => b.RaceId == character.RaceId);
+            var subspecie = _context.SubRace.SingleOrDefault(b => b.RaceId == character.SubRaceId);
 
+            var characterClasses = await _context.CharacterClass
+                                  .Where(cc => cc.CharacterId == characterId)
+                                  .OrderBy(cc => cc.CharacterClassId)
+                                  .ToListAsync();
 
-            var classSecond = await _context.CharacterClass
-                           .Where(cc => cc.CharacterId == characterId)
-                           .OrderBy(cc => cc.CharacterClassId)
-                           .Skip(1)
-                           .FirstOrDefaultAsync();
-            var classNameSecond = await _context.Class.FirstOrDefaultAsync(c => c.ClassId == classSecond.ClassId);
+                                   var classInfos = new List<string>();
+                                   int levelTotal = new int();
 
-
-            var classThird= await _context.CharacterClass
-                           .Where(cc => cc.CharacterId == characterId)
-                           .OrderBy(cc => cc.CharacterClassId)
-                           .Skip(2)
-                           .FirstOrDefaultAsync();
-             var classNameThird = await _context.Class.FirstOrDefaultAsync(c => c.ClassId == classThird.ClassId);
-
+                                   foreach (var cc in characterClasses)
+                                   {
+                                        var classEntity = await _context.Class.FirstOrDefaultAsync(c => c.ClassId == cc.ClassId);
+                                        if (classEntity != null)
+                                            classInfos.Add($"{classEntity.Name}/{cc.Level}");
+                                            levelTotal = cc.Level + levelTotal;
+                                   }
 
 
 
@@ -65,13 +60,17 @@ namespace DnD_CharacterCreation.Controllers
             {
                 var form = PdfAcroForm.GetAcroForm(pdf, true);
                 form.GetField("CharacterName")?.SetValue(character.CharacterName);
-                form.GetField("Alignment")?.SetValue(character.Alignment);
-                form.GetField("ProfBonus")?.SetValue(character.ProficiencyBonus.ToString());
+                form.GetField("ClassLevel")?.SetValue(string.Join(" ", classInfos));
                 form.GetField("Background")?.SetValue(background.Name);
-                form.GetField("ClassLevel")?.SetValue($"{classNameFirst.Name}/{classFirst.Level} {classNameSecond.Name}/{classSecond.Level} {classNameThird.Name}/{classThird.Level}");
-               
+                form.GetField("Race ")?.SetValue($"{specie.RaceName}");
+                form.GetField("Alignment")?.SetValue(character.Alignment);
+                form.GetField("ProfBonus")?.SetValue((1 + (int)Math.Ceiling(levelTotal / 4.0)).ToString());
+                
+                
+                
 
-                pdf.GetDocumentInfo().SetTitle(character.CharacterName);
+
+                pdf.GetDocumentInfo().SetTitle(character.CharacterName).SetSubject(character.CharacterName);
             }
 
             var outputStream = new MemoryStream(tempStream.ToArray());

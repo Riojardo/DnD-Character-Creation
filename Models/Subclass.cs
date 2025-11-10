@@ -15,6 +15,6 @@ namespace DnD_CharacterCreation.Models
             public Class? Class { get; set; }
             public bool Spellcasting { get; set; } = false;
 
-    }
+        }
 
 }

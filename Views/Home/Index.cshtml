@@ -1,7 +1,7 @@
 ﻿@using Microsoft.AspNetCore.Identity;
 <script>
     const subClassesDict = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model.ListsAPI.SubClassesNames));
-     console.log("subClassesDict =", subClassesDict);
+    const subRacesDict = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model.ListsAPI.SubRacesNames));
 </script>
 <script src="~/js/site.js"></script>
 
@@ -87,7 +87,7 @@
                         <select id="classe_second" name="Classe_second" asp-for="Classe_Second" asp-items="@(new SelectList(Model.ListsAPI.ClassesNames,  "Key", "Value"))">
 
                             </select>
-                        <select id="level_second" name="Level_second" asp-for="Levelclasss_Second">
+                        <select id="level_second" asp-for="Levelclasss_Second" >
                                 <option value=""></option>
                                    
                                 </select>
@@ -106,7 +106,7 @@
                         <select id="classe_third" name="Classe_third" asp-for="Classe_Third" asp-items="@(new SelectList(Model.ListsAPI.ClassesNames,  "Key", "Value"))">
     
                             </select>
-                        <select id="level_third" name="Level_third" asp-for="Levelclasss_Third">
+                        <select id="level_third" asp-for="Levelclasss_Third">
                                 <option value=""></option>                                   
                                 </select>
                         <select id="subclasse_third" name="Subclasse_third" asp-for="Subclasse_Third">
@@ -150,7 +150,14 @@
                 <label for="species">Choose A Species:
 
                 </label>
-                <select name="species" id="species" asp-items="@(new SelectList(Model.ListsAPI.RacesNames))"></select> 
+                <select  id="species" asp-for="Species" asp-items="@(new SelectList(Model.ListsAPI.RacesNames,  "Key", "Value"))"></select>
+                <label for="Subspecies">
+                    Choose A Subspecies:
+                </label>
+                <select  id="subspecies" asp-for="Subspecies">
+                    <option value=""></option>
+                </select>
+
                 <!-- Dice / stats --> 
 
                 <div class="label-abilities_choice"> 
@@ -240,75 +247,75 @@
                 </button>
                 <div class="skills">
                     <div class="skill">
-                        <input type="checkbox" id="acrobatics" name="skills" />
+                        <input type="checkbox" disabled id="acrobatics" name="skills" />
                         <label for="acrobatics">Acrobatics</label>
                     </div>
                     <div class="skill">
-                        <input type="checkbox" id="animal_handling" name="skills" />
+                        <input type="checkbox" disabled id="animal_handling" name="skills" />
                         <label for="animal_handling">Animal Handling</label>
                     </div>
                     <div class="skill">
-                        <input type="checkbox" id="arcana" name="skills" />
+                        <input type="checkbox" disabled id="arcana" name="skills" />
                         <label for="arcana">Arcana</label>
                     </div>
                     <div class="skill">
-                        <input type="checkbox" id="athletics" name="skills" />
+                        <input type="checkbox" disabled id="athletics" name="skills" />
                         <label for="athletics">Athletics</label>
                     </div>
                     <div class="skill">
-                        <input type="checkbox" id="deception" name="skills" />
+                        <input type="checkbox" disabled id="deception" name="skills" />
                         <label for="deception">Deception</label>
                     </div>
                     <div class="skill">
-                        <input type="checkbox" id="history" name="skills" />
+                        <input type="checkbox" disabled id="history" name="skills" />
                         <label for="history">History</label>
                     </div>
                     <div class="skill">
-                        <input type="checkbox" id="insight" name="skills" />
+                        <input type="checkbox" disabled id="insight" name="skills" />
                         <label for="insight">Insight</label>
                     </div>
                     <div class="skill">
-                        <input type="checkbox" id="intimidation" name="skills" />
+                        <input type="checkbox" disabled id="intimidation" name="skills" />
                         <label for="intimidation">Intimidation</label>
                     </div>
                     <div class="skill">
-                        <input type="checkbox" id="investigation" name="skills" />
+                        <input type="checkbox" disabled id="investigation" name="skills" />
                         <label for="investigation">Investigation</label>
                     </div>
                     <div class="skill">
-                        <input type="checkbox" id="medicine" name="skills" />
+                        <input type="checkbox" disabled id="medicine" name="skills" />
                         <label for="medicine">Medicine</label>
                     </div>
                     <div class="skill">
-                        <input type="checkbox" id="nature" name="skills" />
+                        <input type="checkbox" disabled id="nature" name="skills" />
                         <label for="nature">Nature</label>
                     </div>
                     <div class="skill">
-                        <input type="checkbox" id="perception" name="skills" />
+                        <input type="checkbox" disabled id="perception" name="skills" />
                         <label for="perception">Perception</label>
                     </div>
                     <div class="skill">
-                        <input type="checkbox" id="performance" name="skills" />
+                        <input type="checkbox" disabled id="performance" name="skills" />
                         <label for="performance">Performance</label>
                     </div>
                     <div class="skill">
-                        <input type="checkbox" id="persuasion" name="skills" />
+                        <input type="checkbox" disabled id="persuasion" name="skills" />
                         <label for="persuasion">Persuasion</label>
                     </div>
                     <div class="skill">
-                        <input type="checkbox" id="religion" name="skills" />
+                        <input type="checkbox" disabled id="religion" name="skills" />
                         <label for="religion">Religion</label>
                     </div>
                     <div class="skill">
-                        <input type="checkbox" id="sleight_of_hand" name="skills" />
+                        <input type="checkbox" disabled id="sleight_of_hand" name="skills" />
                         <label for="sleight_of_hand">Sleight of Hand</label>
                     </div>
                     <div class="skill">
-                        <input type="checkbox" id="stealth" name="skills" />
+                        <input type="checkbox" disabled id="stealth" name="skills" />
                         <label for="stealth">Stealth</label>
                     </div>
                     <div class="skill">
-                        <input type="checkbox" id="survival" name="skills" />
+                        <input type="checkbox" disabled id="survival" name="skills" />
                         <label for="survival">Survival</label>
                     </div>
                 </div>

@@ -53,6 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {   // 🟢 ← START main D
         });
     }
 
+
     // --- Disable already chosen classes in other selects ---
     function updateAvailableClasses() {
         const selected = rows.map(r => document.getElementById(r.classe).value).filter(v => v);
@@ -100,9 +101,28 @@ document.addEventListener("DOMContentLoaded", () => {   // 🟢 ← START main D
         //populateLevels();
     }
 
+    // ----- Show Subspecies
+
+    function updateAvailableSubRace() {
+        const RaceSelect = document.getElementById("species");
+        const subRaceSelect = document.getElementById("subspecies");
+
+        const RaceId = RaceSelect.value;
+
+        subRaceSelect.innerHTML = "";
+
+        if (RaceId && subRacesDict[RaceId]) {
+            subRacesDict[RaceId].forEach(sub => {
+                const opt = document.createElement("option");
+                opt.value = sub.SubRaceId;
+                opt.textContent = sub.SubName;
+                subRaceSelect.appendChild(opt);
+            });
+        }
+    }
+
     // --- Roll stats ---
     function createStats() {
-
         const totalArray = [];
         for (let i = 0; i < 6; i++) {
             const inputArray = [];
@@ -183,6 +203,25 @@ document.addEventListener("DOMContentLoaded", () => {   // 🟢 ← START main D
         });
     }
 
+        function pickRandomClass(selectId) {
+        const selectElem = document.getElementById(selectId);
+        selectElem.value = "";
+
+        let options = selectElem.dataset.options.split("|").map(o => {
+            const [value, text] = o.split(":");
+            return { value, text };
+        });
+        const selected = rows
+            .filter(r => r.classe !== selectId) 
+            .map(r => document.getElementById(r.classe).value)
+            .filter(v => v);
+        let availableOptions = options.filter(o => !selected.includes(o.value));
+
+        if (availableOptions.length === 0) return;
+        const randomIndex = Math.floor(Math.random() * availableOptions.length);
+        selectElem.value = availableOptions[randomIndex].value;
+    }
+
     // =============================
     // EVENT LISTENERS
     // =============================
@@ -208,6 +247,22 @@ document.addEventListener("DOMContentLoaded", () => {   // 🟢 ← START main D
         });
         updateAvailableStats();
     });
+
+    // ---- species&Subspecies ---
+
+    const SelectRace = document.getElementById("species");
+    const SelectSubRace = document.getElementById("subspecies");
+
+    if (!SelectRace || !SelectSubRace) {
+        console.error("IDs introuvables : #species ou #subspecies");
+        return;
+    }
+
+    SelectRace.addEventListener("change", () => {
+        SelectSubRace.disabled = false;
+        updateAvailableSubRace();
+    });
+
 
     // --- Checkboxes +1/+2 per row ---
     const abilityRows = document.querySelectorAll('.ability-row');
@@ -239,25 +294,6 @@ document.addEventListener("DOMContentLoaded", () => {   // 🟢 ← START main D
             updateTotalStats();
         });
     });
-
-    function pickRandomClass(selectId) {
-        const selectElem = document.getElementById(selectId);
-        selectElem.value = "";
-
-        let options = selectElem.dataset.options.split("|").map(o => {
-            const [value, text] = o.split(":");
-            return { value, text };
-        });
-        const selected = rows
-            .filter(r => r.classe !== selectId) 
-            .map(r => document.getElementById(r.classe).value)
-            .filter(v => v);
-        let availableOptions = options.filter(o => !selected.includes(o.value));
-
-        if (availableOptions.length === 0) return;
-        const randomIndex = Math.floor(Math.random() * availableOptions.length);
-        selectElem.value = availableOptions[randomIndex].value;
-    }
 
 
     // --- Class & level event listeners ---
@@ -310,6 +346,7 @@ document.addEventListener("DOMContentLoaded", () => {   // 🟢 ← START main D
     //populateLevels();
     updateAvailableClasses();
     updateAvailableStats();
+    updateAvailableSubRace();
 
     // =============================
     // SLIDE JS CODE (moved inside same DOMContentLoaded)

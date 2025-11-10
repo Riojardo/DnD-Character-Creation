@@ -5,9 +5,11 @@ namespace DnD_CharacterCreation.ViewModels
     public class CharacterViewModel
     {       
         public string? CharacterName { get; set; }
-         public string? Alignment { get; set; }
+        public string? Alignment { get; set; }
         public string? Background { get; set; }
         public int? BackgroundId { get; set; }
+        public int? Species { get; set; }
+        public int? Subspecies { get; set; }
         public int? Classe_First { get; set; }
         public int? Levelclasss_First { get; set; }
         public int? Classe_Second { get; set; }
