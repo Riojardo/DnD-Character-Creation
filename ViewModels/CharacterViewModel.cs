@@ -19,6 +19,12 @@ namespace DnD_CharacterCreation.ViewModels
         public int? Subclasse_First { get; set; }
         public int? Subclasse_Second { get; set; }
         public int? Subclasse_Third { get; set; }
+        public string? total_STR { get; set; }
+        public string? total_DEX { get; set; }
+        public string? total_CON { get; set; }
+        public string? total_INT { get; set; }
+        public string? total_WIS { get; set; }
+        public string? total_CHA { get; set; }
 
         public List<Background> Backgrounds { get; set; } = new();
 

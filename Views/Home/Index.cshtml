@@ -40,7 +40,7 @@
                     <!-- Character Name -->
                 <div class ="character_name">
                 <label for="Character_name" >Character Name:</label>
-                    <input asp-for="CharacterName" type="text" />
+                    <input asp-for="CharacterName" type="text" required title="Please name your character..."/>
                     <button class="character_name_button" type="button">
                        Random
                     </button>
@@ -85,7 +85,7 @@
                         <div class="class-row" id="row_second">
                             <div class="select-group">
                         <select id="classe_second" name="Classe_second" asp-for="Classe_Second" asp-items="@(new SelectList(Model.ListsAPI.ClassesNames,  "Key", "Value"))">
-
+                            <option value="" selected disabled></option>
                             </select>
                         <select id="level_second" asp-for="Levelclasss_Second" >
                                 <option value=""></option>
@@ -104,7 +104,7 @@
                         <div class="class-row" id="row_third">
                             <div class="select-group">
                         <select id="classe_third" name="Classe_third" asp-for="Classe_Third" asp-items="@(new SelectList(Model.ListsAPI.ClassesNames,  "Key", "Value"))">
-    
+                            <option value="" selected disabled></option>
                             </select>
                         <select id="level_third" asp-for="Levelclasss_Third">
                                 <option value=""></option>                                   
@@ -175,7 +175,8 @@
                                     </div> <div class="col-right"><span>Total :</span>
                                         </div>
                                         </div> 
-                                        <!-- Abilities -->
+                 
+                 <!-- Abilities -->
                 <div class="abilities-canvas">
                     @foreach (var ability in abilities)
                     {
@@ -197,6 +198,14 @@
 
                             <div class="col-right">
                                 <span id="total-@ability">00</span>
+                                <input type="hidden" id="total_@ability" name="total_@ability" />
+                                <script>                                
+                                    document.querySelector("form").addEventListener("submit", () => {
+                                            console.log(@ability + " sent:",
+                                                document.getElementById(`total_@ability`).value
+                                            );
+                                        });
+                                </script>
                             </div>
                         </div>
                     }

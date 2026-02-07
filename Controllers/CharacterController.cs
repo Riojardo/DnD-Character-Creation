@@ -4,10 +4,12 @@ using DnD_CharacterCreation.Services;
 using DnD_CharacterCreation.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Security.Policy;
+using static iText.StyledXmlParser.Jsoup.Select.Evaluator;
 
 namespace DnD_CharacterCreation.Controllers
 {
@@ -42,6 +44,12 @@ namespace DnD_CharacterCreation.Controllers
                 BackgroundId = 0,
                 Species = 0,
                 Subspecies = 0,
+                total_STR = "2",
+                total_DEX = "3",
+                total_CON = "4",
+                total_INT = "5",
+                total_WIS = "6",
+                total_CHA = "7",
             };
 
             return View(model);
@@ -58,8 +66,10 @@ namespace DnD_CharacterCreation.Controllers
                 BackgroundId = model.BackgroundId,
                 RaceId = model.Species,
                 SubRaceId = model.Subspecies,
-                UserId = userId
+                UserId = userId,
+
             };
+
 
             _context.Characters.Add(character);
             _context.SaveChanges();
@@ -98,7 +108,27 @@ namespace DnD_CharacterCreation.Controllers
                         _context.SaveChanges();
                                 
             }
-                       return RedirectToAction("UserCharacter", "Home");
+
+            var characterStats = new CharacterAbility
+            {
+                CharacterId = character.CharacterId,
+                Strength = string.IsNullOrEmpty(model.total_STR) ? 0 : Convert.ToInt32(model.total_STR),
+                Dexterity = string.IsNullOrEmpty(model.total_DEX) ? 0 : Convert.ToInt32(model.total_DEX),
+                Constitution = string.IsNullOrEmpty(model.total_CON) ? 0 : Convert.ToInt32(model.total_CON),
+                Intelligence = string.IsNullOrEmpty(model.total_INT) ? 0 : Convert.ToInt32(model.total_INT),
+                Wisdom = string.IsNullOrEmpty(model.total_WIS) ? 0 : Convert.ToInt32(model.total_WIS),
+                Charisma = string.IsNullOrEmpty(model.total_CHA) ? 0 : Convert.ToInt32(model.total_CHA),
+                /*Strength =2,
+                Dexterity = 2,
+                Constitution = 2,
+                Intelligence = 2,
+                Wisdom = 2,
+                Charisma = 2,*/
+            };
+            _context.CharacterAbility.Add(characterStats);
+            _context.SaveChanges();
+
+            return RedirectToAction("UserCharacter", "Home");
 
         }
         public IActionResult UserCharacter()

@@ -2,7 +2,7 @@
 // for details on configuring this project to bundle and minify static web assets.
 
 // Write your JavaScript code.
-document.addEventListener("DOMContentLoaded", () => {   // 🟢 ← START main DOMContentLoaded
+document.addEventListener("DOMContentLoaded", () => {  
 
     // =============================
     // VARIABLES
@@ -91,11 +91,21 @@ document.addEventListener("DOMContentLoaded", () => {   // 🟢 ← START main D
             });
         }
     }
+
+    function updateLevelIfClassNull(row) {
+        const classSelect = document.getElementById(row.classe);
+        const levelSelect = document.getElementById(row.level);
+
+        if (classSelect.innerHTML === "") {
+            levelSelect.innerHTML = "";
+            levelSelect.textContent = "";
+        }
+    }
     // --- Remove a row ---
     function removeRow(rowId) {
         const row = document.getElementById(rowId);
         const selects = row.querySelectorAll("select");
-        selects.forEach(s => s.value = ""); // reset select values
+        selects.forEach(s => s.value = ""); 
         updateAvailableClasses();
         //
         //populateLevels();
@@ -121,6 +131,21 @@ document.addEventListener("DOMContentLoaded", () => {   // 🟢 ← START main D
         }
     }
 
+    // --- abilities --
+    document.addEventListener("DOMContentLoaded", () => {
+        const abilities = ["STR", "DEX", "CON", "INT", "WIS", "CHA"];
+
+        abilities.forEach(a => {
+            const span = document.getElementById(`total-${a}`);
+            const input = document.getElementById(`input-total-${a}`);
+
+            if (span && input) {
+                input.value = span.innerText;
+            } else {
+                console.log(`Missing element for ${a}`);
+            }
+        });
+    });
     // --- Roll stats ---
     function createStats() {
         const totalArray = [];
@@ -179,9 +204,12 @@ document.addEventListener("DOMContentLoaded", () => {   // 🟢 ← START main D
         const rows = document.querySelectorAll('.ability-row');
 
         rows.forEach(row => {
+            
             const select = row.querySelector('select');
             const checkboxes = row.querySelectorAll('input[type="checkbox"]');
             const span = row.querySelector('span');
+            const ability = span.id.split('-')[1];
+            const input = document.getElementById(`total_${ability}`);
 
             let totalValue = 0;
 
@@ -200,7 +228,14 @@ document.addEventListener("DOMContentLoaded", () => {   // 🟢 ← START main D
             } else {
                 span.textContent = "";
             }
+            input.value = span.textContent;
+            statsInConsole(span);
         });
+    }
+
+    // put stat in console
+    function statsInConsole(span) {
+        console.log(span.textContent);
     }
 
         function pickRandomClass(selectId) {
@@ -264,6 +299,8 @@ document.addEventListener("DOMContentLoaded", () => {   // 🟢 ← START main D
     });
 
 
+
+
     // --- Checkboxes +1/+2 per row ---
     const abilityRows = document.querySelectorAll('.ability-row');
     abilityRows.forEach(row => {
@@ -305,6 +342,7 @@ document.addEventListener("DOMContentLoaded", () => {   // 🟢 ← START main D
         classeSel.addEventListener("change", () => {
             updateAvailableClasses(); 
             updateAvailableSubClasses(r);
+            updateLevelIfClassNull(r)
             populateLevels();
         });
 
@@ -344,12 +382,18 @@ document.addEventListener("DOMContentLoaded", () => {   // 🟢 ← START main D
 
     // --- Initial setup ---
     //populateLevels();
+
+
     updateAvailableClasses();
     updateAvailableStats();
     updateAvailableSubRace();
 
+
+
+
+
     // =============================
-    // SLIDE JS CODE (moved inside same DOMContentLoaded)
+    // SLIDE JS CODE 
     // =============================
 
     const slider = document.querySelector(".form-slider");
