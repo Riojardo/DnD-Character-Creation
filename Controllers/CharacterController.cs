@@ -6,9 +6,13 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
+using Org.BouncyCastle.Asn1.Utilities;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Security.Claims;
 using System.Security.Policy;
+using System.Text.RegularExpressions;
 using static iText.StyledXmlParser.Jsoup.Select.Evaluator;
 
 namespace DnD_CharacterCreation.Controllers
@@ -118,14 +122,34 @@ namespace DnD_CharacterCreation.Controllers
                 Intelligence = string.IsNullOrEmpty(model.total_INT) ? 0 : Convert.ToInt32(model.total_INT),
                 Wisdom = string.IsNullOrEmpty(model.total_WIS) ? 0 : Convert.ToInt32(model.total_WIS),
                 Charisma = string.IsNullOrEmpty(model.total_CHA) ? 0 : Convert.ToInt32(model.total_CHA),
-                /*Strength =2,
-                Dexterity = 2,
-                Constitution = 2,
-                Intelligence = 2,
-                Wisdom = 2,
-                Charisma = 2,*/
+   
             };
             _context.CharacterAbility.Add(characterStats);
+            _context.SaveChanges();
+
+            var characterSkills = new CharacterSkill
+            {
+                CharacterId = character.CharacterId,
+                Acrobatics = model.Acrobatics,
+                AnimalHandling = model.AnimalHandling,
+                Arcana = model.Arcana,
+                Athletics = model.Athletics,
+                Deception = model.Deception,
+                History = model.History,
+                Insight = model.Insight,
+                Intimidation = model.Intimidation,
+                Investigation = model.Investigation,
+                Medicine = model.Medicine,
+                Nature = model.Nature,
+                Perception = model.Perception,
+                Performance = model.Performance,
+                Persuasion = model.Persuasion,
+                Religion = model.Religion,
+                SleightOfHand = model.SleightOfHand,
+                Stealth = model.Stealth,
+                Survival = model.Survival
+            };
+            _context.CharacterSkill.Add(characterSkills);
             _context.SaveChanges();
 
             return RedirectToAction("UserCharacter", "Home");

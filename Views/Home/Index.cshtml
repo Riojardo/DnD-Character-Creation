@@ -9,6 +9,27 @@
     var UrlBase = $"{Context.Request.Scheme}://{Context.Request.Host}";
     ViewData["Title"] = "Home Page";
     var abilities = new List<string> { "STR", "DEX", "CON", "INT", "WIS", "CHA" };
+    var skillsList = new List<string>
+{
+    "Acrobatics",
+    "AnimalHandling",
+    "Arcana",
+    "Athletics",
+    "Deception",
+    "History",
+    "Insight",
+    "Intimidation",
+    "Investigation",
+    "Medicine",
+    "Nature",
+    "Perception",
+    "Performance",
+    "Persuasion",
+    "Religion",
+    "SleightOfHand",
+    "Stealth",
+    "Survival"
+};
 }
 
 @model DnD_CharacterCreation.ViewModels.CharacterViewModel
@@ -27,44 +48,44 @@
         <p> You need to be connected to create you Character.</p>
     }
 </div>
- @if (signInManager.IsSignedIn(User))
-    {
-        <form asp-controller="Character" asp-action="Create" method="post">
-            <div class="form-slider">
-                <!-- Box 1 -->
-                <div class="form-box form-box-1">
-                    <button class="slide-btn slide-btn-right" type="button">
-                        <img src="@Url.Content("~/images/triangle-blancsur-fond-noir.png")" alt="Next" class="dice_button">
-                    </button>
+@if (signInManager.IsSignedIn(User))
+{
+    <form asp-controller="Character" asp-action="Create" method="post">
+        <div class="form-slider">
+            <!-- Box 1 -->
+            <div class="form-box form-box-1">
+                <button class="slide-btn slide-btn-right" type="button">
+                    <img src="@Url.Content("~/images/triangle-blancsur-fond-noir.png")" alt="Next" class="dice_button">
+                </button>
 
-                    <!-- Character Name -->
+                <!-- Character Name -->
                 <div class ="character_name">
-                <label for="Character_name" >Character Name:</label>
+                    <label for="Character_name" >Character Name:</label>
                     <input asp-for="CharacterName" type="text" required title="Please name your character..."/>
                     <button class="character_name_button" type="button">
-                       Random
+                        Random
                     </button>
                 </div>
 
-                    <!-- Gender -->
-                    <label for="gender">Gender:</label>
-                    <select name="gender">
-                        <option value="">Please select one…</option>
-                        <option value="female">Female</option>
-                        <option value="male">Male</option>
-                        <option value="non-binary">Non-Binary</option>
-                        <option value="other">Other</option>
-                        <option value="Prefer not to answer">Prefer not to answer</option>
-                    </select>
+                <!-- Gender -->
+                <label for="gender">Gender:</label>
+                <select name="gender">
+                    <option value="">Please select one…</option>
+                    <option value="female">Female</option>
+                    <option value="male">Male</option>
+                    <option value="non-binary">Non-Binary</option>
+                    <option value="other">Other</option>
+                    <option value="Prefer not to answer">Prefer not to answer</option>
+                </select>
 
-                    <!-- Classes -->
-                    <label for="Classe">Choose your Class:</label>
+                <!-- Classes -->
+                <label for="Classe">Choose your Class:</label>
 
-                        <!-- First Class -->
+                <!-- First Class -->
                 <div class="class-row visible" id="row_first">
-                            <div class="select-group">
+                    <div class="select-group">
                         <select id="classe_first" name="Classe_first" asp-for="Classe_First" asp-items="@(new SelectList(Model.ListsAPI.ClassesNames, "Key", "Value"))">
-                                </select>
+                        </select>
                         <select id="level_first" asp-for="Levelclasss_First" class="form-control">
                             @for (int i = 1; i <= 20; i++)
                             {
@@ -74,77 +95,77 @@
                             }
                         </select>
                         <select id="subclasse_first" name="Subclasse_first" asp-for="Subclasse_First">
-                                               
-                            </select>
-                     
-                                      </div>
-                            <button type="button" class="add-btn" id="classe2_button">➕ Add class</button>
-                        </div>
 
-                        <!-- Second Class -->
-                        <div class="class-row" id="row_second">
-                            <div class="select-group">
+                        </select>
+
+                    </div>
+                    <button type="button" class="add-btn" id="classe2_button">➕ Add class</button>
+                </div>
+
+                <!-- Second Class -->
+                <div class="class-row" id="row_second">
+                    <div class="select-group">
                         <select id="classe_second" name="Classe_second" asp-for="Classe_Second" asp-items="@(new SelectList(Model.ListsAPI.ClassesNames,  "Key", "Value"))">
                             <option value="" selected disabled></option>
-                            </select>
+                        </select>
                         <select id="level_second" asp-for="Levelclasss_Second" >
-                                <option value=""></option>
-                                   
-                                </select>
+                            <option value=""></option>
+
+                        </select>
                         <select id="subclasse_second" name="Subclasse_second" asp-for="Subclasse_Second" >
                         </select>
-                            </div>
-                            <div style="display: flex; gap: 0.5rem;">
-                                <button type="button" class="add-btn" id="classe3_button">➕ Add class</button>
-                                <button type="button" class="remove-btn" id="remove_second">❌</button>
-                            </div>
-                        </div>
+                    </div>
+                    <div style="display: flex; gap: 0.5rem;">
+                        <button type="button" class="add-btn" id="classe3_button">➕ Add class</button>
+                        <button type="button" class="remove-btn" id="remove_second">❌</button>
+                    </div>
+                </div>
 
-                        <!-- Third Class -->
-                        <div class="class-row" id="row_third">
-                            <div class="select-group">
+                <!-- Third Class -->
+                <div class="class-row" id="row_third">
+                    <div class="select-group">
                         <select id="classe_third" name="Classe_third" asp-for="Classe_Third" asp-items="@(new SelectList(Model.ListsAPI.ClassesNames,  "Key", "Value"))">
                             <option value="" selected disabled></option>
-                            </select>
+                        </select>
                         <select id="level_third" asp-for="Levelclasss_Third">
-                                <option value=""></option>                                   
-                                </select>
+                            <option value=""></option>                                   
+                        </select>
                         <select id="subclasse_third" name="Subclasse_third" asp-for="Subclasse_Third">
                         </select>
-                            </div>
-                            <button type="button" class="remove-btn" id="remove_third">❌</button>
-                        </div>
+                    </div>
+                    <button type="button" class="remove-btn" id="remove_third">❌</button>
+                </div>
 
-                    <!-- Alignment -->
-                    <label for="alignment">Choose an alignment:</label>
-                    <select name="alignment" id="alignment">
-                        <option value="LG">Lawful Good</option>
-                        <option value="NG">Neutral Good</option>
-                        <option value="CG">Chaotic Good</option>
-                        <option value="LN">Lawful Neutral</option>
-                        <option value="N">True Neutral</option>
-                        <option value="CN">Chaotic Neutral</option>
-                        <option value="LE">Lawful Evil</option>
-                        <option value="NE">Neutral Evil</option>
-                        <option value="CE">Chaotic Evil</option>
-                    </select>
+                <!-- Alignment -->
+                <label for="alignment">Choose an alignment:</label>
+                <select name="alignment" id="alignment">
+                    <option value="LG">Lawful Good</option>
+                    <option value="NG">Neutral Good</option>
+                    <option value="CG">Chaotic Good</option>
+                    <option value="LN">Lawful Neutral</option>
+                    <option value="N">True Neutral</option>
+                    <option value="CN">Chaotic Neutral</option>
+                    <option value="LE">Lawful Evil</option>
+                    <option value="NE">Neutral Evil</option>
+                    <option value="CE">Chaotic Evil</option>
+                </select>
 
-                    <!-- Background -->
-                    <label for="background">Choose A Background:</label>
+                <!-- Background -->
+                <label for="background">Choose A Background:</label>
                 <select name="BackgroundId" id="background" asp-for="BackgroundId">
                     @foreach (var background in Model.ListsAPI.Background)
                     {
                         <option value="@background.BackgroundId">@background.Name (@background.PrimarySkill/@background.SecondarySkill)</option>
                     }
-                    </select>
-                </div>
+                </select>
+            </div>
             <!-- Box 2 --> 
             <div class="form-box form-box-2">
                 <button class="slide-btn slide-btn-left" type="button"> 
-                <img src="@Url.Content("~/images/triangle-blancsur-fond-noir.png")" alt="Previous">
+                    <img src="@Url.Content("~/images/triangle-blancsur-fond-noir.png")" alt="Previous">
                 </button> 
                 <button class="slide-btn slide-btn-right" type="button"> <img src="@Url.Content("~/images/triangle-blancsur-fond-noir.png")" alt="Next"> 
-                    </button>
+                </button>
                 <!-- Species -->
 
                 <label for="species">Choose A Species:
@@ -164,19 +185,19 @@
                     <span>Click on the Dice to Determine your stats :</span>
                     <button type="button" class="dice-btn" aria-label="Roll stats" id="button-stats"> 
                         <img src="@Url.Content("~/images/Dice20_button.png")" alt="Roll Dice" /> 
-                        </button>
-                        <span id="stats-display">0, 0, 0, 0, 0, 0</span> 
-                        </div>
-                        <!-- Header -->
+                    </button>
+                    <span id="stats-display">0, 0, 0, 0, 0, 0</span> 
+                </div>
+                <!-- Header -->
 
-                        <div class="label-abilities_description">
-                            <div class="col-left"><span>Stats :</span>
-                                </div> <div class="col-middle"><span>Bonus :</span>
-                                    </div> <div class="col-right"><span>Total :</span>
-                                        </div>
-                                        </div> 
-                 
-                 <!-- Abilities -->
+                <div class="label-abilities_description">
+                    <div class="col-left"><span>Stats :</span>
+                    </div> <div class="col-middle"><span>Bonus :</span>
+                    </div> <div class="col-right"><span>Total :</span>
+                    </div>
+                </div> 
+
+                <!-- Abilities -->
                 <div class="abilities-canvas">
                     @foreach (var ability in abilities)
                     {
@@ -201,10 +222,10 @@
                                 <input type="hidden" id="total_@ability" name="total_@ability" />
                                 <script>                                
                                     document.querySelector("form").addEventListener("submit", () => {
-                                            console.log(@ability + " sent:",
-                                                document.getElementById(`total_@ability`).value
-                                            );
-                                        });
+                                    console.log(@ability + " sent:",
+                                    document.getElementById(`total_@ability`).value
+                                    );
+                                    });
                                 </script>
                             </div>
                         </div>
@@ -236,97 +257,38 @@
                     openBtn.addEventListener('click', () => dialog.showModal());
 
                     document.getElementById('confirmManeuvers').addEventListener('click', () => {
-                        const checked = Array.from(dialog.querySelectorAll('input[type=checkbox]:checked'))
-                                            .map(cb => cb.value);
-                        hiddenInput.value = JSON.stringify(checked);
-                        dialog.close();
-                        console.log("Chosen maneuvers:", checked);
+                    const checked = Array.from(dialog.querySelectorAll('input[type=checkbox]:checked'))
+                    .map(cb => cb.value);
+                    hiddenInput.value = JSON.stringify(checked);
+                    dialog.close();
+                    console.log("Chosen maneuvers:", checked);
                     });
 
                     document.getElementById('cancelManeuvers').addEventListener('click', () => {
-                        dialog.close();
+                    dialog.close();
                     });
                 </script>
 
-                    </div>
-          
+            </div>
+
             <div class="form-box form-box-3">
                 <button class="slide-btn slide-btn-left" type="button">
                     <img src="@Url.Content("~/images/triangle-blancsur-fond-noir.png")" alt="Previous">
                 </button>
                 <div class="skills">
-                    <div class="skill">
-                        <input type="checkbox" disabled id="acrobatics" name="skills" />
-                        <label for="acrobatics">Acrobatics</label>
-                    </div>
-                    <div class="skill">
-                        <input type="checkbox" disabled id="animal_handling" name="skills" />
-                        <label for="animal_handling">Animal Handling</label>
-                    </div>
-                    <div class="skill">
-                        <input type="checkbox" disabled id="arcana" name="skills" />
-                        <label for="arcana">Arcana</label>
-                    </div>
-                    <div class="skill">
-                        <input type="checkbox" disabled id="athletics" name="skills" />
-                        <label for="athletics">Athletics</label>
-                    </div>
-                    <div class="skill">
-                        <input type="checkbox" disabled id="deception" name="skills" />
-                        <label for="deception">Deception</label>
-                    </div>
-                    <div class="skill">
-                        <input type="checkbox" disabled id="history" name="skills" />
-                        <label for="history">History</label>
-                    </div>
-                    <div class="skill">
-                        <input type="checkbox" disabled id="insight" name="skills" />
-                        <label for="insight">Insight</label>
-                    </div>
-                    <div class="skill">
-                        <input type="checkbox" disabled id="intimidation" name="skills" />
-                        <label for="intimidation">Intimidation</label>
-                    </div>
-                    <div class="skill">
-                        <input type="checkbox" disabled id="investigation" name="skills" />
-                        <label for="investigation">Investigation</label>
-                    </div>
-                    <div class="skill">
-                        <input type="checkbox" disabled id="medicine" name="skills" />
-                        <label for="medicine">Medicine</label>
-                    </div>
-                    <div class="skill">
-                        <input type="checkbox" disabled id="nature" name="skills" />
-                        <label for="nature">Nature</label>
-                    </div>
-                    <div class="skill">
-                        <input type="checkbox" disabled id="perception" name="skills" />
-                        <label for="perception">Perception</label>
-                    </div>
-                    <div class="skill">
-                        <input type="checkbox" disabled id="performance" name="skills" />
-                        <label for="performance">Performance</label>
-                    </div>
-                    <div class="skill">
-                        <input type="checkbox" disabled id="persuasion" name="skills" />
-                        <label for="persuasion">Persuasion</label>
-                    </div>
-                    <div class="skill">
-                        <input type="checkbox" disabled id="religion" name="skills" />
-                        <label for="religion">Religion</label>
-                    </div>
-                    <div class="skill">
-                        <input type="checkbox" disabled id="sleight_of_hand" name="skills" />
-                        <label for="sleight_of_hand">Sleight of Hand</label>
-                    </div>
-                    <div class="skill">
-                        <input type="checkbox" disabled id="stealth" name="skills" />
-                        <label for="stealth">Stealth</label>
-                    </div>
-                    <div class="skill">
-                        <input type="checkbox" disabled id="survival" name="skills" />
-                        <label for="survival">Survival</label>
-                    </div>
+                    @foreach (var skill in skillsList)
+                    {
+                        <div class="skill">
+                            <input type="checkbox" name="@skill" value="true" id="@skill" />
+                            <input type="hidden" name="@skill" value="false" />
+                            <label for="@skill">
+                                @(skill == "AnimalHandling" ? "Animal Handling" :
+                                  skill == "SleightOfHand" ? "Sleight of Hand" : skill)
+                            </label>
+
+                            <input type="hidden" name="@skill" value="false" />
+                        </div>
+                    }
                 </div>
                 <!-- Feat -->
                 <div class=" feats">
