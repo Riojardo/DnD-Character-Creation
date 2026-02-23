@@ -42,9 +42,10 @@ namespace DnD_CharacterCreation.Controllers
                                    {
                                         var classEntity = await _context.Class.FirstOrDefaultAsync(c => c.ClassId == cc.ClassId);
                                         if (classEntity != null)
-                                            classInfos.Add($"{classEntity.Name}/{cc.Level}");
+                                            classInfos.Add($"{classEntity.Name}({cc.Level})");
                                             levelTotal = cc.Level + levelTotal;
                                    }
+
                                    var totalXP = levelTotal switch
                                    {
                                        <= 1 => 0,
@@ -68,12 +69,16 @@ namespace DnD_CharacterCreation.Controllers
                                    };
 
             var firstClass = _context.Class.SingleOrDefault(c => c.ClassId == characterClasses[0].ClassId);
+            var secondClass = characterClasses.Count >=2 ? _context.Class.SingleOrDefault(c => c.ClassId == characterClasses[1].ClassId) : null;
+            var thirdClass = characterClasses.Count == 3 ? _context.Class.SingleOrDefault(c => c.ClassId == characterClasses[2].ClassId) : null;
+
             bool saveSTR = (firstClass.PrimaryAbility == "Strength" || firstClass.SecondaryAbility == "Strength");
             bool saveDEX = (firstClass.PrimaryAbility == "Dexterity" || firstClass.SecondaryAbility == "Dexterity");
             bool saveCON = (firstClass.PrimaryAbility == "Constitution" || firstClass.SecondaryAbility == "Constitution");
             bool saveINT = (firstClass.PrimaryAbility == "Intelligence" || firstClass.SecondaryAbility == "Intelligence");
             bool saveWIS = (firstClass.PrimaryAbility == "Wisdom" || firstClass.SecondaryAbility == "Wisdom");
             bool saveCHA = (firstClass.PrimaryAbility == "Charisma" || firstClass.SecondaryAbility == "Charisma");
+
 
             var stats = _context.CharacterAbility
                         .Where(cc => cc.CharacterId == characterId)
@@ -97,13 +102,16 @@ namespace DnD_CharacterCreation.Controllers
             double modINT = Math.Floor(((stats.Intelligence ?? 0) - 10) / 2.0);
             double modWIS = Math.Floor(((stats.Wisdom ?? 0) - 10) / 2.0);
             double modCHA = Math.Floor(((stats.Charisma ?? 0) - 10) / 2.0);
-           
+
+            var hitPoint = (decimal)(firstClass?.HitDice ?? 0) + ((decimal)levelTotal * (decimal)modCON) +
+                           (decimal)((((characterClasses.ElementAtOrDefault(0)?.Level - 1) ?? 0) * (((firstClass?.HitDice ?? 0) / 2.0) + 1))) +
+                           (decimal)(((characterClasses.ElementAtOrDefault(1)?.Level ?? 0) * (((secondClass?.HitDice ?? 0) / 2.0) + 1))) +
+                           (decimal)(((characterClasses.ElementAtOrDefault(2)?.Level ?? 0) * (((thirdClass?.HitDice ?? 0) / 2.0) + 1)));
 
             var field_Race = String.IsNullOrEmpty(subspecie?.SubRaceName) ? $"{specie?.RaceName}" : $"{specie?.RaceName}({subspecie?.SubRaceName})";
 
             if (character == null)
                 return NotFound();
-
 
 
            ///pdfEditor
@@ -118,15 +126,17 @@ namespace DnD_CharacterCreation.Controllers
                 var form = PdfAcroForm.GetAcroForm(pdf, true);
                 form.GetField("PlayerName")?.SetValue(character.CharacterName);
                 form.GetField("CharacterName")?.SetValue(character.CharacterName);
-                form.GetField("ClassLevel")?.SetValue(string.Join(" ", classInfos));
-                form.GetField("Background")?.SetValue(background.Name);
+                form.GetField("ClassLevel")?.SetValue(string.Join(" /", classInfos));
+                form.GetField("Background")?.SetValue(background?.Name);
                 form.GetField("Race ")?.SetValue(field_Race);
                 form.GetField("Alignment")?.SetValue(character.Alignment);
                 form.GetField("ProfBonus")?.SetValue(proficiencyBonus.ToString()); 
                 form.GetField("XP")?.SetValue(totalXP.ToString());
+                form.GetField("HPMax")?.SetValue(hitPoint.ToString()); 
+                form.GetField("HPCurrent")?.SetValue(hitPoint.ToString());
 
                 //Ability
-                
+
                 form.GetField("STR")?.SetValue(stats.Strength.ToString());
                 form.GetField("STRmod")?.SetValue($"{modSTR}");
                 

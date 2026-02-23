@@ -141,9 +141,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (span && input) {
                 input.value = span.innerText;
-            } else {
-                console.log(`Missing element for ${a}`);
-            }
+            } 
         });
     });
     // --- Roll stats ---
@@ -228,10 +226,74 @@ document.addEventListener("DOMContentLoaded", () => {
             } else {
                 span.textContent = "";
             }
+            input.value = input.value > 20 ? 20 : input.value;
             input.value = span.textContent;
             statsInConsole(span);
         });
     }
+
+    // limt skills to 4
+    function limitSkillsTo4() {
+        const divSkills = document.querySelectorAll('.skills');
+        const background = document.getElementById('background');
+
+        divSkills.forEach(container => {
+            container.addEventListener('change', () => {
+                const checkedBoxes = container.querySelectorAll('input[type="checkbox"]:checked');
+                let counter = checkedBoxes.length;
+
+                if ((counter >= 2 && background.value == "") || (counter >= 4 && background.value != ""))
+                {
+                    const unchecked = container.querySelectorAll('input[type="checkbox"]:not(:checked)');
+                    unchecked.forEach(input => {
+                        input.disabled = true;
+                    });
+                }
+                else {
+                    const allInputs = container.querySelectorAll('input[type="checkbox"]');
+                    allInputs.forEach(input => {
+                        input.disabled = false;
+                    });
+                }
+            });
+        });
+    }
+    // update skills in background
+
+    let ancientBackgroundText = "";
+
+    function backgroundSkillsUpdate() {
+        const selectedOptionText = this.options[this.selectedIndex].text;
+
+        const extract = (text) => {
+            if (!text || !text.includes('(')) return [];
+            const rawPart = text.split('(')[1].split(')')[0];
+            return rawPart.split('/').map(skill =>
+                skill.trim().replace(/\s+/g, '').toLowerCase()
+            );
+        };
+
+        const oldSkills = extract(ancientBackgroundText);
+        const newSkills = extract(selectedOptionText);
+        const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+
+        checkboxes.forEach(checkbox => {
+            const cleanId = checkbox.id.trim().replace(/\s+/g, '').toLowerCase();
+
+            if (oldSkills.includes(cleanId)) {
+                checkbox.checked = false;
+            }
+            if (newSkills.includes(cleanId)) {
+                checkbox.checked = true;
+            }
+        });
+
+        ancientBackgroundText = selectedOptionText;
+        limitSkillsTo4();
+    }
+
+    limitSkillsTo4();
+
 
     // put stat in console
     function statsInConsole(span) {
@@ -242,7 +304,8 @@ document.addEventListener("DOMContentLoaded", () => {
         const selectElem = document.getElementById(selectId);
         selectElem.value = "";
 
-        let options = selectElem.dataset.options.split("|").map(o => {
+            console.log(selectElem);
+        let options = selectElem.dataset.options.map(o => {
             const [value, text] = o.split(":");
             return { value, text };
         });
@@ -257,6 +320,146 @@ document.addEventListener("DOMContentLoaded", () => {
         selectElem.value = availableOptions[randomIndex].value;
     }
 
+
+    // FEATS dialog /////////////
+
+    const dialog = document.getElementById('featDialog');
+
+    const menu = document.getElementById('view-menu');
+    const statsView = document.getElementById('view-stats');
+    const featsView = document.getElementById('view-feats');
+    const allCheckboxes = featsView.querySelectorAll('input[type="checkbox"]');
+    const allStatsSelect = statsView.querySelectorAll('input[type="label"]');
+    let totalSlots = 0;
+    function getTotalFeatsSlot() {
+       
+
+        if (getSpentSlots() < 0) {
+            allCheckboxes.checked = false;
+            allStatsSelect.values = 0;
+        }
+        const lvl1 = document.getElementById('classe_first')?.value !== "" ? (parseInt(document.getElementById('level_first')?.value) || 0) : 0;
+        const lvl2 = document.getElementById('classe_second')?.value !== "" ? (parseInt(document.getElementById('level_second')?.value) || 0) : 0;
+        const lvl3 = document.getElementById('classe_third')?.value !== "" ? (parseInt(document.getElementById('level_third')?.value) || 0) : 0;
+        totalSlots = Math.floor(lvl1 / 4) + Math.floor(lvl2 / 4) + Math.floor(lvl3 / 4);
+        return totalSlots;
+
+    }
+
+    function verifyFeatsSlotValue() {
+        const totalPointsAllowed = getTotalFeatsSlot() * 2;
+
+        const featpoints = document.querySelectorAll('.feat-cb:checked').length * 2;
+
+
+        let statpoints = 0;
+        const statInputs = document.querySelectorAll('.stat-increment');
+        statInputs.forEach(input => {
+            statpoints += parseInt(input.value) || 0;
+        });
+
+        if ((totalPointsAllowed - featpoints - statpoints) < 0) {
+           
+
+
+            document.querySelectorAll('.feat-cb').forEach(cb => {
+                cb.checked = false;
+            });
+
+            statInputs.forEach(input => {
+                input.value = 0;
+            });
+            //updateRemainingSlotsDisplay();
+        }
+    }
+    function updateLimitsStatsBonus() {
+            
+       const totalPointsAllowed = getTotalFeatsSlot() * 2;
+       const featpoints = document.querySelectorAll('.feat-cb:checked').length * 2;
+
+    let statpoints = 0;
+    document.querySelectorAll('.stat-increment').forEach(input => {
+        statpoints += parseInt(input.value) || 0;
+    });
+
+
+
+    document.querySelectorAll('.stat-increment').forEach(input => {
+        const currentval = parseInt(input.value) || 0;
+        input.max = currentval + (totalPointsAllowed - featpoints - statpoints);
+        input.min = 0;
+    });
+        document.getElementById('slots-remaining').innerText = Math.floor((totalPointsAllowed - featpoints - statpoints) / 2);
+    }
+
+        // Function to switch views
+    function showView(viewName) {
+        menu.style.display = 'none';
+        statsView.style.display = 'none';
+        featsView.style.display = 'none';
+
+        if (viewName === 'menu') menu.style.display = 'block';
+        if (viewName === 'stats') statsView.style.display = 'block';
+        if (viewName === 'feats') featsView.style.display = 'block';
+    }
+
+    function getSpentSlots() {
+        const checkboxFeats = document.querySelectorAll('.feat-cb');
+        const checkedFeats = document.querySelectorAll('.feat-cb:checked').length;
+
+        let statPoints = 0;
+        document.querySelectorAll('.stat-increment').forEach(input => {
+            statPoints += parseInt(input.value) || 0;
+        });
+
+        return checkedFeats + Math.ceil(statPoints / 2);
+    }
+
+    function syncFeatState() {
+        const spent = getSpentSlots();
+        const isFull = (spent >= getTotalFeatsSlot());
+        const allCheckboxes = featsView.querySelectorAll('input[type="checkbox"]');
+        const allStatsSelect = statsView.querySelectorAll('input[type="label"]');
+  
+        
+        allCheckboxes.forEach(input => {
+            if (!input.checked) {
+                input.disabled = isFull;
+            }
+        });
+
+    }
+  
+    dialog.addEventListener('change', () => {
+        totalSlots = getTotalFeatsSlot() / 2;
+        syncFeatState();
+    });
+
+    document.getElementById('stats-options').addEventListener('input', updateLimitsStatsBonus);
+
+    document.getElementById('openFeats').addEventListener('click', () => {
+        totalSlots = getTotalFeatsSlot() / 2;
+        verifyFeatsSlotValue();
+        getTotalFeatsSlot();
+        updateLimitsStatsBonus();
+        syncFeatState();  
+        showView('menu');
+        dialog.showModal();
+    });
+
+    document.getElementById('btn-to-stats').addEventListener('click', () => showView('stats'));
+    document.getElementById('btn-to-feats').addEventListener('click', () => showView('feats'));
+    document.querySelectorAll('.btn-back').forEach(btn => {
+        btn.addEventListener('click', () => {
+            totalSlots = getTotalFeatsSlot() / 2;
+            verifyFeatsSlotValue();
+            getTotalFeatsSlot();
+            updateLimitsStatsBonus();
+            syncFeatState();
+            showView('menu');
+        });
+    });
+
     // =============================
     // EVENT LISTENERS
     // =============================
@@ -265,13 +468,15 @@ document.addEventListener("DOMContentLoaded", () => {
     const buttonStats = document.getElementById('button-stats');
     const displayStats = document.getElementById('stats-display');
 
-    buttonStats.addEventListener('click', () => {
+    buttonStats?.addEventListener('click', () => {
 
         const totalArray = createStats();
+        const totalSpan = document.getElementById('totalSpan');
+        totalSpan.textContent = `Total: ${totalArray.reduce((acc, curr) => acc + curr, 0) }`;
         displayStats.textContent = totalArray.join(', ');
 
         document.querySelectorAll(".ability-row select").forEach((select, index) => {
-            select.innerHTML = "<option value=''></option>";
+            select.innerHTML = "<option value=''>00</option>";
             totalArray.forEach(value => {
                 const option = document.createElement("option");
                 option.value = value;
@@ -281,6 +486,38 @@ document.addEventListener("DOMContentLoaded", () => {
             select.addEventListener("change", updateAvailableStats);
         });
         updateAvailableStats();
+    });
+
+    // feats finish
+
+    document.getElementById('confirmFeats').addEventListener('click', () => {
+        const spent = getSpentSlots();
+
+        if (spent > totalSlots) {
+            alert(`You have used ${spent} slots, but you only have ${totalSlots} available!`);
+            return;
+        }
+
+        const checkedFeats = Array.from(document.querySelectorAll('.feat-cb:checked'))
+            .map(cb => cb.value);
+
+        const statIncreases = {};
+        document.querySelectorAll('.stat-increment').forEach(input => {
+            if (parseInt(input.value) > 0) {
+                statIncreases[input.name] = parseInt(input.value);
+            }
+        });
+
+        const finalData = {
+            feats: checkedFeats,
+            stats: statIncreases
+        };
+
+        const hiddenInput = document.getElementById('chosenFeats');
+        hiddenInput.value = JSON.stringify(finalData);
+
+        console.log("Saving data:", finalData);
+        dialog.close();
     });
 
     // ---- species&Subspecies ---
@@ -344,12 +581,15 @@ document.addEventListener("DOMContentLoaded", () => {
             updateAvailableSubClasses(r);
             updateLevelIfClassNull(r)
             populateLevels();
+            syncFeatState()
         });
 
         // When level changes
         levelSel.addEventListener("change", () => {
             populateLevels();
-            updateAvailableSubClasses(r); 
+            updateAvailableSubClasses(r);
+            updateLimitsStatsBonus();
+            syncFeatState()
         });
     });
 
@@ -357,7 +597,7 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("classe2_button").addEventListener("click", () => {
         const rowSecond = document.getElementById("row_second");
         rowSecond.classList.add("visible");
-        pickRandomClass("classe_second");
+        //pickRandomClass("classe_second");
     });
 
     document.getElementById("remove_second").addEventListener("click", () => {
@@ -370,7 +610,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("classe3_button").addEventListener("click", () => {
         const rowThird = document.getElementById("row_third");
         rowThird.classList.add("visible");
-        pickRandomClass("classe_third");
+        //pickRandomClass("classe_third");
     });
 
     document.getElementById("remove_third").addEventListener("click", () => {
@@ -380,6 +620,11 @@ document.addEventListener("DOMContentLoaded", () => {
         populateLevels();
     });
 
+    // enable background skills
+
+    document.getElementById("background").addEventListener("change", backgroundSkillsUpdate);
+
+    
     // --- Initial setup ---
     //populateLevels();
 
@@ -387,8 +632,6 @@ document.addEventListener("DOMContentLoaded", () => {
     updateAvailableClasses();
     updateAvailableStats();
     updateAvailableSubRace();
-
-
 
 
 
@@ -408,36 +651,47 @@ document.addEventListener("DOMContentLoaded", () => {
             const btnLeft = slide.querySelector(".slide-btn-left");
             const btnRight = slide.querySelector(".slide-btn-right");
 
-            const distanceFromCenter = Math.abs(rect.left + rect.width / 2 - centerX);
-            const isOffCenter = distanceFromCenter > rect.width / 2;
+            // Calculate if the slide is currently centered
+            const slideCenter = rect.left + rect.width / 2;
+            const distanceFromCenter = Math.abs(slideCenter - centerX);
+
+            // If more than 10% off center, consider it "flipped"
+            const isOffCenter = distanceFromCenter > (window.innerWidth * 0.1);
 
             if (btnLeft) btnLeft.classList.toggle("flipped", isOffCenter);
             if (btnRight) btnRight.classList.toggle("flipped", isOffCenter);
         });
     }
 
-    // --- Move to next/previous slide ---
+    // Navigation for Right Button
     document.querySelectorAll(".slide-btn-right").forEach(btn => {
-        btn.addEventListener("click", () => {
+        btn.addEventListener("click", (e) => {
+            e.preventDefault();
             const current = btn.closest(".form-box");
             const next = current.nextElementSibling;
-            if (next) {
-                slider.scrollTo({
-                    left: next.offsetLeft,
-                    behavior: "smooth" 
+
+            if (next && next.classList.contains("form-box")) {
+                next.scrollIntoView({
+                    behavior: "smooth",
+                    inline: "center",
+                    block: "nearest"
                 });
             }
         });
     });
 
+    // Navigation for Left Button
     document.querySelectorAll(".slide-btn-left").forEach(btn => {
-        btn.addEventListener("click", () => {
+        btn.addEventListener("click", (e) => {
+            e.preventDefault();
             const current = btn.closest(".form-box");
             const prev = current.previousElementSibling;
-            if (prev) {
-                slider.scrollTo({
-                    left: prev.offsetLeft,
-                    behavior: "smooth"
+
+            if (prev && prev.classList.contains("form-box")) {
+                prev.scrollIntoView({
+                    behavior: "smooth",
+                    inline: "center",
+                    block: "nearest"
                 });
             }
         });

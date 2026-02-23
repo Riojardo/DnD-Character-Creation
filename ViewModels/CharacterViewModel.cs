@@ -25,6 +25,8 @@ namespace DnD_CharacterCreation.ViewModels
         public string? total_INT { get; set; }
         public string? total_WIS { get; set; }
         public string? total_CHA { get; set; }
+        public string? Name { get; set; }
+        public string? Description { get; set; }
         public bool Acrobatics { get; set; } = false;
         public bool AnimalHandling { get; set; } = false;
         public bool Arcana { get; set; } = false;

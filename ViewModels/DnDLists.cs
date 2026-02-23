@@ -30,7 +30,7 @@ namespace DnD_CharacterCreation.ViewModels
 
         public Dictionary<int, List<SubRaceInfo>> SubRacesNames { get; set; } = new ();
         public List<string> SpellsNames { get; set; } = new List<string>();
-        public List<string> FeaturesNames { get; set; } = new List<string>();
+        
         public List<BackgroundItem> Background { get; set; } = new List<BackgroundItem>();
 
         public class BackgroundItem
@@ -39,6 +39,15 @@ namespace DnD_CharacterCreation.ViewModels
             public string Name { get; set; } = string.Empty;
             public string PrimarySkill { get; set; } = string.Empty;
             public string SecondarySkill { get; set; } = string.Empty;
+        }
+
+        public List<FeatsList> FeatNames { get; set; } = new List<FeatsList>();
+
+        public class FeatsList
+        {
+            public int? FeatId { get; set; }
+            public string Name { get; set; } = string.Empty;
+            public string Description { get; set; } = string.Empty;
         }
 
 
@@ -104,7 +113,14 @@ namespace DnD_CharacterCreation.ViewModels
                            PrimarySkill = b.PrimarySkill!,
                            SecondarySkill = b.SecondarySkill!
                         }).ToList();
-       
+
+            FeatNames = _context.Feat.Select(f => new FeatsList
+                        {
+                            FeatId = f.FeatId,
+                            Name = f.Name!,
+                            Description = f.Description!
+                        }).ToList();
+
         }
     }
 }
