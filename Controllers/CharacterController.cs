@@ -48,12 +48,13 @@ namespace DnD_CharacterCreation.Controllers
                 BackgroundId = 0,
                 Species = 0,
                 Subspecies = 0,
-                total_STR = "2",
-                total_DEX = "3",
-                total_CON = "4",
-                total_INT = "5",
-                total_WIS = "6",
-                total_CHA = "7",
+                total_STR = "0",
+                total_DEX = "0",
+                total_CON = "0",
+                total_INT = "0",
+                total_WIS = "0",
+                total_CHA = "0",
+                SelectedFeatIds = new List<int>()
             };
 
             return View(model);
@@ -71,7 +72,7 @@ namespace DnD_CharacterCreation.Controllers
                 RaceId = model.Species,
                 SubRaceId = model.Subspecies,
                 UserId = userId,
-
+               
             };
 
 
@@ -151,6 +152,21 @@ namespace DnD_CharacterCreation.Controllers
             };
             _context.CharacterSkill.Add(characterSkills);
             _context.SaveChanges();
+
+            if (model.SelectedFeatIds != null && model.SelectedFeatIds.Any())
+            {
+                foreach (var featId in model.SelectedFeatIds)
+                {
+                    var characterFeat = new CharacterFeat
+                    {
+                        CharacterId = character.CharacterId,
+                        FeatId = featId
+                    };
+
+                    _context.CharacterFeat.Add(characterFeat);
+                }
+                _context.SaveChanges();
+            }
 
             return RedirectToAction("UserCharacter", "Home");
 

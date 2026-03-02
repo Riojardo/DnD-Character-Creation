@@ -200,7 +200,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function updateTotalStats() {
         const rows = document.querySelectorAll('.ability-row');
-
+        const enabledFeats = document.querySelectorAll('.feat-list select:enabled');
+        const statFeat = document.getElementById(`stats_options`);
+        const selectedStatsFeat = statFeat.querySelectorAll('input');
+      
         rows.forEach(row => {
             
             const select = row.querySelector('select');
@@ -214,6 +217,18 @@ document.addEventListener("DOMContentLoaded", () => {
             if (select.value !== "") {
                 totalValue += parseInt(select.value);
             }
+            enabledFeats.forEach(feat => {
+                const selectedText = feat.options[feat.selectedIndex].text;
+                if (selectedText.includes(ability)) {
+                    totalValue++;
+                }
+            });
+
+            selectedStatsFeat.forEach(stat_input => {
+                if (stat_input.name.includes(ability)) {
+                    totalValue += parseInt(stat_input.value);
+                }
+            });
 
             checkboxes.forEach(cb => {
                 if (cb.checked) {
@@ -222,13 +237,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             })
             if (totalValue >= 3) {
-                span.textContent = totalValue < 10 ? "0" + totalValue : String(totalValue);
+                input.value = totalValue < 10 ? "0" + totalValue : String(totalValue);
             } else {
-                span.textContent = "";
-            }
-            input.value = input.value > 20 ? 20 : input.value;
-            input.value = span.textContent;
-            statsInConsole(span);
+                input.value = 0;
+            }          
+            input.value = totalValue > 20 ? 20 : totalValue;
+            span.textContent = input.value;
         });
     }
 
@@ -328,8 +342,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const menu = document.getElementById('view-menu');
     const statsView = document.getElementById('view-stats');
     const featsView = document.getElementById('view-feats');
-    const allCheckboxes = featsView.querySelectorAll('input[type="checkbox"]');
-    const allStatsSelect = statsView.querySelectorAll('input[type="label"]');
+
+    if (featsView) {
+        const allCheckboxes = featsView.querySelectorAll('input[type="checkbox"]');
+        const allStatsSelect = statsView.querySelectorAll('input[type="label"]');
+   
+   
     let totalSlots = 0;
     function getTotalFeatsSlot() {
        
@@ -435,7 +453,27 @@ document.addEventListener("DOMContentLoaded", () => {
         syncFeatState();
     });
 
-    document.getElementById('stats-options').addEventListener('input', updateLimitsStatsBonus);
+
+        // deblock le select des stat pour les feats 
+        document.querySelectorAll('.feat-cb').forEach(checkbox => {
+            checkbox.addEventListener('change', (event) => {
+                const row = event.target.closest('.feat-row');
+                const select = row.querySelector('.feat-bonus-select');
+                if (select) {
+                    if (event.target.checked) {
+                        select.disabled = false;
+                        select.style.textDecoration = "none";
+                    } else {
+                        select.disabled = true;
+                        select.style.textDecoration = "line-through";
+                    }
+                   
+                }
+               
+            });
+        });
+
+    document.getElementById('stats_options').addEventListener('input', updateLimitsStatsBonus);
 
     document.getElementById('openFeats').addEventListener('click', () => {
         totalSlots = getTotalFeatsSlot() / 2;
@@ -447,6 +485,9 @@ document.addEventListener("DOMContentLoaded", () => {
         dialog.showModal();
     });
 
+       /* document.querySelectorAll('.feat-list select:enabled').forEach(select => {
+            select.addEventListener('change', updateTotalStats);
+        });*/
     document.getElementById('btn-to-stats').addEventListener('click', () => showView('stats'));
     document.getElementById('btn-to-feats').addEventListener('click', () => showView('feats'));
     document.querySelectorAll('.btn-back').forEach(btn => {
@@ -459,6 +500,40 @@ document.addEventListener("DOMContentLoaded", () => {
             showView('menu');
         });
     });
+
+        // feats finish
+
+        document.getElementById('confirmFeats').addEventListener('click', () => {
+            const spent = getSpentSlots();
+
+            if (spent > totalSlots) {
+                alert(`You have used ${spent} slots, but you only have ${totalSlots} available!`);
+                return;
+            }
+
+            const checkedFeats = Array.from(document.querySelectorAll('.feat-cb:checked'))
+                .map(cb => cb.value);
+
+            const statIncreases = {};
+            document.querySelectorAll('.stat-increment').forEach(input => {
+                if (parseInt(input.value) > 0) {
+                    statIncreases[input.name] = parseInt(input.value);
+                }
+            });
+
+            const finalData = {
+                feats: checkedFeats,
+                stats: statIncreases
+            };
+            updateTotalStats();
+
+            const hiddenInput = document.getElementById('chosenFeats');
+            hiddenInput.value = JSON.stringify(finalData);
+
+            console.log("Saving data:", finalData);
+            dialog.close();
+        });
+    }
 
     // =============================
     // EVENT LISTENERS
@@ -486,39 +561,12 @@ document.addEventListener("DOMContentLoaded", () => {
             select.addEventListener("change", updateAvailableStats);
         });
         updateAvailableStats();
+
+        var snd = new Audio("/sound/freesound_community-rpg-dice-rolling-95182.mp3");
+        snd.play();
     });
 
-    // feats finish
-
-    document.getElementById('confirmFeats').addEventListener('click', () => {
-        const spent = getSpentSlots();
-
-        if (spent > totalSlots) {
-            alert(`You have used ${spent} slots, but you only have ${totalSlots} available!`);
-            return;
-        }
-
-        const checkedFeats = Array.from(document.querySelectorAll('.feat-cb:checked'))
-            .map(cb => cb.value);
-
-        const statIncreases = {};
-        document.querySelectorAll('.stat-increment').forEach(input => {
-            if (parseInt(input.value) > 0) {
-                statIncreases[input.name] = parseInt(input.value);
-            }
-        });
-
-        const finalData = {
-            feats: checkedFeats,
-            stats: statIncreases
-        };
-
-        const hiddenInput = document.getElementById('chosenFeats');
-        hiddenInput.value = JSON.stringify(finalData);
-
-        console.log("Saving data:", finalData);
-        dialog.close();
-    });
+   
 
     // ---- species&Subspecies ---
 

@@ -285,7 +285,7 @@
                                 <input type="hidden" name="@skill" value="false" />
                                 <label for="@skill">
                                     @(skill == "AnimalHandling" ? "Animal Handling" :
-                                              skill == "SleightOfHand" ? "Sleight of Hand" : skill)
+                                                  skill == "SleightOfHand" ? "Sleight of Hand" : skill)
                                 </label>
 
                                 <input type="hidden" name="@skill" value="false" />
@@ -313,13 +313,13 @@
                             <div id="view-stats" style="display:none;">
                                 <h3>Increase Ability Scores</h3>
                                 <p>Select the stat to increase by +1 (Max 2 per slot):</p>
-                                <div id="stats-options">
-                                    <label>STR : <input type="number" name="stat_str" class="stat-increment" value="0" min="0" max="2"></label><br>
-                                    <label>DEX : <input type="number" name="stat_dex" class="stat-increment" value="0" min="0" max="2"></label><br>
-                                    <label>CON : <input type="number" name="stat_con" class="stat-increment" value="0" min="0" max="2"></label><br>
-                                    <label>INT : <input type="number" name="stat_int" class="stat-increment" value="0" min="0" max="2"></label><br>
-                                    <label>WIS : <input type="number" name="stat_wis" class="stat-increment" value="0" min="0" max="2"></label><br>
-                                    <label>CHA : <input type="number" name="stat_cha" class="stat-increment" value="0" min="0" max="2"></label><br>
+                                <div id="stats_options">
+                                    <label>STR : <input type="number" name="stat_STR" class="stat-increment" value="0" min="0" max="2"></label><br>
+                                    <label>DEX : <input type="number" name="stat_DEX" class="stat-increment" value="0" min="0" max="2"></label><br>
+                                    <label>CON : <input type="number" name="stat_CON" class="stat-increment" value="0" min="0" max="2"></label><br>
+                                    <label>INT : <input type="number" name="stat_INT" class="stat-increment" value="0" min="0" max="2"></label><br>
+                                    <label>WIS : <input type="number" name="stat_WIS" class="stat-increment" value="0" min="0" max="2"></label><br>
+                                    <label>CHA : <input type="number" name="stat_CHA" class="stat-increment" value="0" min="0" max="2"></label><br>
                                 </div>
                                 <button type="button" class="btn-back">Back</button>
                                 <p style="display: inline-block; margin-left: 10px;">
@@ -329,64 +329,38 @@
 
                             <div id="view-feats" style="display:none;">
                                 <h3>Select Feats</h3>
-                                <div class="feat-list">
+                                <div class="feat-list" id="feat_list" style="width: 100%; max-width: 500px;">
                                     @foreach (var feat in Model.ListsAPI.FeatNames)
                                     {
-                                        <label><input type="checkbox" class="feat-cb" value="@feat.FeatId"> @feat.Name @feat.Description</label>
-                                        <br>
+                                        <div class="feat-row" style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; border-bottom: 1px solid #eee; padding-bottom: 4px;">
+
+                                            <label style="margin: 0; display: flex; align-items: center; gap: 10px;">
+                                                <input type="checkbox" id="cb_@feat" class="feat-cb" name="SelectedFeatIds" value="@feat.FeatId">
+                                                <span style="font-weight: bold;">@feat.Name</span>
+                                            </label>
+
+                                            @if (!string.IsNullOrEmpty(feat.Description))
+                                            {
+                                                <select class="feat-bonus-select" name="feat_bonus_@feat.FeatId" disabled style="width: 85px; text-decoration: line-through;">
+                                                    @foreach (var bonus in feat.Description.Split(';'))
+                                                    {
+                                                        <option value="@bonus.Trim()">@bonus.Trim()</option>
+                                                    }
+                                                </select>
+                                            }
+                                            else
+                                            {
+                                                <div style="width: 85px;"></div>
+                                            }
+                                        </div>
                                     }
                                 </div>
                                 <button type="button" class="btn-back">Back</button>
                             </div>
                         </dialog>
 
-                        <script>
-                            const featCounter = 0;
-                            const featDialog = document.getElementById('featDialog');
-                            const openFeatBtn = document.getElementById('openFeats');
-                            const hiddenFeatInput = document.getElementById('chosenFeats');
-                              /*                         
-                            function updateFeatLimit() {
-                                const lvl1 = parseInt(document.getElementById('level_first')?.value) || 0;
-                                const lvl2 = parseInt(document.getElementById('level_second')?.value) || 0;
-                                const lvl3 = parseInt(document.getElementById('level_third')?.value) || 0;
+                      
 
-                                featCounter = Math.floor(lvl1 / 4) + Math.floor(lvl2 / 4) + Math.floor(lvl3 / 4);
-
-                                console.log("Allowed feats:", featCounter);
-                            }
-                                                        checkboxes.forEach(checkbox => {
-                                checkbox.addEventListener('change', function() {
-                                    const currentlyChecked = document.querySelectorAll('#featDialog input[type="checkbox"]:checked').length;
-
-                                    if (currentlyChecked > featCounter) {
-
-                                        this.checked = false;
-                                        alert(`You can only select ${featCounter} feats based on your levels.`);
-                                    }
-                                });
-                            });
-
-                            openFeatBtn.addEventListener('click', () => {
-                                //updateFeatLimit();
-                                featDialog.showModal();
-                            });
-
-                            openFeatBtn.addEventListener('click', () => featDialog.showModal());
-
-                            document.getElementById('confirmFeats').addEventListener('click', () => {
-                                const checkedFeats = Array.from(featDialog.querySelectorAll('input[type="checkbox"]:checked'))
-                                    .map(cb => cb.value);
-
-                                hiddenFeatInput.value = JSON.stringify(checkedFeats);
-
-                                featDialog.close();
-                                console.log("Chosen feats IDs:", checkedFeats);
-                            });
-                            document.getElementById('cancelFeats').addEventListener('click', () => {
-                                featDialog.close();
-                            });*/
-                        </script>
                     </div>
             </div>
         </div>

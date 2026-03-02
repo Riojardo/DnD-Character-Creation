@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 using DnD_CharacterCreation.Data;
 using Microsoft.AspNetCore.Routing.Template;
 using DnD_CharacterCreation.Models;
+using Org.BouncyCastle.Bcpg.Sig;
+using Microsoft.CodeAnalysis.CSharp;
 
 namespace DnD_CharacterCreation.Controllers
 {
@@ -114,7 +116,14 @@ namespace DnD_CharacterCreation.Controllers
                 return NotFound();
 
 
-           ///pdfEditor
+            var featsList = await _context.CharacterFeat
+                          .Where(cf => cf.CharacterId == characterId)
+                          .Select(cf => cf.Feat) 
+                          .ToListAsync();
+            string featuresText = string.Join("\r\n\r\n", featsList.Select(f => $"- {f.Name}"));
+
+
+            ///pdfEditor
 
             var templatePath = "Content/pdf/5E_CharacterSheet_Fillable.pdf";
 
@@ -230,6 +239,9 @@ namespace DnD_CharacterCreation.Controllers
 
                 form.GetField("Survival")?.SetValue(skills.Survival ? (modWIS + proficiencyBonus).ToString() : modWIS.ToString());
                 form.GetField("Check Box 40")?.SetValue(skills.Survival ? "Yes" : "Off");
+
+                form.GetField("Features and Traits")?.SetValue(featuresText);
+              
 
                 pdf.GetDocumentInfo().SetTitle(character?.CharacterName).SetSubject(character?.CharacterName);
             }

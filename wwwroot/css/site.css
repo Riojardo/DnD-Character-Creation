@@ -565,6 +565,25 @@ ability-row .col-middle input[type="checkbox"]:first-of-type {
             margin-left: 0;
         }
 
+        /* feat select grey effect */
+    .feat-bonus-select:disabled {
+        background-color: #e0e0e0; 
+        color: #999; 
+        border: 1px solid #ccc; 
+        cursor: not-allowed; 
+        opacity: 0.6;
+    }
+
+    /* Styles when the select is active */
+    .feat-bonus-select {
+        transition: all 0.3s ease; /* Smooth transition when disappearing */
+        background-color: #ffffff;
+        color: #333;
+        opacity: 1;
+    }
+
+
+
     /* 3. Make the Skills grid 1 column instead of 2 */
     .skills {
         grid-template-columns: 1fr;

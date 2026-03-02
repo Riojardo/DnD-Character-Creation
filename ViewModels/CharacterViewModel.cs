@@ -25,7 +25,6 @@ namespace DnD_CharacterCreation.ViewModels
         public string? total_INT { get; set; }
         public string? total_WIS { get; set; }
         public string? total_CHA { get; set; }
-        public string? Name { get; set; }
         public string? Description { get; set; }
         public bool Acrobatics { get; set; } = false;
         public bool AnimalHandling { get; set; } = false;
@@ -46,6 +45,7 @@ namespace DnD_CharacterCreation.ViewModels
         public bool Stealth { get; set; } = false;
         public bool Survival { get; set; } = false;
 
+        public List<int> SelectedFeatIds { get; set; } = new List<int>();
         public List<Background> Backgrounds { get; set; } = new();
 
         public DnDLists ListsAPI { get; set; }
