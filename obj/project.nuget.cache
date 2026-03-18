@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "Y4RBjvt9Li8=",
+  "dgSpecHash": "pED6tnS8J6Q=",
   "success": true,
   "projectFilePath": "C:\\Users\\Robin\\source\\repos\\DnD-Character-Creation\\DnD_CharacterCreation.csproj",
   "expectedPackageFiles": [
@@ -241,7 +241,7 @@
     "C:\\Users\\Robin\\.nuget\\packages\\system.windows.extensions\\7.0.0\\system.windows.extensions.7.0.0.nupkg.sha512",
     "C:\\Users\\Robin\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
     "C:\\Users\\Robin\\.nuget\\packages\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512",
-    "C:\\Users\\Robin\\.nuget\\packages\\microsoft.net.sdk.compilers.toolset\\9.0.311\\microsoft.net.sdk.compilers.toolset.9.0.311.nupkg.sha512"
+    "C:\\Users\\Robin\\.nuget\\packages\\microsoft.net.sdk.compilers.toolset\\9.0.312\\microsoft.net.sdk.compilers.toolset.9.0.312.nupkg.sha512"
   ],
   "logs": [
     {

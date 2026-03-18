@@ -31,6 +31,11 @@ namespace DnD_CharacterCreation.Data
         {
             base.OnModelCreating(modelBuilder);
 
+   /*         modelBuilder.Entity<CharacterSkill>()
+        .HasOne<Character>()
+        .WithMany()
+        .HasForeignKey(s => s.CharacterId)
+        .OnDelete(DeleteBehavior.Cascade);*/
             modelBuilder.Entity<CharacterSubClass>(entity =>
             {
                 entity.HasOne(cs => cs.Character)
@@ -41,17 +46,17 @@ namespace DnD_CharacterCreation.Data
                 entity.HasOne(cs => cs.Class)
                       .WithMany()
                       .HasForeignKey(cs => cs.ClassId)
-                      .OnDelete(DeleteBehavior.Restrict);
+                      .OnDelete(DeleteBehavior.Cascade);
 
                 entity.HasOne(cs => cs.SubClass)
                       .WithMany()
                       .HasForeignKey(cs => cs.SubclassId)
-                      .OnDelete(DeleteBehavior.Restrict);
+                      .OnDelete(DeleteBehavior.Cascade);
 
                 entity.HasOne(cs => cs.CharacterClass)
                     .WithMany(cc => cc.CharacterSubClasses)
                     .HasForeignKey(cs => cs.CharacterClassId)
-                    .OnDelete(DeleteBehavior.Restrict);
+                    .OnDelete(DeleteBehavior.Cascade);
             });
         }
     }

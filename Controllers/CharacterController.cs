@@ -2,6 +2,9 @@
 using DnD_CharacterCreation.Models;
 using DnD_CharacterCreation.Services;
 using DnD_CharacterCreation.ViewModels;
+using Humanizer;
+using iText.StyledXmlParser.Jsoup.Nodes;
+using iTextSharp.text;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
@@ -17,11 +20,13 @@ using static iText.StyledXmlParser.Jsoup.Select.Evaluator;
 
 namespace DnD_CharacterCreation.Controllers
 {
+    [Route("Character")]
     public class CharacterController : Controller
     {
         private readonly UserManager<Users> _userManager;
         private readonly DnD_APIServices _dndApiServices;
         private readonly AppDbContext _context;
+
 
         public CharacterController(DnD_APIServices dndApiServices, AppDbContext context, UserManager<Users> userManager)
         {
@@ -40,7 +45,6 @@ namespace DnD_CharacterCreation.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-
             var model = new CharacterViewModel
             {
                 CharacterName = string.Empty,
@@ -72,13 +76,14 @@ namespace DnD_CharacterCreation.Controllers
                 RaceId = model.Species,
                 SubRaceId = model.Subspecies,
                 UserId = userId,
-               
+                LevelTotal = (model.Classe_First != null ? model.Levelclasss_First ?? 0 : 0) +
+                             (model.Classe_Second != null ? model.Levelclasss_Second ?? 0 : 0) +
+                             (model.Classe_Third != null ? model.Levelclasss_Third ?? 0 : 0)
             };
-
 
             _context.Characters.Add(character);
             _context.SaveChanges();
-          
+
             var newClasses = new List<(int? classId, int? level, int? subclassId)>
                      {
                          (model.Classe_First, model.Levelclasss_First, model.Subclasse_First),
@@ -111,7 +116,7 @@ namespace DnD_CharacterCreation.Controllers
                         };
                         _context.CharacterSubClass.Add(sub);
                         _context.SaveChanges();
-                                
+
             }
 
             var characterStats = new CharacterAbility
@@ -170,6 +175,32 @@ namespace DnD_CharacterCreation.Controllers
 
             return RedirectToAction("UserCharacter", "Home");
 
+        }
+        [HttpDelete("Erase/{id}")]
+        public async Task<IActionResult> Erase(int id)
+        {
+            try
+            {
+                await _context.Database.ExecuteSqlRawAsync(
+                    "DELETE FROM CharacterSubClass WHERE CharacterId = {0}", id);
+                await _context.Database.ExecuteSqlRawAsync(
+                    "DELETE FROM CharacterClass WHERE CharacterId = {0}", id);
+                await _context.Database.ExecuteSqlRawAsync(
+                    "DELETE FROM CharacterAbility WHERE CharacterId = {0}", id);
+                await _context.Database.ExecuteSqlRawAsync(
+                    "DELETE FROM CharacterSkill WHERE CharacterId = {0}", id);
+                await _context.Database.ExecuteSqlRawAsync(
+                    "DELETE FROM CharacterFeat WHERE CharacterId = {0}", id);
+                await _context.Database.ExecuteSqlRawAsync(
+                    "DELETE FROM Characters WHERE CharacterId = {0}", id);
+
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Delete failed: {ex.Message}");
+                return StatusCode(500, "Database constraint error. Check dependencies.");
+            }
         }
         public IActionResult UserCharacter()
         {

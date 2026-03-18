@@ -296,9 +296,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (oldSkills.includes(cleanId)) {
                 checkbox.checked = false;
+                checkbox.style.pointerEvents = "auto";
             }
             if (newSkills.includes(cleanId)) {
                 checkbox.checked = true;
+                checkbox.style.pointerEvents = "none";
             }
         });
 
@@ -582,8 +584,6 @@ document.addEventListener("DOMContentLoaded", () => {
         SelectSubRace.disabled = false;
         updateAvailableSubRace();
     });
-
-
 
 
     // --- Checkboxes +1/+2 per row ---

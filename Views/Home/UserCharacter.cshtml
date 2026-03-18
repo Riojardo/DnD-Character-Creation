@@ -5,27 +5,48 @@
 @{
     ViewData["Title"] = "User's Caracters";
 }
+<script src="~/js/UserCharacter.js"></script>
 <!--<h1>@ViewData["Title"]</h1>-->
 <head>
     <link rel="stylesheet" href="~/css/usercharacter.css" />
 </head>
+
+
 <div class="parchment-box">
+
     <div class="parchment-border">
-    <h1>Your Character(s) :</h1>
-    <p>
-      
-    </p>
-    <ul class="character_list">
+        <h1>Your Character(s) :</h1>
+
+        <div class="character-toolbar">
+            <a>Order By : </a>
+            <select class="character-options-select" name="character_options">
+                <option value="Date_Down">Date ↓ </option>
+                <option value="Date_Up">Date ↑ </option>
+                <option value="Level_Down">Level ↓ </option>
+                <option value="Level_Up">Level ↑ </option>
+                <option value="Alphabet_Down">A - Z </option>
+                <option value="Alphabet_Up">Z - A </option>
+            </select>
+
+            <button class="select-all" type="button">Select All</button>
+            <button class="delete-all" type="button">Delete Selected</button>
+        </div>
+        <ul class="character_list">
             @foreach (var perso in Model)
             {
-                <br>
-                <li>
-                    <a href="@($"{UrlBase }/api/pdf/fill/{perso.CharacterId}")" target="_blank">
+                <li class="character-item"
+                    data-id="@perso.CharacterId"
+                    data-name="@perso.CharacterName"
+                    data-level="@perso.LevelTotal"
+                    data-date="@perso.CreationTime.ToString("yyyy-MM-ddTHH:mm:ss")">
+                    <a href="@($"{UrlBase}/api/pdf/fill/{perso.CharacterId}")" target="_blank" class="character-link">
                         @perso.CharacterName (@perso.CreationTime.ToString("dd-MM-yyyy HH:mm"))
                     </a>
+                    <input type="checkbox" class="right-checkbox" />
                 </li>
-            }            
-    </ul>
+                
+            }
+        </ul>
     </div>
 </div>
 

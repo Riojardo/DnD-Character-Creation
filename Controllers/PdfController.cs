@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Routing.Template;
 using DnD_CharacterCreation.Models;
 using Org.BouncyCastle.Bcpg.Sig;
 using Microsoft.CodeAnalysis.CSharp;
+using System.Drawing;
 
 namespace DnD_CharacterCreation.Controllers
 {
@@ -240,6 +241,8 @@ namespace DnD_CharacterCreation.Controllers
                 form.GetField("Survival")?.SetValue(skills.Survival ? (modWIS + proficiencyBonus).ToString() : modWIS.ToString());
                 form.GetField("Check Box 40")?.SetValue(skills.Survival ? "Yes" : "Off");
 
+                // Feats
+
                 form.GetField("Features and Traits")?.SetValue(featuresText);
               
 
@@ -249,6 +252,8 @@ namespace DnD_CharacterCreation.Controllers
             var outputStream = new MemoryStream(tempStream.ToArray());
             outputStream.Position = 0;
 
+            var fileName = $"{character.CharacterName}.pdf";
+            Response.Headers.Append("Content-Disposition", $"inline; filename={fileName}");
             return File(outputStream, "application/pdf");
         }
 
