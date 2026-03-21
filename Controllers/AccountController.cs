@@ -56,7 +56,6 @@ namespace DnD_CharacterCreation.Controllers
             var result = await _userManager.CreateAsync(user, model.Password);
             if (result.Succeeded)
             {
-                // Role "Player" is guaranteed to exist from Program.cs seeding
                 await _userManager.AddToRoleAsync(user, "Player");
                 return RedirectToAction("Login", "Account");
             }
