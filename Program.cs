@@ -20,6 +20,13 @@ namespace DnD_CharacterCreation
             builder.Services.AddControllersWithViews();
             builder.Services.AddHttpClient<DnD_APIServices>();
 
+            builder.Services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(33);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
+
             builder.Services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
 
@@ -35,7 +42,6 @@ namespace DnD_CharacterCreation
 
             var app = builder.Build();
 
-            // Seed roles before app starts
             await SeedRolesAsync(app);
 
             if (!app.Environment.IsDevelopment())
@@ -44,52 +50,21 @@ namespace DnD_CharacterCreation
                 app.UseHsts();
             }
 
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseRouting();
+            app.UseSession();//<--- here
             app.UseAuthentication();
             app.UseAuthorization();
 
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
-            /*
-                        using var pdf = new PdfDocument(new PdfReader("C:\\Users\\Robin\\source\\repos\\DnD-Character-Creation\\content\\pdf\\5E_CharacterSheet_Fillable.pdf"));
-                        var form = PdfAcroForm.GetAcroForm(pdf, false);
-
-                        var fields = form.GetFormFields(); // maintenant disponible
-                        foreach (var field in fields)
-                        {
-                            Console.WriteLine(field.Key); // Nom interne du champ
-                        }*/
-
-                       /* string templatePath = "C:\\Users\\Robin\\source\\repos\\DnD-Character-Creation\\content\\pdf\\5E_CharacterSheet_Fillable.pdf";
-                        string outputPath = "Content/Gimli_Sheet.pdf";
-
-                        var character = new
-                        {
-                            Name = "Gimli",
-                            ClassLevel = "Fighter 3",
-                            Race = "Dwarf",
-                            Strength = 16
-                        };
-
-                        using var reader = new PdfReader(templatePath);
-                        using var writer = new PdfWriter(outputPath);
-                        using var pdf = new PdfDocument(reader, writer);
-
-                        var form = PdfAcroForm.GetAcroForm(pdf, true);
-
-                        form.GetField("CharacterName").SetValue(character.Name);
-                        form.GetField("ClassLevel").SetValue(character.ClassLevel);
-                        form.GetField("Race").SetValue(character.Race);
-                        form.GetField("STR").SetValue(character.Strength.ToString());
-
-                        form.FlattenFields(); 
-
-                        pdf.Close();
-            */
+           
             app.Run();
+
+
 
             async Task SeedRolesAsync(WebApplication app)
             {
@@ -105,6 +80,9 @@ namespace DnD_CharacterCreation
                 }
             }
           
+
+
+
         }
     }
 }

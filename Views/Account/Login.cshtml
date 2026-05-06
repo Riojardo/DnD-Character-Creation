@@ -6,41 +6,76 @@
     Layout = "~/Views/Shared/_AccountLayout.cshtml";
 }
 
-
 <div class="account-container">
-    <div class="account-box"  >
+    <div class="account-box">
         <h2 class="text-center mb-4">Login</h2>
         <form asp-action="Login" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
             <div class="mb-3">
                 <label asp-for="Email" class="form-label"></label>
                 <input asp-for="Email" class="form-control" />
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
+
             <div class="mb-3">
                 <label asp-for="Password" class="form-label"></label>
                 <input asp-for="Password" class="form-control" />
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
-           <div class="options-row">
-    <div class="remember">
-        <input asp-for="RememberMe" type="checkbox" />
-        <label asp-for="RememberMe">Remember me</label>
-    </div>
-                <a asp-controller="Account" asp-action="VerifyEmail" class="forgot-link">Forgot password?</a>
-</div>
+
+            <div class="form-group text-center mb-4">
+                <label asp-for="CaptchaInput" class="fw-bold text-secondary mb-2 d-block">
+                    Security Verification
+                </label>
+
+                <div class="d-flex justify-content-center align-items-center mb-2">
+                    <img id="captchaImage"
+                         src="@Url.Action("GetCaptcha", "Authenticate")"
+                         alt="CAPTCHA"
+                         class="border rounded shadow-sm" />
+
+                    <button type="button"
+                            class="btn btn-sm btn-outline-secondary ms-3"
+                            onclick="refreshCaptcha()">
+                        <i class="bi bi-arrow-clockwise"></i> Refresh
+                    </button>
+                </div>
+
+                <div class="mx-auto" style="max-width: 200px;">
+                    <input asp-for="CaptchaInput"
+                           class="form-control text-center"
+                           placeholder="Enter code"
+                           autocomplete="off" />
+                    <span asp-validation-for="CaptchaInput" class="text-danger small"></span>
+                </div>
+            </div>
+            <div class="options-row">
+                <div class="remember">
+                    <input asp-for="RememberMe" type="checkbox" />
+                    <label asp-for="RememberMe">Remember me</label>
+                </div>
+                <a asp-controller="Account" asp-action="VerifyEmail" class="forgot-link">
+                    Forgot password?
+                </a>
+            </div>
+
             <input type="submit" value="Login" class="btn btn-success w-100 p-2" />
-            <p class=" text-center mt-2">
-                You don't have an account ?<a asp-controller="Account" asp-action="Register" class="text-decoration-none">   Register</a>
+
+            <p class="text-center mt-3">
+                Don't have an account? <a asp-controller="Account" asp-action="Register" class="text-decoration-none">Register</a>
             </p>
+
             <div class="text-center">
                 <a asp-controller="Home" asp-action="Index" class="text-decoration-none mt-3">Go Back</a>
             </div>
         </form>
     </div>
 </div>
-@section Scripts{
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial.cshtml");
+
+<script>
+    function refreshCaptcha() {
+        document.getElementById('captchaImage').src =
+            '@Url.Action("GetCaptcha", "Authenticate")?' + new Date().getTime();
     }
-}
+</script>

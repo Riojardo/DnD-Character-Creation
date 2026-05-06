@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Net;
 
 namespace DnD_CharacterCreation.ViewModels
 {
@@ -7,5 +8,7 @@ namespace DnD_CharacterCreation.ViewModels
         [Required(ErrorMessage = "Email is required.")]
         [EmailAddress]
         public string? Email { get; set; }
+       
     }
+
 }

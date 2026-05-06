@@ -106,32 +106,30 @@
 }
 
 /* Remember me + Forgot password row */
+/* Ensure the row takes full width of the form's control area */
 .options-row {
     width: 100%;
-    display: flex;
-    justify-content: space-between;
+    display: flex !important; /* Force flex behavior */
+    flex-direction: row !important; /* Ensure it stays horizontal */
+    justify-content: space-between !important; /* Push items to edges */
     align-items: center;
-    font-size: 1rem;
-    margin: 0.5rem 0 1.2rem 0;
+    font-size: 0.9rem;
+    margin: 10px 0;
     box-sizing: border-box;
 }
 
     .options-row .remember {
         display: flex;
         align-items: center;
-        gap: 0.4rem;
-    }
-
-    .options-row .forgot-link {
-        color: #5c2e0f;
+        gap: 8px;
+        color: #4a2612;
         font-weight: bold;
-        text-decoration: none;
-        transition: color 0.3s ease, text-shadow 0.3s ease;
     }
 
-        .options-row .forgot-link:hover {
-            color: #d4af37;
-            text-shadow: 0 0 5px #d4af37;
+        /* Ensure the checkbox doesn't have weird margins */
+        .options-row .remember input[type="checkbox"] {
+            margin: 0;
+            cursor: pointer;
         }
 
 /* Fantasy submit button */

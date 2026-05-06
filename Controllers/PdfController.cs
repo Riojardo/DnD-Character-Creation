@@ -143,14 +143,14 @@ namespace DnD_CharacterCreation.Controllers
                 if (character == null)
                     return NotFound();
 
+                string deplacementSpeed = (character.RaceId == 2 || character.RaceId == 4 || character.RaceId == 7) ? "7.5" : character.RaceId == 3 && character.SubRaceId == 15 ? "10.5" : "9";
 
                 var featsList = await _context.CharacterFeat
                               .Where(cf => cf.CharacterId == characterId)
                               .Select(cf => cf.Feat)
                               .ToListAsync();
                 string featuresText = string.Join("\r\n\r\n", featsList.Select(f => $"- {f.Name}"));
-                string deplacementSpeed = (character.RaceId == 2 || character.RaceId == 4 || character.RaceId == 7) ? "7.5" : character.RaceId == 3 && character.SubRaceId == 15 ? "10.5" : "9";
-
+      
 
                 ///pdfEditor
 
