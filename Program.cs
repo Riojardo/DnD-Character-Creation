@@ -79,8 +79,12 @@ namespace DnD_CharacterCreation
                         await roleManager.CreateAsync(new IdentityRole(role));
                 }
             }
-          
 
+            //button send via mail to rgister, time limit
+            builder.Services.Configure<DataProtectionTokenProviderOptions>(options =>
+            {
+                options.TokenLifespan = TimeSpan.FromMinutes(5); 
+            });
 
 
         }

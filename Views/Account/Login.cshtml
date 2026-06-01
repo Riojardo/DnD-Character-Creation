@@ -79,3 +79,22 @@
             '@Url.Action("GetCaptcha", "Authenticate")?' + new Date().getTime();
     }
 </script>
+
+@if (TempData["NeedsVerification"] != null)
+{
+    <dialog id="verifyDialog" style="border: 2px solid indigo; border-radius: 12px; padding: 25px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); text-align: center;">
+        <h3 style="color: indigo; margin-top: 0;">Check your Inbox!</h3>
+        <p style="color: #333;">@TempData["NeedsVerification"]</p>
+        <button onclick="document.getElementById('verifyDialog').close()"
+                style="background: indigo; color: white; border: none; padding: 10px 25px; cursor: pointer; border-radius: 6px; font-weight: bold;">
+            Understood
+        </button>
+    </dialog>
+
+    <script>
+        const modal = document.getElementById('verifyDialog');
+        if (modal) {
+            modal.showModal();
+        }
+    </script>
+}

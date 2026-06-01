@@ -1,0 +1,12 @@
+﻿@{
+    ViewData["Title"] = "Email Confirmed";
+}
+
+<div style="text-align: center; margin-top: 50px;">
+    <h1 style="color: indigo;">Success! 👍</h1>
+    <p>Your email has been verified. You can now log in to start your adventure using this code.</p>
+    <a href="@Url.Action("Login", "Account")" class="btn btn-primary" 
+       style="background: indigo; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">
+       Go to Login
+    </a>
+</div>

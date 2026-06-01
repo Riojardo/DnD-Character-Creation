@@ -2,12 +2,12 @@
 using DnD_CharacterCreation.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Memory;
+using System;
 using System.Net;
 using System.Net.Mail;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
+using System.Security.Cryptography;
 using System.Threading.Tasks;
-using static System.Runtime.InteropServices.JavaScript.JSType;
-using System.Net.Mail;
 
 namespace DnD_CharacterCreation.Controllers
 {
@@ -16,22 +16,28 @@ namespace DnD_CharacterCreation.Controllers
         private readonly SignInManager<Users> _signInManager;
         private readonly UserManager<Users> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly IMemoryCache _cache;
 
+        // All 4 required dependencies are cleanly injected here
         public AccountController(SignInManager<Users> signInManager,
                                  UserManager<Users> userManager,
-                                 RoleManager<IdentityRole> roleManager)
+                                 RoleManager<IdentityRole> roleManager,
+                                 IMemoryCache cache)
         {
             _signInManager = signInManager;
             _userManager = userManager;
             _roleManager = roleManager;
+            _cache = cache;
         }
 
+        // ==========================================
+        // LOGIN ACTIONS
+        // ==========================================
         public IActionResult Login() => View();
 
         [HttpPost]
         public async Task<IActionResult> Login(LoginViewModel model)
         {
-
             if (!ModelState.IsValid) return View(model);
 
             string storedCaptcha = HttpContext.Session.GetString("captcha");
@@ -40,7 +46,7 @@ namespace DnD_CharacterCreation.Controllers
                 !model.CaptchaInput.Equals(storedCaptcha, StringComparison.OrdinalIgnoreCase))
             {
                 ModelState.AddModelError("CaptchaInput", "Invalid CAPTCHA code. Please try again.");
-                return View(model); 
+                return View(model);
             }
 
             HttpContext.Session.Remove("captcha");
@@ -49,47 +55,92 @@ namespace DnD_CharacterCreation.Controllers
 
             if (result.Succeeded)
             {
-                model.SendEmail();
                 return RedirectToAction("Index", "Home");
             }
-               
 
             ModelState.AddModelError("", "Email or password is incorrect");
-
-
-            model.SendEmail();
-                
-       
-
             return View(model);
         }
 
+        // ==========================================
+        // REGISTER ACTIONS (Code Generation & Dispatch)
+        // ==========================================
         public IActionResult Register() => View();
 
+        [HttpPost]
+        // ==========================================
+        // REGISTER (POST) - Ne touche plus à la DB
+        // ==========================================
         [HttpPost]
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
             if (!ModelState.IsValid) return View(model);
 
-            var user = new Users
+            var existingUser = await _userManager.FindByEmailAsync(model.Email);
+            if (existingUser != null)
             {
-                FullName = model.Name,
-                Email = model.Email,
-                UserName = model.Email
-            };
-
-            var result = await _userManager.CreateAsync(user, model.Password);
-            if (result.Succeeded)
-            {
-                await _userManager.AddToRoleAsync(user, "Player");
-                return RedirectToAction("Login", "Account");
+                ModelState.AddModelError("Email", "Email is already registered.");
+                return View(model);
             }
 
-            foreach (var error in result.Errors)
-                ModelState.AddModelError("", error.Description);
+            try
+            {
+                string validationCode = createValidationCode(model.Email, 5);
+                await SendEmailWithCode(model.Email, validationCode);
+                return RedirectToAction("VerifyEmail", new { name = model.Name, email = model.Email, password = model.Password });
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("", "Verification email failed to send. Please contact support.");
+                return View(model);
+            }
+        }
+
+        [HttpGet]
+        public IActionResult VerifyEmail(string name, string email, string password)
+        {
+            if (string.IsNullOrEmpty(email)) return RedirectToAction("Register");
+
+            var model = new VerifyEmailViewModel
+            {
+                Name = name,
+                Email = email,
+                Password = password
+            };
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> VerifyEmail(VerifyEmailViewModel model)
+        {
+            if (!ModelState.IsValid) return View(model);
+
+            if (_cache.TryGetValue(model.Email, out string storedCode))
+            {
+                if (storedCode == model.CodeInput)
+                {
+                    var user = new Users { FullName = model.Name, Email = model.Email, UserName = model.Email, EmailConfirmed = true };
+                    var result = await _userManager.CreateAsync(user, model.Password);
+
+                    if (result.Succeeded)
+                    {
+                        await _userManager.AddToRoleAsync(user, "Player");
+                        _cache.Remove(model.Email); 
+
+                        TempData["SuccessMessage"] = "Your account has been successfully created and verified! You can now log in.";
+                        return RedirectToAction("Login");
+                    }
+
+                    foreach (var error in result.Errors) ModelState.AddModelError("", error.Description);
+                    return View(model);
+                }
+            }
+
+            ModelState.AddModelError("CodeInput", "The code is invalid or has expired (5 minutes limit). Please register again.");
 
             return View(model);
         }
+
 
         public async Task<IActionResult> Logout()
         {
@@ -97,19 +148,75 @@ namespace DnD_CharacterCreation.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        [HttpGet]
-        public IActionResult VerifyEmail()
+        public async Task<IActionResult> ConfirmEmail(string userId, string token)
         {
+            if (userId == null || token == null) return RedirectToAction("Index", "Home");
 
- 
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user == null) return NotFound();
 
-            return View(new VerifyEmailViewModel());
+            var result = await _userManager.ConfirmEmailAsync(user, token);
 
+            if (result.Succeeded)
+            {
+                return View("EmailConfirmedSuccess");
+            }
+            return View("Error");
         }
 
         public IActionResult ChangePassword()
         {
             return View(new ChangePasswordViewModel());
+        }
+
+        public string createValidationCode(string mailtest, int timeLimit)
+        {
+            int cacheValue = RandomNumberGenerator.GetInt32(100000, 1000000);
+            string validationCode = cacheValue.ToString();
+
+            var cacheOptions = new MemoryCacheEntryOptions
+            {
+                AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(timeLimit)
+            };
+
+            _cache.Set(mailtest, validationCode, cacheOptions);
+
+            return validationCode;
+        }
+
+        private async Task SendEmailWithCode(string targetEmail, string code)
+        {
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+
+            using (var client = new SmtpClient("smtp.gmail.com", 587))
+            {
+                client.UseDefaultCredentials = false;
+                client.Credentials = new NetworkCredential("robin.jardon@gmail.com", "gdwaquykrhyohxyg");
+                client.EnableSsl = true;
+                client.DeliveryMethod = SmtpDeliveryMethod.Network;
+
+                var mailMessage = new MailMessage();
+                mailMessage.From = new MailAddress("robin.jardon@gmail.com", "DnD_CharacterCreation");
+                mailMessage.To.Add(targetEmail);
+                mailMessage.Subject = "Your Verification Code";
+                mailMessage.IsBodyHtml = true;
+                mailMessage.Body = $@"
+                <html>
+                    <body style='font-family: Arial, sans-serif; line-height: 1.6;'>
+                        <h2 style='color: #2c3e50;'>Welcome to the Adventure!</h2>
+                        <p>Thank you for joining <strong>DnD Character Creation</strong>.</p>
+                        <p>Please use the following temporary security code to verify your account. This code is valid for <strong>5 minutes</strong>:</p>
+                        <div style='margin: 20px 0;'>  
+                           <span style='background-color: #f4f4f4; border: 1px dashed indigo; padding: 10px 20px; font-size: 24px; font-weight: bold; letter-spacing: 5px; color: indigo;'>
+                               {code}
+                           </span>
+                        </div>
+                        <p>If you did not request this code, you can safely ignore this email.</p>
+                    </body>
+                </html>";
+
+                await client.SendMailAsync(mailMessage);
+            }
         }
     }
 }
