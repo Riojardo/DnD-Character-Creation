@@ -17,17 +17,19 @@ namespace DnD_CharacterCreation.Controllers
         private readonly UserManager<Users> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly IMemoryCache _cache;
+        private readonly IConfiguration _configuration;
 
-        // All 4 required dependencies are cleanly injected here
         public AccountController(SignInManager<Users> signInManager,
                                  UserManager<Users> userManager,
                                  RoleManager<IdentityRole> roleManager,
-                                 IMemoryCache cache)
+                                 IMemoryCache cache,
+                                 IConfiguration configuration)
         {
             _signInManager = signInManager;
             _userManager = userManager;
             _roleManager = roleManager;
             _cache = cache;
+            _configuration = configuration;
         }
 
         // ==========================================
@@ -63,14 +65,10 @@ namespace DnD_CharacterCreation.Controllers
         }
 
         // ==========================================
-        // REGISTER ACTIONS (Code Generation & Dispatch)
+        // REGISTER ACTIONS
         // ==========================================
         public IActionResult Register() => View();
 
-        [HttpPost]
-        // ==========================================
-        // REGISTER (POST) - Ne touche plus à la DB
-        // ==========================================
         [HttpPost]
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
@@ -84,10 +82,17 @@ namespace DnD_CharacterCreation.Controllers
             }
 
             try
-            {
+            { 
                 string validationCode = createValidationCode(model.Email, 5);
-                await SendEmailWithCode(model.Email, validationCode);
-                return RedirectToAction("VerifyEmail", new { name = model.Name, email = model.Email, password = model.Password });
+                var cacheOptions = new MemoryCacheEntryOptions
+                {
+                    AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(5)
+                };
+                
+                _cache.Set($"RegData_{model.Email}", (Model: model, Code: validationCode), cacheOptions);
+
+                await SendEmailWithCode(model.Email, validationCode).ConfigureAwait(false);
+                return RedirectToAction("VerifyEmail", new { email = model.Email });
             }
             catch (Exception ex)
             {
@@ -97,15 +102,18 @@ namespace DnD_CharacterCreation.Controllers
         }
 
         [HttpGet]
-        public IActionResult VerifyEmail(string name, string email, string password)
+        public IActionResult VerifyEmail(string email)
         {
             if (string.IsNullOrEmpty(email)) return RedirectToAction("Register");
+            if (!_cache.TryGetValue($"RegData_{email}", out (RegisterViewModel Model, string Code) cachedData))
+            {
+                return RedirectToAction("Register");
+            }
 
             var model = new VerifyEmailViewModel
             {
-                Name = name,
                 Email = email,
-                Password = password
+                Name = cachedData.Model.Name
             };
             return View(model);
         }
@@ -115,16 +123,25 @@ namespace DnD_CharacterCreation.Controllers
         {
             if (!ModelState.IsValid) return View(model);
 
-            if (_cache.TryGetValue(model.Email, out string storedCode))
+            if (_cache.TryGetValue($"RegData_{model.Email}", out (RegisterViewModel Model, string Code) cachedData))
             {
-                if (storedCode == model.CodeInput)
+                if (cachedData.Code == model.CodeInput)
                 {
-                    var user = new Users { FullName = model.Name, Email = model.Email, UserName = model.Email, EmailConfirmed = true };
-                    var result = await _userManager.CreateAsync(user, model.Password);
+                    var user = new Users 
+                    { 
+                        FullName = cachedData.Model.Name, 
+                        Email = cachedData.Model.Email, 
+                        UserName = cachedData.Model.Email, 
+                        EmailConfirmed = true 
+                    };
+                    
+                    var result = await _userManager.CreateAsync(user, cachedData.Model.Password);
 
                     if (result.Succeeded)
                     {
                         await _userManager.AddToRoleAsync(user, "Player");
+                        
+                        _cache.Remove($"RegData_{model.Email}");
                         _cache.Remove(model.Email); 
 
                         TempData["SuccessMessage"] = "Your account has been successfully created and verified! You can now log in.";
@@ -137,10 +154,8 @@ namespace DnD_CharacterCreation.Controllers
             }
 
             ModelState.AddModelError("CodeInput", "The code is invalid or has expired (5 minutes limit). Please register again.");
-
             return View(model);
         }
-
 
         public async Task<IActionResult> Logout()
         {
@@ -188,15 +203,19 @@ namespace DnD_CharacterCreation.Controllers
         {
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
 
+            string smtpEmail = _configuration["SmtpSettings:Email"] ?? "robin.jardon@gmail.com";
+            string smtpPassword = _configuration["SmtpSettings:Password"] ?? "gdwaquykrhyohxyg";
+
             using (var client = new SmtpClient("smtp.gmail.com", 587))
             {
                 client.UseDefaultCredentials = false;
                 client.Credentials = new NetworkCredential("robin.jardon@gmail.com", "gdwaquykrhyohxyg");
+                //client.Credentials = new NetworkCredential(smtpEmail, smtpPassword);
                 client.EnableSsl = true;
                 client.DeliveryMethod = SmtpDeliveryMethod.Network;
 
                 var mailMessage = new MailMessage();
-                mailMessage.From = new MailAddress("robin.jardon@gmail.com", "DnD_CharacterCreation");
+                mailMessage.From = new MailAddress(smtpEmail, "DnD_CharacterCreation");
                 mailMessage.To.Add(targetEmail);
                 mailMessage.Subject = "Your Verification Code";
                 mailMessage.IsBodyHtml = true;
@@ -215,7 +234,7 @@ namespace DnD_CharacterCreation.Controllers
                     </body>
                 </html>";
 
-                await client.SendMailAsync(mailMessage);
+                await client.SendMailAsync(mailMessage).ConfigureAwait(false);
             }
         }
     }

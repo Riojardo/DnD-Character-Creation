@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "wgDoXrspQ6k=",
+  "dgSpecHash": "9ikJYM/nCuE=",
   "success": true,
   "projectFilePath": "C:\\Users\\Robin\\source\\repos\\DnD-Character-Creation\\DnD_CharacterCreation.csproj",
   "expectedPackageFiles": [
@@ -254,15 +254,16 @@
     "C:\\Users\\Robin\\.nuget\\packages\\system.threading.threadpool\\4.3.0\\system.threading.threadpool.4.3.0.nupkg.sha512",
     "C:\\Users\\Robin\\.nuget\\packages\\system.windows.extensions\\7.0.0\\system.windows.extensions.7.0.0.nupkg.sha512",
     "C:\\Users\\Robin\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
-    "C:\\Users\\Robin\\.nuget\\packages\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512",
-    "C:\\Users\\Robin\\.nuget\\packages\\microsoft.net.sdk.compilers.toolset\\9.0.314\\microsoft.net.sdk.compilers.toolset.9.0.314.nupkg.sha512"
+    "C:\\Users\\Robin\\.nuget\\packages\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512"
   ],
   "logs": [
     {
       "code": "NU1902",
       "level": "Warning",
-      "warningLevel": 1,
       "message": "Le package 'MailKit' 4.15.1 présente une vulnérabilité de gravité moyenne connue, https://github.com/advisories/GHSA-9j88-vvj5-vhgr.",
+      "projectPath": "C:\\Users\\Robin\\source\\repos\\DnD-Character-Creation\\DnD_CharacterCreation.csproj",
+      "warningLevel": 1,
+      "filePath": "C:\\Users\\Robin\\source\\repos\\DnD-Character-Creation\\DnD_CharacterCreation.csproj",
       "libraryId": "MailKit",
       "targetGraphs": [
         "net8.0"
@@ -271,8 +272,10 @@
     {
       "code": "NU1701",
       "level": "Warning",
-      "warningLevel": 1,
       "message": "Le package 'iTextSharp 5.5.13.4' a été restauré en utilisant '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' au lieu du framework cible du projet 'net8.0'. Ce package n'est peut-être pas totalement compatible avec votre projet.",
+      "projectPath": "C:\\Users\\Robin\\source\\repos\\DnD-Character-Creation\\DnD_CharacterCreation.csproj",
+      "warningLevel": 1,
+      "filePath": "C:\\Users\\Robin\\source\\repos\\DnD-Character-Creation\\DnD_CharacterCreation.csproj",
       "libraryId": "iTextSharp",
       "targetGraphs": [
         "net8.0"
